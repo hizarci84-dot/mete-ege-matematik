@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: mete-ege-matematik
+    env: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20

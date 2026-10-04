@@ -6,9 +6,9 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
+    "build": "cd frontend && npm install && npm run build",
     "dev:backend": "node --watch server/index.js",
     "dev:frontend": "npm run --prefix frontend dev",
-    "build": "npm run --prefix frontend build",
     "dev": "node server/runner.js"
   },
   "dependencies": {
