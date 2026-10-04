@@ -93,6 +93,8 @@ export default function App() {
   const currentStudent = students.find(s => s.id === activeStudentId) || students[0]
 
   const handleOpenPrintReport = async (targetStudentId = null) => {
+    // Giriş yapılmadıysa kesinlikle rapor açılamaz
+    if (!hasSelectedPortal) return
     // Öğrenci ise kesinlikle yalnızca kendi raporunu açabilir
     const sid = activeStudentId !== 'teacher' ? activeStudentId : (targetStudentId || 'mete')
     setPrintStudentId(sid)
@@ -310,6 +312,12 @@ export default function App() {
     try {
       window.history.pushState(null, '', window.location.pathname)
     } catch (e) {}
+    try {
+      sessionStorage.removeItem('student_auth_mete')
+      sessionStorage.removeItem('student_auth_ege')
+      sessionStorage.removeItem('teacher_auth')
+    } catch (e) {}
+    setIsLockedStudent(false)
     setHasSelectedPortal(false)
   }
 
@@ -325,13 +333,118 @@ export default function App() {
 
   return (
     <div className={`min-h-screen ${theme === 'light' ? 'light-theme bg-slate-50 text-slate-900' : 'bg-slate-950 text-slate-100'} flex flex-col selection:bg-indigo-500 selection:text-white transition-colors duration-200`}>
-      {/* Portal Chooser Modal (Shown when no URL param is given) */}
-      {!hasSelectedPortal && (
+      {/* Portal Chooser or Main Authenticated View */}
+      {!hasSelectedPortal ? (
         <PortalChooser
           onSelectStudent={handleSelectStudentPortal}
           onOpenTeacherLogin={() => setIsTeacherPinModalOpen(true)}
           onOpenInstallModal={() => setIsInstallModalOpen(true)}
         />
+      ) : (
+        <>
+          {/* Top Navigation & Mobile Bottom Bar */}
+          <Navbar
+            students={students}
+            activeStudentId={activeStudentId}
+            onSelectStudent={(id) => {
+              setActiveStudentId(id)
+              if (id === 'teacher') {
+                setIsLockedStudent(false)
+              }
+            }}
+            activeTab={activeTab}
+            onSelectTab={setActiveTab}
+            onPrint={() => handleOpenPrintReport(activeStudentId === 'ege' ? 'ege' : 'mete')}
+            isLockedStudent={isLockedStudent}
+            onExitLock={handleExitLock}
+            onOpenTeacherLogin={() => setIsTeacherPinModalOpen(true)}
+            theme={theme}
+            onToggleTheme={toggleTheme}
+            onOpenInstallModal={() => setIsInstallModalOpen(true)}
+          />
+
+          {/* Main Container */}
+          <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 pb-24 md:pb-8 overflow-x-hidden">
+            {isLoading ? (
+              <div className="flex flex-col items-center justify-center py-32 space-y-4">
+                <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+                <p className="text-sm text-slate-400">Veriler yükleniyor...</p>
+              </div>
+            ) : activeStudentId === 'teacher' ? (
+              /* Teacher Dashboard View */
+              <TeacherDashboard
+                teacherData={teacherOverview}
+                onAddFeedback={handleAddFeedback}
+                onAddNote={handleAddNote}
+                onOpenTestModal={handleOpenTestModal}
+                onSwitchToStudent={(sid) => {
+                  setActiveStudentId(sid)
+                  setIsLockedStudent(false)
+                }}
+                onPrintStudent={(sid) => handleOpenPrintReport(sid)}
+              />
+            ) : (
+              /* Student Views based on active tab */
+              <>
+                {activeTab === 'daily' && (
+                  <TodayHero
+                    student={currentStudent}
+                    todayData={todayData}
+                    upcomingAssignments={upcomingAssignments}
+                    onOpenTestModal={handleOpenTestModal}
+                    onOpenUpcomingModal={(item) => handleOpenTestModal(item, null)}
+                  />
+                )}
+
+                {activeTab === 'analytics' && (
+                  <AnalyticsView
+                    analyticsData={analyticsData}
+                    comparisonData={comparisonData}
+                    activeStudent={currentStudent}
+                    onSelectStudent={setActiveStudentId}
+                    isLockedStudent={isLockedStudent}
+                  />
+                )}
+
+                {activeTab === 'curriculum' && (
+                  <CurriculumView
+                    books={books}
+                    activeStudent={currentStudent}
+                    onOpenTestModal={handleOpenTestModal}
+                    completedTestIds={completedTestIds}
+                  />
+                )}
+
+                {activeTab === 'mock_exams' && (
+                  <MockExamsView
+                    student={currentStudent}
+                    mockExams={mockExams}
+                    onOpenModal={handleOpenMockModal}
+                    onDeleteExam={handleDeleteMockExam}
+                  />
+                )}
+
+                {activeTab === 'calendar' && (
+                  <CalendarView
+                    assignments={scheduleList}
+                    student={currentStudent}
+                    onOpenTestModal={handleOpenTestModal}
+                  />
+                )}
+              </>
+            )}
+          </main>
+
+          {/* Footer */}
+          <footer className="border-t border-slate-800/80 bg-slate-900/60 py-6 text-center text-xs text-slate-400">
+            <p>
+              Mete (Fen Lisesi) & Ege (Anadolu Lisesi) — Maarif Modeli 9. Sınıf Matematik Özel Ders Platformu
+            </p>
+            <p className="mt-1 text-[11px] text-slate-500">
+              Program: 5 Ekim 2026 — 29 Mayıs 2027 • 237 Gün (Hafta İçi 1, Hafta Sonu 2 Test) • ÇAP Plus (127 Test) & Orijinal (177 Test)
+            </p>
+          </footer>
+        </>
       )}
 
       {/* Student Individual PIN Login Modal */}
@@ -355,99 +468,6 @@ export default function App() {
         onClose={() => setIsTeacherPinModalOpen(false)}
         onSuccess={handleTeacherPinSuccess}
       />
-
-      {/* Top Navigation & Mobile Bottom Bar */}
-      <Navbar
-        students={students}
-        activeStudentId={activeStudentId}
-        onSelectStudent={(id) => {
-          setActiveStudentId(id)
-          if (id === 'teacher') {
-            setIsLockedStudent(false)
-          }
-        }}
-        activeTab={activeTab}
-        onSelectTab={setActiveTab}
-        onPrint={() => handleOpenPrintReport(activeStudentId === 'ege' ? 'ege' : 'mete')}
-        isLockedStudent={isLockedStudent}
-        onExitLock={handleExitLock}
-        onOpenTeacherLogin={() => setIsTeacherPinModalOpen(true)}
-        theme={theme}
-        onToggleTheme={toggleTheme}
-        onOpenInstallModal={() => setIsInstallModalOpen(true)}
-      />
-
-      {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 pb-24 md:pb-8 overflow-x-hidden">
-        {isLoading ? (
-          <div className="flex flex-col items-center justify-center py-32 space-y-4">
-            <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-            <p className="text-sm text-slate-400">Veriler yükleniyor...</p>
-          </div>
-        ) : activeStudentId === 'teacher' ? (
-          /* Teacher Dashboard View */
-          <TeacherDashboard
-            teacherData={teacherOverview}
-            onAddFeedback={handleAddFeedback}
-            onAddNote={handleAddNote}
-            onOpenTestModal={handleOpenTestModal}
-            onSwitchToStudent={(sid) => {
-              setActiveStudentId(sid)
-              setIsLockedStudent(false)
-            }}
-            onPrintStudent={(sid) => handleOpenPrintReport(sid)}
-          />
-        ) : (
-          /* Student Views based on active tab */
-          <>
-            {activeTab === 'daily' && (
-              <TodayHero
-                student={currentStudent}
-                todayData={todayData}
-                upcomingAssignments={upcomingAssignments}
-                onOpenTestModal={handleOpenTestModal}
-                onOpenUpcomingModal={(item) => handleOpenTestModal(item, null)}
-              />
-            )}
-
-            {activeTab === 'analytics' && (
-              <AnalyticsView
-                analyticsData={analyticsData}
-                comparisonData={comparisonData}
-                activeStudent={currentStudent}
-                onSelectStudent={setActiveStudentId}
-                isLockedStudent={isLockedStudent}
-              />
-            )}
-
-            {activeTab === 'curriculum' && (
-              <CurriculumView
-                books={books}
-                activeStudent={currentStudent}
-                onOpenTestModal={handleOpenTestModal}
-                completedTestIds={completedTestIds}
-              />
-            )}
-
-            {activeTab === 'mock_exams' && (
-              <MockExamsView
-                student={currentStudent}
-                mockExams={mockExams}
-                onOpenModal={handleOpenMockModal}
-                onDeleteExam={handleDeleteMockExam}
-              />
-            )}
-
-            {activeTab === 'calendar' && (
-              <CalendarView
-                assignments={scheduleList}
-                student={currentStudent}
-                onOpenTestModal={handleOpenTestModal}
-              />
-            )}
-          </>
-        )}
-      </main>
 
       {/* Test Entry Modal */}
       <TestModal
@@ -490,16 +510,6 @@ export default function App() {
         isOpen={isInstallModalOpen}
         onClose={() => setIsInstallModalOpen(false)}
       />
-
-      {/* Footer */}
-      <footer className="border-t border-slate-800/80 bg-slate-900/60 py-6 text-center text-xs text-slate-400">
-        <p>
-          Mete (Fen Lisesi) & Ege (Anadolu Lisesi) — Maarif Modeli 9. Sınıf Matematik Özel Ders Platformu
-        </p>
-        <p className="mt-1 text-[11px] text-slate-500">
-          Program: 5 Ekim 2026 — 29 Mayıs 2027 • 237 Gün (Hafta İçi 1, Hafta Sonu 2 Test) • ÇAP Plus (127 Test) & Orijinal (177 Test)
-        </p>
-      </footer>
     </div>
   )
 }
