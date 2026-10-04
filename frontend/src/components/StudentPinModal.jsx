@@ -105,7 +105,7 @@ export default function StudentPinModal({
         </form>
 
         <p className="text-[11px] text-center text-slate-500">
-          Varsayılan Şifre: <strong className="text-slate-400">{isMete ? '1234' : '5678'}</strong> (Öğretmen panelinden güncellenebilir)
+          🔒 Şifrenizi unuttuysanız lütfen Müfit Hoca'ya danışınız.
         </p>
       </div>
     </div>

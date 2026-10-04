@@ -104,6 +104,7 @@ export default function TeacherDashboard({
 
   const [metePinInput, setMetePinInput] = useState(mete?.student?.pin || '1234')
   const [egePinInput, setEgePinInput] = useState(ege?.student?.pin || '5678')
+  const [teacherPinInput, setTeacherPinInput] = useState('2026')
   const [pinSaveMsg, setPinSaveMsg] = useState(null)
 
   // Settings & Google Drive states
@@ -135,6 +136,7 @@ export default function TeacherDashboard({
           setSystemSettings(st)
           if (st.googleAppsScriptUrl) setScriptUrlInput(st.googleAppsScriptUrl)
           if (st.whatsAppWebhookUrl) setWhatsAppWebhookInput(st.whatsAppWebhookUrl)
+          if (st.teacherPin) setTeacherPinInput(st.teacherPin)
         }
       })
       .catch(console.error)
@@ -382,6 +384,21 @@ function otomatik1600TetikleyiciKur() {
       }
     } catch (e) {
       alert('Şifre güncellenirken hata oluştu: ' + e.message)
+    }
+  }
+
+  const handleSaveTeacherPin = async (pin) => {
+    if (!pin || pin.trim().length < 4) {
+      alert('Öğretmen PIN kodu en az 4 karakter olmalıdır.')
+      return
+    }
+    try {
+      await updateSettings({ teacherPin: pin.trim() })
+      localStorage.setItem('custom_teacher_pin', pin.trim())
+      setPinSaveMsg(`Öğretmen giriş PIN kodu (${pin.trim()}) başarıyla güncellendi!`)
+      setTimeout(() => setPinSaveMsg(null), 4000)
+    } catch (e) {
+      alert('PIN güncellenirken hata oluştu: ' + e.message)
     }
   }
 
@@ -771,6 +788,44 @@ function otomatik1600TetikleyiciKur() {
                       className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-xs font-medium transition"
                     >
                       Şifreyi Kaydet
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Teacher Master PIN Card */}
+              <div className="bg-slate-800/80 border border-purple-500/30 rounded-xl p-4 space-y-3.5 md:col-span-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xl">🔐</span>
+                    <div>
+                      <h4 className="text-sm font-bold text-white">Öğretmen Yönetim Portalı Giriş PIN Kodu</h4>
+                      <span className="text-[11px] text-purple-400">Bu PIN kodunu yalnızca siz bilmelisiniz. Öğrencileriniz bu kodu göremez.</span>
+                    </div>
+                  </div>
+                  <span className="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded font-mono">
+                    Öğretmen PIN
+                  </span>
+                </div>
+
+                <div className="space-y-1 pt-1 border-t border-slate-700/60">
+                  <span className="text-[10px] text-slate-400">Öğretmen Giriş PIN Kodunu Değiştir:</span>
+                  <div className="flex items-center space-x-2">
+                    <div className="relative flex-1">
+                      <KeyRound className="w-3.5 h-3.5 text-purple-400 absolute left-2.5 top-2.5 pointer-events-none" />
+                      <input
+                        type="text"
+                        value={teacherPinInput}
+                        onChange={(e) => setTeacherPinInput(e.target.value)}
+                        placeholder="Yeni Öğretmen PIN Kodu (En az 4 hane)"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white font-mono font-bold focus:outline-none focus:border-purple-500"
+                      />
+                    </div>
+                    <button
+                      onClick={() => handleSaveTeacherPin(teacherPinInput)}
+                      className="px-4 py-1.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-xs font-semibold transition shadow-md shadow-purple-600/30 active:scale-95"
+                    >
+                      PIN'i Kaydet
                     </button>
                   </div>
                 </div>

@@ -117,7 +117,7 @@ export default function PortalChooser({ onSelectStudent, onOpenTeacherLogin, onO
                 Öğretmen Yönetim Portalı
               </h4>
               <p className="text-xs text-slate-400">
-                Her iki öğrencinin takibi, karşılaştırmalı analizler ve özel paylaşım linkleri (PIN: 2026)
+                Her iki öğrencinin takibi, karşılaştırmalı analizler, soru arşivi ve karne raporları
               </p>
             </div>
           </div>

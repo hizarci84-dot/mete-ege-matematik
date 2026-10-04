@@ -26,16 +26,17 @@ export default function TeacherPinModal({ isOpen, onClose, onSuccess }) {
         onSuccess()
         onClose()
       } else {
-        setError(data.error || 'Hatalı PIN kodu (Varsayılan: 2026)')
+        setError(data.error || 'Hatalı PIN kodu girdiniz.')
       }
     } catch (err) {
-      // Fallback local check
-      if (pin === '2026' || pin === '1234') {
+      // Fallback check against saved setting or default
+      const savedPin = localStorage.getItem('custom_teacher_pin') || '2026'
+      if (pin === savedPin || pin === '2026') {
         sessionStorage.setItem('teacher_auth', 'true')
         onSuccess()
         onClose()
       } else {
-        setError('PIN doğrulanamadı. (Varsayılan PIN: 2026)')
+        setError('PIN doğrulanamadı. Lütfen tekrar deneyiniz.')
       }
     } finally {
       setLoading(false)
@@ -67,9 +68,9 @@ export default function TeacherPinModal({ isOpen, onClose, onSuccess }) {
             <input
               type="password"
               inputMode="numeric"
-              maxLength={6}
+              maxLength={8}
               autoFocus
-              placeholder="PIN Kodu (Varsayılan: 2026)"
+              placeholder="Öğretmen PIN Kodu"
               value={pin}
               onChange={(e) => setPin(e.target.value)}
               className="w-full text-center text-xl tracking-widest bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
@@ -92,7 +93,7 @@ export default function TeacherPinModal({ isOpen, onClose, onSuccess }) {
         </form>
 
         <p className="text-[11px] text-center text-slate-500">
-          Varsayılan Öğretmen PIN: <strong className="text-slate-400">2026</strong>
+          🔒 Yalnızca Müfit Hoca yetkili girişine açıktır.
         </p>
       </div>
     </div>
