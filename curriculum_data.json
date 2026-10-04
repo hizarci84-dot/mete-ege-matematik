@@ -1,0 +1,4850 @@
+[
+  {
+    "id": "cap-9",
+    "title": "ÇAP Plus 9. Sınıf Matematik Soru Bankası",
+    "short_title": "ÇAP Matematik",
+    "publisher": "Çap Yayınları",
+    "curriculum": "2026 Türkiye Yüzyılı Maarif Modeli",
+    "pdf_filename": "CAP_9_Matematik_Soru_Bankasi.pdf",
+    "target_school": "Anadolu Lisesi ve Fen Lisesi",
+    "color": "#3b82f6",
+    "accent": "blue",
+    "themes": [
+      {
+        "id": "cap-t1",
+        "name": "1. Tema: Sayılar",
+        "description": "Üslü ve köklü gösterimler, aralıklar, kümeler, sıralama, işlem özellikleri ve özdeşlikler",
+        "subtopics": [
+          {
+            "id": "sub-1-1",
+            "name": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
+            "tests": [
+              {
+                "id": "cap-t1-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "Üslü Sayılar",
+                "pages": "7-8",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "Üslü Sayılarda Dört İşlem - 1",
+                "pages": "9-10",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "Üslü Sayılarda Dört İşlem - 2",
+                "pages": "11-12",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-1-2",
+            "name": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+            "tests": [
+              {
+                "id": "cap-t1-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "Köklü Sayılar",
+                "pages": "13-14",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Köklü Sayılarda İşlemler - 1",
+                "pages": "15-16",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-6",
+                "num": "Öğreniyorum 6",
+                "title": "Köklü Sayılarda İşlemler - 2",
+                "pages": "17-18",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-7",
+                "num": "Öğreniyorum 7",
+                "title": "İç İçe Kökler ve Köklü Sayılarda Sıralama",
+                "pages": "19-20",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-1",
+                "num": "Pekiştiriyorum 1",
+                "title": "Üslü ve Köklü Sayılar - Test 1",
+                "pages": "21-22",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-2",
+                "num": "Pekiştiriyorum 2",
+                "title": "Üslü ve Köklü Sayılar - Test 2",
+                "pages": "23-24",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-1-3",
+            "name": "1.3 Gerçek Sayı Aralıkları ve Kümeler",
+            "tests": [
+              {
+                "id": "cap-t1-ogr-8",
+                "num": "Öğreniyorum 8",
+                "title": "Kümelerde Temel Kavramlar",
+                "pages": "26-27",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-9",
+                "num": "Öğreniyorum 9",
+                "title": "Kümelerde İşlemler",
+                "pages": "28-29",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-10",
+                "num": "Öğreniyorum 10",
+                "title": "Gerçek Sayı Aralıkları",
+                "pages": "30-31",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-11",
+                "num": "Öğreniyorum 11",
+                "title": "Aralıkların Mutlak Değer Gösterimi",
+                "pages": "32-33",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-3",
+                "num": "Pekiştiriyorum 3",
+                "title": "Aralıklarda İşlemler - Test 1",
+                "pages": "34-35",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-4",
+                "num": "Pekiştiriyorum 4",
+                "title": "Aralıklarda İşlemler - Test 2",
+                "pages": "36-37",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-1-4",
+            "name": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+            "tests": [
+              {
+                "id": "cap-t1-ogr-12",
+                "num": "Öğreniyorum 12",
+                "title": "Sıralı Olma ve Sayı Belirleme",
+                "pages": "39-40",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-13",
+                "num": "Öğreniyorum 13",
+                "title": "Kapalılık Özelliği ve İspat Yöntemleri",
+                "pages": "41-42",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-14",
+                "num": "Öğreniyorum 14",
+                "title": "Sayılarda Sıralama Özellikleri - 1",
+                "pages": "43-44",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-15",
+                "num": "Öğreniyorum 15",
+                "title": "Sayılarda Sıralama Özellikleri - 2",
+                "pages": "45-46",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-16",
+                "num": "Öğreniyorum 16",
+                "title": "Sayılarda Sıralama Özellikleri - 3",
+                "pages": "47-48",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-5",
+                "num": "Pekiştiriyorum 5",
+                "title": "Sayılarda Sıralama - Test 1",
+                "pages": "49-50",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-6",
+                "num": "Pekiştiriyorum 6",
+                "title": "Sayılarda Sıralama - Test 2",
+                "pages": "51-52",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-1-5",
+            "name": "1.5 Önerme, İşlem Özellikleri ve Özdeşlikler",
+            "tests": [
+              {
+                "id": "cap-t1-ogr-17",
+                "num": "Öğreniyorum 17",
+                "title": "Önerme Kavramı",
+                "pages": "54-55",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-18",
+                "num": "Öğreniyorum 18",
+                "title": "Önermelerin Sembolik Dille İfadesi",
+                "pages": "56-57",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-19",
+                "num": "Öğreniyorum 19",
+                "title": "Sayı Kümelerinin İşlem Özellikleri",
+                "pages": "58-59",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-20",
+                "num": "Öğreniyorum 20",
+                "title": "Tam Kare Özdeşlikleri - 1",
+                "pages": "60-61",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-21",
+                "num": "Öğreniyorum 21",
+                "title": "Tam Kare Özdeşlikleri - 2",
+                "pages": "62-63",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-22",
+                "num": "Öğreniyorum 22",
+                "title": "İki Kare Farkı Özdeşliği",
+                "pages": "64-65",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-7",
+                "num": "Pekiştiriyorum 7",
+                "title": "Özdeşlikler ve Önerme - Test 1",
+                "pages": "66-67",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-8",
+                "num": "Pekiştiriyorum 8",
+                "title": "Özdeşlikler ve Önerme - Test 2",
+                "pages": "68-69",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-1-6",
+            "name": "1.6 1. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t1-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "Sayılar Tema Tarama - Test 1",
+                "pages": "70-71",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "Sayılar Tema Tarama - Test 2",
+                "pages": "72-73",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-tar-3",
+                "num": "Tema Tarama 3",
+                "title": "Sayılar Tema Tarama - Test 3",
+                "pages": "74-75",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-tar-4",
+                "num": "Tema Tarama 4",
+                "title": "Sayılar Tema Tarama - Test 4",
+                "pages": "76-77",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-tar-5",
+                "num": "Tema Tarama 5",
+                "title": "Sayılar Tema Tarama - Test 5",
+                "pages": "78-79",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
+            "tests": [
+              {
+                "id": "cap-t1-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "Üslü Sayılar",
+                "pages": "7-8",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "Üslü Sayılarda Dört İşlem - 1",
+                "pages": "9-10",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "Üslü Sayılarda Dört İşlem - 2",
+                "pages": "11-12",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+            "tests": [
+              {
+                "id": "cap-t1-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "Köklü Sayılar",
+                "pages": "13-14",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Köklü Sayılarda İşlemler - 1",
+                "pages": "15-16",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-6",
+                "num": "Öğreniyorum 6",
+                "title": "Köklü Sayılarda İşlemler - 2",
+                "pages": "17-18",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-7",
+                "num": "Öğreniyorum 7",
+                "title": "İç İçe Kökler ve Köklü Sayılarda Sıralama",
+                "pages": "19-20",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-1",
+                "num": "Pekiştiriyorum 1",
+                "title": "Üslü ve Köklü Sayılar - Test 1",
+                "pages": "21-22",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-2",
+                "num": "Pekiştiriyorum 2",
+                "title": "Üslü ve Köklü Sayılar - Test 2",
+                "pages": "23-24",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "1.3 Gerçek Sayı Aralıkları ve Kümeler",
+            "tests": [
+              {
+                "id": "cap-t1-ogr-8",
+                "num": "Öğreniyorum 8",
+                "title": "Kümelerde Temel Kavramlar",
+                "pages": "26-27",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-9",
+                "num": "Öğreniyorum 9",
+                "title": "Kümelerde İşlemler",
+                "pages": "28-29",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-10",
+                "num": "Öğreniyorum 10",
+                "title": "Gerçek Sayı Aralıkları",
+                "pages": "30-31",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-11",
+                "num": "Öğreniyorum 11",
+                "title": "Aralıkların Mutlak Değer Gösterimi",
+                "pages": "32-33",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-3",
+                "num": "Pekiştiriyorum 3",
+                "title": "Aralıklarda İşlemler - Test 1",
+                "pages": "34-35",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-4",
+                "num": "Pekiştiriyorum 4",
+                "title": "Aralıklarda İşlemler - Test 2",
+                "pages": "36-37",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+            "tests": [
+              {
+                "id": "cap-t1-ogr-12",
+                "num": "Öğreniyorum 12",
+                "title": "Sıralı Olma ve Sayı Belirleme",
+                "pages": "39-40",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-13",
+                "num": "Öğreniyorum 13",
+                "title": "Kapalılık Özelliği ve İspat Yöntemleri",
+                "pages": "41-42",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-14",
+                "num": "Öğreniyorum 14",
+                "title": "Sayılarda Sıralama Özellikleri - 1",
+                "pages": "43-44",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-15",
+                "num": "Öğreniyorum 15",
+                "title": "Sayılarda Sıralama Özellikleri - 2",
+                "pages": "45-46",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-16",
+                "num": "Öğreniyorum 16",
+                "title": "Sayılarda Sıralama Özellikleri - 3",
+                "pages": "47-48",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-5",
+                "num": "Pekiştiriyorum 5",
+                "title": "Sayılarda Sıralama - Test 1",
+                "pages": "49-50",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-6",
+                "num": "Pekiştiriyorum 6",
+                "title": "Sayılarda Sıralama - Test 2",
+                "pages": "51-52",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "1.5 Önerme, İşlem Özellikleri ve Özdeşlikler",
+            "tests": [
+              {
+                "id": "cap-t1-ogr-17",
+                "num": "Öğreniyorum 17",
+                "title": "Önerme Kavramı",
+                "pages": "54-55",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-18",
+                "num": "Öğreniyorum 18",
+                "title": "Önermelerin Sembolik Dille İfadesi",
+                "pages": "56-57",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-19",
+                "num": "Öğreniyorum 19",
+                "title": "Sayı Kümelerinin İşlem Özellikleri",
+                "pages": "58-59",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-20",
+                "num": "Öğreniyorum 20",
+                "title": "Tam Kare Özdeşlikleri - 1",
+                "pages": "60-61",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-21",
+                "num": "Öğreniyorum 21",
+                "title": "Tam Kare Özdeşlikleri - 2",
+                "pages": "62-63",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-ogr-22",
+                "num": "Öğreniyorum 22",
+                "title": "İki Kare Farkı Özdeşliği",
+                "pages": "64-65",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-7",
+                "num": "Pekiştiriyorum 7",
+                "title": "Özdeşlikler ve Önerme - Test 1",
+                "pages": "66-67",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-pek-8",
+                "num": "Pekiştiriyorum 8",
+                "title": "Özdeşlikler ve Önerme - Test 2",
+                "pages": "68-69",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "1.6 1. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t1-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "Sayılar Tema Tarama - Test 1",
+                "pages": "70-71",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "Sayılar Tema Tarama - Test 2",
+                "pages": "72-73",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-tar-3",
+                "num": "Tema Tarama 3",
+                "title": "Sayılar Tema Tarama - Test 3",
+                "pages": "74-75",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-tar-4",
+                "num": "Tema Tarama 4",
+                "title": "Sayılar Tema Tarama - Test 4",
+                "pages": "76-77",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t1-tar-5",
+                "num": "Tema Tarama 5",
+                "title": "Sayılar Tema Tarama - Test 5",
+                "pages": "78-79",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cap-t2",
+        "name": "2. Tema: Nicelikler ve Değişimler",
+        "description": "Doğrusal fonksiyonlar, mutlak değer fonksiyonları, denklem ve eşitsizlikler",
+        "subtopics": [
+          {
+            "id": "sub-2-1",
+            "name": "2.1 Doğrusal Fonksiyonlar, Parçalı ve Sabit Fonksiyon",
+            "tests": [
+              {
+                "id": "cap-t2-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "f(x) = x ve f(x) = ax Doğrusal Referans Fonksiyonu",
+                "pages": "86-87",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "f(x) = x + b Şeklinde Tanımlı Doğrusal Fonksiyonlar",
+                "pages": "88-89",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "f(x) = ax + b Şeklinde Tanımlı Doğrusal Fonksiyonlar",
+                "pages": "90-91",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "f(x) = a(x + r) + k Şeklinde Doğrusal Fonksiyonlar",
+                "pages": "92-93",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Sabit Fonksiyon",
+                "pages": "94-95",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-6",
+                "num": "Öğreniyorum 6",
+                "title": "Fonksiyonların Parçalı Gösterimi - 1",
+                "pages": "96-97",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-7",
+                "num": "Öğreniyorum 7",
+                "title": "Fonksiyonların Parçalı Gösterimi - 2",
+                "pages": "98-99",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-pek-1",
+                "num": "Pekiştiriyorum 1",
+                "title": "Doğrusal Fonksiyonlar ve Nitel Özellikleri",
+                "pages": "100-101",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-2-2",
+            "name": "2.2 Mutlak Değer Fonksiyonları",
+            "tests": [
+              {
+                "id": "cap-t2-ogr-8",
+                "num": "Öğreniyorum 8",
+                "title": "|x| Temel Mutlak Değer Fonksiyonu",
+                "pages": "103-104",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-9",
+                "num": "Öğreniyorum 9",
+                "title": "f(x) = |ax + b| Şeklinde Mutlak Değer Fonksiyonu",
+                "pages": "105-106",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-10",
+                "num": "Öğreniyorum 10",
+                "title": "f(x) = |ax + b| ± c Mutlak Değer Fonksiyonu",
+                "pages": "107-108",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-pek-2",
+                "num": "Pekiştiriyorum 2",
+                "title": "Mutlak Değer Fonksiyonları ve Nitel Özellikleri",
+                "pages": "109-110",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-2-3",
+            "name": "2.3 Denklem ve Eşitsizlikler",
+            "tests": [
+              {
+                "id": "cap-t2-ogr-11",
+                "num": "Öğreniyorum 11",
+                "title": "Birinci Dereceden Bir Bilinmeyenli Denklemler",
+                "pages": "112-113",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-12",
+                "num": "Öğreniyorum 12",
+                "title": "Birinci Dereceden Bir Bilinmeyenli Eşitsizlikler",
+                "pages": "114-115",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-13",
+                "num": "Öğreniyorum 13",
+                "title": "Denklem ve Eşitsizlik Problemleri - 1",
+                "pages": "116-117",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-14",
+                "num": "Öğreniyorum 14",
+                "title": "Denklem ve Eşitsizlik Problemleri - 2",
+                "pages": "118-119",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-15",
+                "num": "Öğreniyorum 15",
+                "title": "Denklem ve Eşitsizlik Problemleri - 3",
+                "pages": "120-121",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-16",
+                "num": "Öğreniyorum 16",
+                "title": "Mutlak Değerli Denklemler",
+                "pages": "122-123",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-17",
+                "num": "Öğreniyorum 17",
+                "title": "Mutlak Değer Eşitsizlikler - 1",
+                "pages": "124-125",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-18",
+                "num": "Öğreniyorum 18",
+                "title": "Mutlak Değerli Eşitsizlikler - 2",
+                "pages": "126-127",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-pek-3",
+                "num": "Pekiştiriyorum 3",
+                "title": "Denklem ve Eşitsizlikler Testi",
+                "pages": "128-129",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-2-4",
+            "name": "2.4 2. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t2-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "Nicelikler Tema Tarama - Test 1",
+                "pages": "130-131",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "Nicelikler Tema Tarama - Test 2",
+                "pages": "132-134",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "2.1 Doğrusal Fonksiyonlar, Parçalı ve Sabit Fonksiyon",
+            "tests": [
+              {
+                "id": "cap-t2-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "f(x) = x ve f(x) = ax Doğrusal Referans Fonksiyonu",
+                "pages": "86-87",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "f(x) = x + b Şeklinde Tanımlı Doğrusal Fonksiyonlar",
+                "pages": "88-89",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "f(x) = ax + b Şeklinde Tanımlı Doğrusal Fonksiyonlar",
+                "pages": "90-91",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "f(x) = a(x + r) + k Şeklinde Doğrusal Fonksiyonlar",
+                "pages": "92-93",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Sabit Fonksiyon",
+                "pages": "94-95",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-6",
+                "num": "Öğreniyorum 6",
+                "title": "Fonksiyonların Parçalı Gösterimi - 1",
+                "pages": "96-97",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-7",
+                "num": "Öğreniyorum 7",
+                "title": "Fonksiyonların Parçalı Gösterimi - 2",
+                "pages": "98-99",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-pek-1",
+                "num": "Pekiştiriyorum 1",
+                "title": "Doğrusal Fonksiyonlar ve Nitel Özellikleri",
+                "pages": "100-101",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "2.2 Mutlak Değer Fonksiyonları",
+            "tests": [
+              {
+                "id": "cap-t2-ogr-8",
+                "num": "Öğreniyorum 8",
+                "title": "|x| Temel Mutlak Değer Fonksiyonu",
+                "pages": "103-104",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-9",
+                "num": "Öğreniyorum 9",
+                "title": "f(x) = |ax + b| Şeklinde Mutlak Değer Fonksiyonu",
+                "pages": "105-106",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-10",
+                "num": "Öğreniyorum 10",
+                "title": "f(x) = |ax + b| ± c Mutlak Değer Fonksiyonu",
+                "pages": "107-108",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-pek-2",
+                "num": "Pekiştiriyorum 2",
+                "title": "Mutlak Değer Fonksiyonları ve Nitel Özellikleri",
+                "pages": "109-110",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "2.3 Denklem ve Eşitsizlikler",
+            "tests": [
+              {
+                "id": "cap-t2-ogr-11",
+                "num": "Öğreniyorum 11",
+                "title": "Birinci Dereceden Bir Bilinmeyenli Denklemler",
+                "pages": "112-113",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-12",
+                "num": "Öğreniyorum 12",
+                "title": "Birinci Dereceden Bir Bilinmeyenli Eşitsizlikler",
+                "pages": "114-115",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-13",
+                "num": "Öğreniyorum 13",
+                "title": "Denklem ve Eşitsizlik Problemleri - 1",
+                "pages": "116-117",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-14",
+                "num": "Öğreniyorum 14",
+                "title": "Denklem ve Eşitsizlik Problemleri - 2",
+                "pages": "118-119",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-15",
+                "num": "Öğreniyorum 15",
+                "title": "Denklem ve Eşitsizlik Problemleri - 3",
+                "pages": "120-121",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-16",
+                "num": "Öğreniyorum 16",
+                "title": "Mutlak Değerli Denklemler",
+                "pages": "122-123",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-17",
+                "num": "Öğreniyorum 17",
+                "title": "Mutlak Değer Eşitsizlikler - 1",
+                "pages": "124-125",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-ogr-18",
+                "num": "Öğreniyorum 18",
+                "title": "Mutlak Değerli Eşitsizlikler - 2",
+                "pages": "126-127",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-pek-3",
+                "num": "Pekiştiriyorum 3",
+                "title": "Denklem ve Eşitsizlikler Testi",
+                "pages": "128-129",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "2.4 2. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t2-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "Nicelikler Tema Tarama - Test 1",
+                "pages": "130-131",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t2-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "Nicelikler Tema Tarama - Test 2",
+                "pages": "132-134",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cap-t3",
+        "name": "3. Tema: Geometrik Şekiller",
+        "description": "Üçgende açı özellikleri, açı-kenar ilişkileri",
+        "subtopics": [
+          {
+            "id": "sub-3-1",
+            "name": "3.1 Üçgende Açılar",
+            "tests": [
+              {
+                "id": "cap-t3-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "Üçgende Açılar - Bölüm 1",
+                "pages": "139-140",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "Üçgende Açılar - Bölüm 2",
+                "pages": "141-142",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "Üçgende Açılar - Bölüm 3",
+                "pages": "143-144",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "Üçgende Açılar - Bölüm 4",
+                "pages": "145-146",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Üçgende Açılar - Bölüm 5",
+                "pages": "147-148",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-6",
+                "num": "Öğreniyorum 6",
+                "title": "Üçgende Açılar - Bölüm 6",
+                "pages": "149-150",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-pek-1",
+                "num": "Pekiştiriyorum 1",
+                "title": "Üçgende Açılar - Test 1",
+                "pages": "151-152",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-pek-2",
+                "num": "Pekiştiriyorum 2",
+                "title": "Üçgende Açılar - Test 2",
+                "pages": "153-154",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-3-2",
+            "name": "3.2 Üçgende Açı - Kenar İlişkileri",
+            "tests": [
+              {
+                "id": "cap-t3-ogr-7",
+                "num": "Öğreniyorum 7",
+                "title": "Açı - Kenar Özellikleri - 1",
+                "pages": "156-157",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-8",
+                "num": "Öğreniyorum 8",
+                "title": "Açı - Kenar Özellikleri - 2",
+                "pages": "158-159",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-pek-3",
+                "num": "Pekiştiriyorum 3",
+                "title": "Açı-Kenar İlişkileri Testi",
+                "pages": "160-161",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "3.1 Üçgende Açılar",
+            "tests": [
+              {
+                "id": "cap-t3-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "Üçgende Açılar - Bölüm 1",
+                "pages": "139-140",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "Üçgende Açılar - Bölüm 2",
+                "pages": "141-142",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "Üçgende Açılar - Bölüm 3",
+                "pages": "143-144",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "Üçgende Açılar - Bölüm 4",
+                "pages": "145-146",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Üçgende Açılar - Bölüm 5",
+                "pages": "147-148",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-6",
+                "num": "Öğreniyorum 6",
+                "title": "Üçgende Açılar - Bölüm 6",
+                "pages": "149-150",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-pek-1",
+                "num": "Pekiştiriyorum 1",
+                "title": "Üçgende Açılar - Test 1",
+                "pages": "151-152",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-pek-2",
+                "num": "Pekiştiriyorum 2",
+                "title": "Üçgende Açılar - Test 2",
+                "pages": "153-154",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "3.2 Üçgende Açı - Kenar İlişkileri",
+            "tests": [
+              {
+                "id": "cap-t3-ogr-7",
+                "num": "Öğreniyorum 7",
+                "title": "Açı - Kenar Özellikleri - 1",
+                "pages": "156-157",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-ogr-8",
+                "num": "Öğreniyorum 8",
+                "title": "Açı - Kenar Özellikleri - 2",
+                "pages": "158-159",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t3-pek-3",
+                "num": "Pekiştiriyorum 3",
+                "title": "Açı-Kenar İlişkileri Testi",
+                "pages": "160-161",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cap-t4",
+        "name": "4. Tema: Eşlik ve Benzerlik",
+        "description": "Dönüşümler, eşlik ve benzerlik, Öklid ve Pisagor teoremleri",
+        "subtopics": [
+          {
+            "id": "sub-4-1",
+            "name": "4.1 Geometrik Dönüşümler",
+            "tests": [
+              {
+                "id": "cap-t4-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "Yansıma Dönüşümü",
+                "pages": "165-166",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "Öteleme Dönüşümü",
+                "pages": "167-168",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "Dönme Dönüşümü",
+                "pages": "169-170",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-1",
+                "num": "Pekiştiriyorum 1",
+                "title": "Dönüşümler Geometri Testi",
+                "pages": "171-172",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-4-2",
+            "name": "4.2 Üçgenlerin Eşliği ve Benzerliği (Tales)",
+            "tests": [
+              {
+                "id": "cap-t4-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "Üçgenlerin Eşliği - 1",
+                "pages": "174-175",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Üçgenlerin Eşliği - 2",
+                "pages": "176-177",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-6",
+                "num": "Öğreniyorum 6",
+                "title": "Üçgenlerin Benzerliği",
+                "pages": "179-180",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-7",
+                "num": "Öğreniyorum 7",
+                "title": "Tales Teoremleri - 1",
+                "pages": "181-182",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-8",
+                "num": "Öğreniyorum 8",
+                "title": "Tales Teoremleri - 2",
+                "pages": "183-184",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-2",
+                "num": "Pekiştiriyorum 2",
+                "title": "Üçgenlerde Benzerlik - Test 1",
+                "pages": "185-186",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-3",
+                "num": "Pekiştiriyorum 3",
+                "title": "Üçgenlerde Benzerlik - Test 2",
+                "pages": "187-188",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-4",
+                "num": "Pekiştiriyorum 4",
+                "title": "Üçgenlerde Benzerlik - Test 3",
+                "pages": "189-190",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-4-3",
+            "name": "4.3 Öklid ve Pisagor Teoremleri",
+            "tests": [
+              {
+                "id": "cap-t4-ogr-9",
+                "num": "Öğreniyorum 9",
+                "title": "Öklid Teoremleri - 1",
+                "pages": "192-193",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-10",
+                "num": "Öğreniyorum 10",
+                "title": "Öklid Teoremleri - 2",
+                "pages": "194-195",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-11",
+                "num": "Öğreniyorum 11",
+                "title": "Pisagor Teoremi - 1",
+                "pages": "196-197",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-12",
+                "num": "Öğreniyorum 12",
+                "title": "Pisagor Teoremi - 2",
+                "pages": "198-199",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-13",
+                "num": "Öğreniyorum 13",
+                "title": "Pisagor Teoremi - 3",
+                "pages": "200-201",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-14",
+                "num": "Öğreniyorum 14",
+                "title": "Pisagor Eşitsizliği",
+                "pages": "202-203",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-15",
+                "num": "Öğreniyorum 15",
+                "title": "Özel Açılı Üçgenler",
+                "pages": "204-205",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-5",
+                "num": "Pekiştiriyorum 5",
+                "title": "Öklid ve Pisagor - Test 1",
+                "pages": "206-207",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-6",
+                "num": "Pekiştiriyorum 6",
+                "title": "Öklid ve Pisagor - Test 2",
+                "pages": "208-209",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-7",
+                "num": "Pekiştiriyorum 7",
+                "title": "Öklid ve Pisagor - Test 3",
+                "pages": "210-211",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-4-4",
+            "name": "4.4 4. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t4-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "Eşlik ve Benzerlik Tarama - Test 1",
+                "pages": "212-213",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "Eşlik ve Benzerlik Tarama - Test 2",
+                "pages": "214-215",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-3",
+                "num": "Tema Tarama 3",
+                "title": "Eşlik ve Benzerlik Tarama - Test 3",
+                "pages": "216-217",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-4",
+                "num": "Tema Tarama 4",
+                "title": "Eşlik ve Benzerlik Tarama - Test 4",
+                "pages": "218-219",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-5",
+                "num": "Tema Tarama 5",
+                "title": "Eşlik ve Benzerlik Tarama - Test 5",
+                "pages": "220-221",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-6",
+                "num": "Tema Tarama 6",
+                "title": "Eşlik ve Benzerlik Tarama - Test 6",
+                "pages": "222-223",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-7",
+                "num": "Tema Tarama 7",
+                "title": "Eşlik ve Benzerlik Tarama - Test 7",
+                "pages": "224-225",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-8",
+                "num": "Tema Tarama 8",
+                "title": "Eşlik ve Benzerlik Tarama - Test 8",
+                "pages": "226-227",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "4.1 Geometrik Dönüşümler",
+            "tests": [
+              {
+                "id": "cap-t4-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "Yansıma Dönüşümü",
+                "pages": "165-166",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "Öteleme Dönüşümü",
+                "pages": "167-168",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "Dönme Dönüşümü",
+                "pages": "169-170",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-1",
+                "num": "Pekiştiriyorum 1",
+                "title": "Dönüşümler Geometri Testi",
+                "pages": "171-172",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "4.2 Üçgenlerin Eşliği ve Benzerliği (Tales)",
+            "tests": [
+              {
+                "id": "cap-t4-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "Üçgenlerin Eşliği - 1",
+                "pages": "174-175",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Üçgenlerin Eşliği - 2",
+                "pages": "176-177",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-6",
+                "num": "Öğreniyorum 6",
+                "title": "Üçgenlerin Benzerliği",
+                "pages": "179-180",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-7",
+                "num": "Öğreniyorum 7",
+                "title": "Tales Teoremleri - 1",
+                "pages": "181-182",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-8",
+                "num": "Öğreniyorum 8",
+                "title": "Tales Teoremleri - 2",
+                "pages": "183-184",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-2",
+                "num": "Pekiştiriyorum 2",
+                "title": "Üçgenlerde Benzerlik - Test 1",
+                "pages": "185-186",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-3",
+                "num": "Pekiştiriyorum 3",
+                "title": "Üçgenlerde Benzerlik - Test 2",
+                "pages": "187-188",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-4",
+                "num": "Pekiştiriyorum 4",
+                "title": "Üçgenlerde Benzerlik - Test 3",
+                "pages": "189-190",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "4.3 Öklid ve Pisagor Teoremleri",
+            "tests": [
+              {
+                "id": "cap-t4-ogr-9",
+                "num": "Öğreniyorum 9",
+                "title": "Öklid Teoremleri - 1",
+                "pages": "192-193",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-10",
+                "num": "Öğreniyorum 10",
+                "title": "Öklid Teoremleri - 2",
+                "pages": "194-195",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-11",
+                "num": "Öğreniyorum 11",
+                "title": "Pisagor Teoremi - 1",
+                "pages": "196-197",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-12",
+                "num": "Öğreniyorum 12",
+                "title": "Pisagor Teoremi - 2",
+                "pages": "198-199",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-13",
+                "num": "Öğreniyorum 13",
+                "title": "Pisagor Teoremi - 3",
+                "pages": "200-201",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-14",
+                "num": "Öğreniyorum 14",
+                "title": "Pisagor Eşitsizliği",
+                "pages": "202-203",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-ogr-15",
+                "num": "Öğreniyorum 15",
+                "title": "Özel Açılı Üçgenler",
+                "pages": "204-205",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-5",
+                "num": "Pekiştiriyorum 5",
+                "title": "Öklid ve Pisagor - Test 1",
+                "pages": "206-207",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-6",
+                "num": "Pekiştiriyorum 6",
+                "title": "Öklid ve Pisagor - Test 2",
+                "pages": "208-209",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-pek-7",
+                "num": "Pekiştiriyorum 7",
+                "title": "Öklid ve Pisagor - Test 3",
+                "pages": "210-211",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "4.4 4. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t4-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "Eşlik ve Benzerlik Tarama - Test 1",
+                "pages": "212-213",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "Eşlik ve Benzerlik Tarama - Test 2",
+                "pages": "214-215",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-3",
+                "num": "Tema Tarama 3",
+                "title": "Eşlik ve Benzerlik Tarama - Test 3",
+                "pages": "216-217",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-4",
+                "num": "Tema Tarama 4",
+                "title": "Eşlik ve Benzerlik Tarama - Test 4",
+                "pages": "218-219",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-5",
+                "num": "Tema Tarama 5",
+                "title": "Eşlik ve Benzerlik Tarama - Test 5",
+                "pages": "220-221",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-6",
+                "num": "Tema Tarama 6",
+                "title": "Eşlik ve Benzerlik Tarama - Test 6",
+                "pages": "222-223",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-7",
+                "num": "Tema Tarama 7",
+                "title": "Eşlik ve Benzerlik Tarama - Test 7",
+                "pages": "224-225",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t4-tar-8",
+                "num": "Tema Tarama 8",
+                "title": "Eşlik ve Benzerlik Tarama - Test 8",
+                "pages": "226-227",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cap-t5",
+        "name": "5. Tema: Algoritma ve Bilişim",
+        "description": "Algoritma, şifreleme, çizge kuramı ve mantık bağlaçları",
+        "subtopics": [
+          {
+            "id": "sub-5-1",
+            "name": "5.1 Algoritmik Problem Çözme ve Çizge Kuramı",
+            "tests": [
+              {
+                "id": "cap-t5-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "Algoritma Temelli Problem Çözümü",
+                "pages": "233-234",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "Şifreleme",
+                "pages": "235-236",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "Çizge Kuramı (Graf Teorisi)",
+                "pages": "237-238",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-5-2",
+            "name": "5.2 Mantık Bağlaçları ve Niceleyiciler",
+            "tests": [
+              {
+                "id": "cap-t5-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "Mantık Bağlaçları ve Niceleyiciler - 1",
+                "pages": "239-240",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Mantık Bağlaçları ve Niceleyiciler - 2",
+                "pages": "241-242",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-5-3",
+            "name": "5.3 5. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t5-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "Algoritma ve Bilişim Tarama - Test 1",
+                "pages": "243-244",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "Algoritma ve Bilişim Tarama - Test 2",
+                "pages": "245-246",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-tar-3",
+                "num": "Tema Tarama 3",
+                "title": "Algoritma ve Bilişim Tarama - Test 3",
+                "pages": "247-248",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-tar-4",
+                "num": "Tema Tarama 4",
+                "title": "Algoritma ve Bilişim Tarama - Test 4",
+                "pages": "249-250",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-tar-5",
+                "num": "Tema Tarama 5",
+                "title": "Algoritma ve Bilişim Tarama - Test 5",
+                "pages": "251-252",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-tar-6",
+                "num": "Tema Tarama 6",
+                "title": "Algoritma ve Bilişim Tarama - Test 6",
+                "pages": "253-254",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "5.1 Algoritmik Problem Çözme ve Çizge Kuramı",
+            "tests": [
+              {
+                "id": "cap-t5-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "Algoritma Temelli Problem Çözümü",
+                "pages": "233-234",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "Şifreleme",
+                "pages": "235-236",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "Çizge Kuramı (Graf Teorisi)",
+                "pages": "237-238",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "5.2 Mantık Bağlaçları ve Niceleyiciler",
+            "tests": [
+              {
+                "id": "cap-t5-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "Mantık Bağlaçları ve Niceleyiciler - 1",
+                "pages": "239-240",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Mantık Bağlaçları ve Niceleyiciler - 2",
+                "pages": "241-242",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "5.3 5. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t5-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "Algoritma ve Bilişim Tarama - Test 1",
+                "pages": "243-244",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "Algoritma ve Bilişim Tarama - Test 2",
+                "pages": "245-246",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-tar-3",
+                "num": "Tema Tarama 3",
+                "title": "Algoritma ve Bilişim Tarama - Test 3",
+                "pages": "247-248",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-tar-4",
+                "num": "Tema Tarama 4",
+                "title": "Algoritma ve Bilişim Tarama - Test 4",
+                "pages": "249-250",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-tar-5",
+                "num": "Tema Tarama 5",
+                "title": "Algoritma ve Bilişim Tarama - Test 5",
+                "pages": "251-252",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t5-tar-6",
+                "num": "Tema Tarama 6",
+                "title": "Algoritma ve Bilişim Tarama - Test 6",
+                "pages": "253-254",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cap-t6",
+        "name": "6. Tema: İstatistiksel Araştırma Süreçleri",
+        "description": "Tek nicel değişkenli veri dağılımları ve süreç testleri",
+        "subtopics": [
+          {
+            "id": "sub-6-1",
+            "name": "6.1 Tek Nicel Değişkenli Veri Dağılımları",
+            "tests": [
+              {
+                "id": "cap-t6-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 1",
+                "pages": "260-261",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 2",
+                "pages": "262-263",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 3",
+                "pages": "264-265",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 4",
+                "pages": "266-267",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 5",
+                "pages": "268-269",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-6",
+                "num": "Öğreniyorum 6",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 6",
+                "pages": "270-271",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-7",
+                "num": "Öğreniyorum 7",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 7",
+                "pages": "272-273",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-6-2",
+            "name": "6.2 6. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t6-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "İstatistik Tarama - Test 1",
+                "pages": "274-275",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "İstatistik Tarama - Test 2",
+                "pages": "276-277",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-tar-3",
+                "num": "Tema Tarama 3",
+                "title": "İstatistik Tarama - Test 3",
+                "pages": "278-279",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "6.1 Tek Nicel Değişkenli Veri Dağılımları",
+            "tests": [
+              {
+                "id": "cap-t6-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 1",
+                "pages": "260-261",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 2",
+                "pages": "262-263",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 3",
+                "pages": "264-265",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 4",
+                "pages": "266-267",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 5",
+                "pages": "268-269",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-6",
+                "num": "Öğreniyorum 6",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 6",
+                "pages": "270-271",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-ogr-7",
+                "num": "Öğreniyorum 7",
+                "title": "İstatistiksel Araştırma Süreçleri - Test 7",
+                "pages": "272-273",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "6.2 6. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t6-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "İstatistik Tarama - Test 1",
+                "pages": "274-275",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "İstatistik Tarama - Test 2",
+                "pages": "276-277",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t6-tar-3",
+                "num": "Tema Tarama 3",
+                "title": "İstatistik Tarama - Test 3",
+                "pages": "278-279",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cap-t7",
+        "name": "7. Tema: Veriden Olasılığa",
+        "description": "Veriden olasılığa geçiş ve deneysel olasılık testleri",
+        "subtopics": [
+          {
+            "id": "sub-7-1",
+            "name": "7.1 Gözleme Dayalı Tahmin ve Olasılık",
+            "tests": [
+              {
+                "id": "cap-t7-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "Veriden Olasılığı - Test 1",
+                "pages": "285-286",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t7-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "Veriden Olasılığı - Test 2",
+                "pages": "287-288",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t7-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "Veriden Olasılığı - Test 3",
+                "pages": "289-290",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t7-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "Veriden Olasılığı - Test 4",
+                "pages": "291-292",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t7-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Veriden Olasılığı - Test 5",
+                "pages": "293-294",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-7-2",
+            "name": "7.2 7. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t7-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "Veriden Olasılığa Tarama - Test 1",
+                "pages": "295-296",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t7-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "Veriden Olasılığa Tarama - Test 2",
+                "pages": "297-298",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "7.1 Gözleme Dayalı Tahmin ve Olasılık",
+            "tests": [
+              {
+                "id": "cap-t7-ogr-1",
+                "num": "Öğreniyorum 1",
+                "title": "Veriden Olasılığı - Test 1",
+                "pages": "285-286",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t7-ogr-2",
+                "num": "Öğreniyorum 2",
+                "title": "Veriden Olasılığı - Test 2",
+                "pages": "287-288",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t7-ogr-3",
+                "num": "Öğreniyorum 3",
+                "title": "Veriden Olasılığı - Test 3",
+                "pages": "289-290",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t7-ogr-4",
+                "num": "Öğreniyorum 4",
+                "title": "Veriden Olasılığı - Test 4",
+                "pages": "291-292",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t7-ogr-5",
+                "num": "Öğreniyorum 5",
+                "title": "Veriden Olasılığı - Test 5",
+                "pages": "293-294",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "7.2 7. Tema Tarama Testleri",
+            "tests": [
+              {
+                "id": "cap-t7-tar-1",
+                "num": "Tema Tarama 1",
+                "title": "Veriden Olasılığa Tarama - Test 1",
+                "pages": "295-296",
+                "q_count": 12
+              },
+              {
+                "id": "cap-t7-tar-2",
+                "num": "Tema Tarama 2",
+                "title": "Veriden Olasılığa Tarama - Test 2",
+                "pages": "297-298",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "orijinal-9",
+    "title": "Orijinal 9. Sınıf Matematik Soru Bankası",
+    "short_title": "Orijinal Matematik",
+    "publisher": "Orijinal Yayınları",
+    "curriculum": "2026 Türkiye Yüzyılı Maarif Modeli",
+    "pdf_filename": "9.SINIF MATEMATİK SORU BANKASI(2026).pdf",
+    "target_school": "Fen Lisesi & Anadolu Lisesi İleri Düzey",
+    "color": "#f97316",
+    "accent": "orange",
+    "themes": [
+      {
+        "id": "t1",
+        "name": "1. Tema: Sayılar",
+        "description": "Üslü ve köklü gösterimler, gerçek sayılarda küme ve aralıklar, mutlak değer, sıralama, mantık ve özdeşlikler",
+        "subtopics": [
+          {
+            "id": "sub-1-1",
+            "name": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
+            "tests": [
+              {
+                "id": "orig-t1-tk1",
+                "num": "Temel Kabul",
+                "title": "1. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "6-7",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-1",
+                "num": "Test 1",
+                "title": "Üslü Gösterim Test 1",
+                "pages": "8-9",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-2",
+                "num": "Test 2",
+                "title": "Üslü Gösterim Test 2",
+                "pages": "9-10",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-3",
+                "num": "Test 3",
+                "title": "Üslü Gösterim Test 3",
+                "pages": "10-11",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-4",
+                "num": "Test 4",
+                "title": "Üslü Gösterim Test 4",
+                "pages": "11-12",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-5",
+                "num": "Test 5",
+                "title": "Üslü Gösterim Test 5",
+                "pages": "12-13",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-6",
+                "num": "Test 6",
+                "title": "Üslü Gösterim Test 6",
+                "pages": "13-14",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-7",
+                "num": "Test 7",
+                "title": "Üslü Gösterim Test 7",
+                "pages": "14-15",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-8",
+                "num": "Test 8",
+                "title": "Üslü Gösterim Test 8",
+                "pages": "15-16",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-9",
+                "num": "Test 9",
+                "title": "Üslü Gösterim Test 9",
+                "pages": "16-17",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-10",
+                "num": "Test 10",
+                "title": "Üslü Gösterim Test 10",
+                "pages": "17-18",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-1-2",
+            "name": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+            "tests": [
+              {
+                "id": "orig-t1-test-11",
+                "num": "Test 11",
+                "title": "Köklü Gösterim Test 11",
+                "pages": "21-22",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-12",
+                "num": "Test 12",
+                "title": "Köklü Gösterim Test 12",
+                "pages": "22-23",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-13",
+                "num": "Test 13",
+                "title": "Köklü Gösterim Test 13",
+                "pages": "23-24",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-14",
+                "num": "Test 14",
+                "title": "Köklü Gösterim Test 14",
+                "pages": "24-25",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-15",
+                "num": "Test 15",
+                "title": "Köklü Gösterim Test 15",
+                "pages": "25-26",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-16",
+                "num": "Test 16",
+                "title": "Köklü Gösterim Test 16",
+                "pages": "26-27",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-17",
+                "num": "Test 17",
+                "title": "Köklü Gösterim Test 17",
+                "pages": "27-28",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-18",
+                "num": "Test 18",
+                "title": "Köklü Gösterim Test 18",
+                "pages": "28-29",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-19",
+                "num": "Test 19",
+                "title": "Köklü Gösterim Test 19",
+                "pages": "29-30",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-1-3",
+            "name": "1.3 Gerçek Sayı Aralıkları ve Kümeler",
+            "tests": [
+              {
+                "id": "orig-t1-test-20",
+                "num": "Test 20",
+                "title": "Gerçek Sayılarda Küme Test 1",
+                "pages": "34-35",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-21",
+                "num": "Test 21",
+                "title": "Gerçek Sayılarda Küme Test 2",
+                "pages": "35-36",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-22",
+                "num": "Test 22",
+                "title": "Gerçek Sayılarda Küme Test 3",
+                "pages": "36-37",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-23",
+                "num": "Test 23",
+                "title": "Sayı Aralıkları Test 1",
+                "pages": "38-39",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-24",
+                "num": "Test 24",
+                "title": "Sayı Aralıkları Test 2",
+                "pages": "39-40",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-1-4",
+            "name": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+            "tests": [
+              {
+                "id": "orig-t1-test-25",
+                "num": "Test 25",
+                "title": "Mutlak Değerli Aralıklar Test 1",
+                "pages": "40-41",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-26",
+                "num": "Test 26",
+                "title": "Mutlak Değerli Aralıklar Test 2",
+                "pages": "41-42",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-27",
+                "num": "Test 27",
+                "title": "Mutlak Değerli Aralıklar Test 3",
+                "pages": "42-43",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-28",
+                "num": "Test 28",
+                "title": "Mutlak Değerli Aralıklar Test 4",
+                "pages": "43-44",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-29",
+                "num": "Test 29",
+                "title": "Mutlak Değerli Aralıklar Test 5",
+                "pages": "44-45",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-30",
+                "num": "Test 30",
+                "title": "Sayı Kümelerinde Sıralama Test 1",
+                "pages": "48-49",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-31",
+                "num": "Test 31",
+                "title": "Sayı Kümelerinde Sıralama Test 2",
+                "pages": "49-50",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-32",
+                "num": "Test 32",
+                "title": "Sayı Kümelerinde Sıralama Test 3",
+                "pages": "50-51",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-33",
+                "num": "Test 33",
+                "title": "Sayı Kümelerinde Sıralama Test 4",
+                "pages": "51-52",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-1-5",
+            "name": "1.5 Önerme, İşlem Özellikleri ve Özdeşlikler",
+            "tests": [
+              {
+                "id": "orig-t1-test-34",
+                "num": "Test 34",
+                "title": "Önerme (Mantık) Test 1",
+                "pages": "54-55",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-35",
+                "num": "Test 35",
+                "title": "Önerme (Mantık) Test 2",
+                "pages": "55-56",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-36",
+                "num": "Test 36",
+                "title": "İşlem Öncelikleri Test 1",
+                "pages": "56-57",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-37",
+                "num": "Test 37",
+                "title": "İşlem Öncelikleri Test 2",
+                "pages": "57-58",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-38",
+                "num": "Test 38",
+                "title": "Özdeşlikler Test 1",
+                "pages": "58-59",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-39",
+                "num": "Test 39",
+                "title": "Özdeşlikler Test 2",
+                "pages": "59-60",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-40",
+                "num": "Test 40",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 1",
+                "pages": "61-62",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-41",
+                "num": "Test 41",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 2",
+                "pages": "63-64",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-42",
+                "num": "Test 42",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 3",
+                "pages": "65-66",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-43",
+                "num": "Test 43",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 4",
+                "pages": "67-68",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-44",
+                "num": "Test 44",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 5",
+                "pages": "69-70",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-45",
+                "num": "Test 45",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 6",
+                "pages": "71-72",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-46",
+                "num": "Test 46",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 7",
+                "pages": "73-74",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-47",
+                "num": "Test 47",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 8",
+                "pages": "75-76",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
+            "tests": [
+              {
+                "id": "orig-t1-tk1",
+                "num": "Temel Kabul",
+                "title": "1. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "6-7",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-1",
+                "num": "Test 1",
+                "title": "Üslü Gösterim Test 1",
+                "pages": "8-9",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-2",
+                "num": "Test 2",
+                "title": "Üslü Gösterim Test 2",
+                "pages": "9-10",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-3",
+                "num": "Test 3",
+                "title": "Üslü Gösterim Test 3",
+                "pages": "10-11",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-4",
+                "num": "Test 4",
+                "title": "Üslü Gösterim Test 4",
+                "pages": "11-12",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-5",
+                "num": "Test 5",
+                "title": "Üslü Gösterim Test 5",
+                "pages": "12-13",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-6",
+                "num": "Test 6",
+                "title": "Üslü Gösterim Test 6",
+                "pages": "13-14",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-7",
+                "num": "Test 7",
+                "title": "Üslü Gösterim Test 7",
+                "pages": "14-15",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-8",
+                "num": "Test 8",
+                "title": "Üslü Gösterim Test 8",
+                "pages": "15-16",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-9",
+                "num": "Test 9",
+                "title": "Üslü Gösterim Test 9",
+                "pages": "16-17",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-10",
+                "num": "Test 10",
+                "title": "Üslü Gösterim Test 10",
+                "pages": "17-18",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+            "tests": [
+              {
+                "id": "orig-t1-test-11",
+                "num": "Test 11",
+                "title": "Köklü Gösterim Test 11",
+                "pages": "21-22",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-12",
+                "num": "Test 12",
+                "title": "Köklü Gösterim Test 12",
+                "pages": "22-23",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-13",
+                "num": "Test 13",
+                "title": "Köklü Gösterim Test 13",
+                "pages": "23-24",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-14",
+                "num": "Test 14",
+                "title": "Köklü Gösterim Test 14",
+                "pages": "24-25",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-15",
+                "num": "Test 15",
+                "title": "Köklü Gösterim Test 15",
+                "pages": "25-26",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-16",
+                "num": "Test 16",
+                "title": "Köklü Gösterim Test 16",
+                "pages": "26-27",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-17",
+                "num": "Test 17",
+                "title": "Köklü Gösterim Test 17",
+                "pages": "27-28",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-18",
+                "num": "Test 18",
+                "title": "Köklü Gösterim Test 18",
+                "pages": "28-29",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-19",
+                "num": "Test 19",
+                "title": "Köklü Gösterim Test 19",
+                "pages": "29-30",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "1.3 Gerçek Sayı Aralıkları ve Kümeler",
+            "tests": [
+              {
+                "id": "orig-t1-test-20",
+                "num": "Test 20",
+                "title": "Gerçek Sayılarda Küme Test 1",
+                "pages": "34-35",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-21",
+                "num": "Test 21",
+                "title": "Gerçek Sayılarda Küme Test 2",
+                "pages": "35-36",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-22",
+                "num": "Test 22",
+                "title": "Gerçek Sayılarda Küme Test 3",
+                "pages": "36-37",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-23",
+                "num": "Test 23",
+                "title": "Sayı Aralıkları Test 1",
+                "pages": "38-39",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-24",
+                "num": "Test 24",
+                "title": "Sayı Aralıkları Test 2",
+                "pages": "39-40",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+            "tests": [
+              {
+                "id": "orig-t1-test-25",
+                "num": "Test 25",
+                "title": "Mutlak Değerli Aralıklar Test 1",
+                "pages": "40-41",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-26",
+                "num": "Test 26",
+                "title": "Mutlak Değerli Aralıklar Test 2",
+                "pages": "41-42",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-27",
+                "num": "Test 27",
+                "title": "Mutlak Değerli Aralıklar Test 3",
+                "pages": "42-43",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-28",
+                "num": "Test 28",
+                "title": "Mutlak Değerli Aralıklar Test 4",
+                "pages": "43-44",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-29",
+                "num": "Test 29",
+                "title": "Mutlak Değerli Aralıklar Test 5",
+                "pages": "44-45",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-30",
+                "num": "Test 30",
+                "title": "Sayı Kümelerinde Sıralama Test 1",
+                "pages": "48-49",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-31",
+                "num": "Test 31",
+                "title": "Sayı Kümelerinde Sıralama Test 2",
+                "pages": "49-50",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-32",
+                "num": "Test 32",
+                "title": "Sayı Kümelerinde Sıralama Test 3",
+                "pages": "50-51",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-33",
+                "num": "Test 33",
+                "title": "Sayı Kümelerinde Sıralama Test 4",
+                "pages": "51-52",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "1.5 Önerme, İşlem Özellikleri ve Özdeşlikler",
+            "tests": [
+              {
+                "id": "orig-t1-test-34",
+                "num": "Test 34",
+                "title": "Önerme (Mantık) Test 1",
+                "pages": "54-55",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-35",
+                "num": "Test 35",
+                "title": "Önerme (Mantık) Test 2",
+                "pages": "55-56",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-36",
+                "num": "Test 36",
+                "title": "İşlem Öncelikleri Test 1",
+                "pages": "56-57",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-37",
+                "num": "Test 37",
+                "title": "İşlem Öncelikleri Test 2",
+                "pages": "57-58",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-38",
+                "num": "Test 38",
+                "title": "Özdeşlikler Test 1",
+                "pages": "58-59",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-39",
+                "num": "Test 39",
+                "title": "Özdeşlikler Test 2",
+                "pages": "59-60",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-40",
+                "num": "Test 40",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 1",
+                "pages": "61-62",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-41",
+                "num": "Test 41",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 2",
+                "pages": "63-64",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-42",
+                "num": "Test 42",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 3",
+                "pages": "65-66",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-43",
+                "num": "Test 43",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 4",
+                "pages": "67-68",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-44",
+                "num": "Test 44",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 5",
+                "pages": "69-70",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-45",
+                "num": "Test 45",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 6",
+                "pages": "71-72",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-46",
+                "num": "Test 46",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 7",
+                "pages": "73-74",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t1-test-47",
+                "num": "Test 47",
+                "title": "Üslü Denklemler ve İç İçe Kökler Test 8",
+                "pages": "75-76",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "t2",
+        "name": "2. Tema: Nicelikler ve Değişimler",
+        "description": "Doğrusal fonksiyonlar, parçalı/sabit fonksiyonlar, dönüşümler, mutlak değer ve eşitsizlikler",
+        "subtopics": [
+          {
+            "id": "sub-2-1",
+            "name": "2.1 Doğrusal Fonksiyonlar, Parçalı ve Sabit Fonksiyon",
+            "tests": [
+              {
+                "id": "orig-t2-tk1",
+                "num": "Temel Kabul",
+                "title": "2. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "82-83",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-1",
+                "num": "Test 1",
+                "title": "Doğrusal Fonksiyonlar Test 1",
+                "pages": "84-85",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-2",
+                "num": "Test 2",
+                "title": "Doğrusal Fonksiyonlar Test 2",
+                "pages": "86-87",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-3",
+                "num": "Test 3",
+                "title": "Doğrusal Fonksiyonlar Test 3",
+                "pages": "88-89",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-4",
+                "num": "Test 4",
+                "title": "Doğrusal Fonksiyonlar Test 4",
+                "pages": "90-91",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-5",
+                "num": "Test 5",
+                "title": "Parçalı ve Sabit Fonksiyon Test 1",
+                "pages": "93-94",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-6",
+                "num": "Test 6",
+                "title": "Parçalı ve Sabit Fonksiyon Test 2",
+                "pages": "95-96",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-7",
+                "num": "Test 7",
+                "title": "Parçalı ve Sabit Fonksiyon Test 3",
+                "pages": "97-98",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-8",
+                "num": "Test 8",
+                "title": "Parçalı ve Sabit Fonksiyon Test 4",
+                "pages": "99-100",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-9",
+                "num": "Test 9",
+                "title": "Parçalı ve Sabit Fonksiyon Test 5",
+                "pages": "101-102",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-10",
+                "num": "Test 10",
+                "title": "Parçalı ve Sabit Fonksiyon Test 6",
+                "pages": "103-104",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-11",
+                "num": "Test 11",
+                "title": "Fonksiyonlarda Dönüşümler Test 1",
+                "pages": "105-106",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-12",
+                "num": "Test 12",
+                "title": "Fonksiyonlarda Dönüşümler Test 2",
+                "pages": "107-108",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-13",
+                "num": "Test 13",
+                "title": "Fonksiyonlarda Dönüşümler Test 3",
+                "pages": "109-110",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-2-2",
+            "name": "2.2 Mutlak Değer Fonksiyonları",
+            "tests": [
+              {
+                "id": "orig-t2-test-14",
+                "num": "Test 14",
+                "title": "Mutlak Değerli Fonksiyonlar Test 1",
+                "pages": "112-113",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-15",
+                "num": "Test 15",
+                "title": "Mutlak Değerli Fonksiyonlar Test 2",
+                "pages": "114-115",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-16",
+                "num": "Test 16",
+                "title": "Mutlak Değerli Fonksiyonlar Test 3",
+                "pages": "116-117",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-17",
+                "num": "Test 17",
+                "title": "Mutlak Değerli Fonksiyonlar Test 4",
+                "pages": "118-119",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-18",
+                "num": "Test 18",
+                "title": "Mutlak Değerli Fonksiyonlar Test 5",
+                "pages": "120-121",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-2-3",
+            "name": "2.3 Denklem ve Eşitsizlikler",
+            "tests": [
+              {
+                "id": "orig-t2-test-19",
+                "num": "Test 19",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 1",
+                "pages": "123-124",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-20",
+                "num": "Test 20",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 2",
+                "pages": "125-126",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-21",
+                "num": "Test 21",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 3",
+                "pages": "127-128",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-22",
+                "num": "Test 22",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 4",
+                "pages": "129-130",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-23",
+                "num": "Test 23",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 5",
+                "pages": "131-132",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-24",
+                "num": "Test 24",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 6",
+                "pages": "133-134",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-25",
+                "num": "Test 25",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 7",
+                "pages": "135-136",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "2.1 Doğrusal Fonksiyonlar, Parçalı ve Sabit Fonksiyon",
+            "tests": [
+              {
+                "id": "orig-t2-tk1",
+                "num": "Temel Kabul",
+                "title": "2. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "82-83",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-1",
+                "num": "Test 1",
+                "title": "Doğrusal Fonksiyonlar Test 1",
+                "pages": "84-85",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-2",
+                "num": "Test 2",
+                "title": "Doğrusal Fonksiyonlar Test 2",
+                "pages": "86-87",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-3",
+                "num": "Test 3",
+                "title": "Doğrusal Fonksiyonlar Test 3",
+                "pages": "88-89",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-4",
+                "num": "Test 4",
+                "title": "Doğrusal Fonksiyonlar Test 4",
+                "pages": "90-91",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-5",
+                "num": "Test 5",
+                "title": "Parçalı ve Sabit Fonksiyon Test 1",
+                "pages": "93-94",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-6",
+                "num": "Test 6",
+                "title": "Parçalı ve Sabit Fonksiyon Test 2",
+                "pages": "95-96",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-7",
+                "num": "Test 7",
+                "title": "Parçalı ve Sabit Fonksiyon Test 3",
+                "pages": "97-98",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-8",
+                "num": "Test 8",
+                "title": "Parçalı ve Sabit Fonksiyon Test 4",
+                "pages": "99-100",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-9",
+                "num": "Test 9",
+                "title": "Parçalı ve Sabit Fonksiyon Test 5",
+                "pages": "101-102",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-10",
+                "num": "Test 10",
+                "title": "Parçalı ve Sabit Fonksiyon Test 6",
+                "pages": "103-104",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-11",
+                "num": "Test 11",
+                "title": "Fonksiyonlarda Dönüşümler Test 1",
+                "pages": "105-106",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-12",
+                "num": "Test 12",
+                "title": "Fonksiyonlarda Dönüşümler Test 2",
+                "pages": "107-108",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-13",
+                "num": "Test 13",
+                "title": "Fonksiyonlarda Dönüşümler Test 3",
+                "pages": "109-110",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "2.2 Mutlak Değer Fonksiyonları",
+            "tests": [
+              {
+                "id": "orig-t2-test-14",
+                "num": "Test 14",
+                "title": "Mutlak Değerli Fonksiyonlar Test 1",
+                "pages": "112-113",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-15",
+                "num": "Test 15",
+                "title": "Mutlak Değerli Fonksiyonlar Test 2",
+                "pages": "114-115",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-16",
+                "num": "Test 16",
+                "title": "Mutlak Değerli Fonksiyonlar Test 3",
+                "pages": "116-117",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-17",
+                "num": "Test 17",
+                "title": "Mutlak Değerli Fonksiyonlar Test 4",
+                "pages": "118-119",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-18",
+                "num": "Test 18",
+                "title": "Mutlak Değerli Fonksiyonlar Test 5",
+                "pages": "120-121",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "2.3 Denklem ve Eşitsizlikler",
+            "tests": [
+              {
+                "id": "orig-t2-test-19",
+                "num": "Test 19",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 1",
+                "pages": "123-124",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-20",
+                "num": "Test 20",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 2",
+                "pages": "125-126",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-21",
+                "num": "Test 21",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 3",
+                "pages": "127-128",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-22",
+                "num": "Test 22",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 4",
+                "pages": "129-130",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-23",
+                "num": "Test 23",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 5",
+                "pages": "131-132",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-24",
+                "num": "Test 24",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 6",
+                "pages": "133-134",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t2-test-25",
+                "num": "Test 25",
+                "title": "Fonksiyonlarda Eşitsizlikler Test 7",
+                "pages": "135-136",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "t3",
+        "name": "3. Tema: Geometrik Şekiller",
+        "description": "Üçgende açılar, açı-kenar bağıntıları",
+        "subtopics": [
+          {
+            "id": "sub-3-1",
+            "name": "3.1 Üçgende Açılar",
+            "tests": [
+              {
+                "id": "orig-t3-tk1",
+                "num": "Temel Kabul",
+                "title": "3. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "140-142",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-1",
+                "num": "Test 1",
+                "title": "Üçgende Açılar Test 1",
+                "pages": "143-144",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-2",
+                "num": "Test 2",
+                "title": "Üçgende Açılar Test 2",
+                "pages": "144-145",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-3",
+                "num": "Test 3",
+                "title": "Üçgende Açılar Test 3",
+                "pages": "145-146",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-4",
+                "num": "Test 4",
+                "title": "Üçgende Açılar Test 4",
+                "pages": "146-147",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-5",
+                "num": "Test 5",
+                "title": "Üçgende Açılar Test 5",
+                "pages": "147-148",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-6",
+                "num": "Test 6",
+                "title": "Üçgende Açılar Test 6",
+                "pages": "148-149",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-7",
+                "num": "Test 7",
+                "title": "Üçgende Açılar Test 7",
+                "pages": "149-150",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-8",
+                "num": "Test 8",
+                "title": "Üçgende Açılar Test 8",
+                "pages": "150-151",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-9",
+                "num": "Test 9",
+                "title": "Üçgende Açılar Test 9",
+                "pages": "151-152",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-3-2",
+            "name": "3.2 Üçgende Açı - Kenar İlişkileri",
+            "tests": [
+              {
+                "id": "orig-t3-test-10",
+                "num": "Test 10",
+                "title": "Açı-Kenar Bağıntıları Test 1",
+                "pages": "158-159",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-11",
+                "num": "Test 11",
+                "title": "Açı-Kenar Bağıntıları Test 2",
+                "pages": "159-160",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-12",
+                "num": "Test 12",
+                "title": "Açı-Kenar Bağıntıları Test 3",
+                "pages": "160-161",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-13",
+                "num": "Test 13",
+                "title": "Açı-Kenar Bağıntıları Test 4",
+                "pages": "161-162",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-14",
+                "num": "Test 14",
+                "title": "Açı-Kenar Bağıntıları Test 5",
+                "pages": "162-163",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "3.1 Üçgende Açılar",
+            "tests": [
+              {
+                "id": "orig-t3-tk1",
+                "num": "Temel Kabul",
+                "title": "3. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "140-142",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-1",
+                "num": "Test 1",
+                "title": "Üçgende Açılar Test 1",
+                "pages": "143-144",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-2",
+                "num": "Test 2",
+                "title": "Üçgende Açılar Test 2",
+                "pages": "144-145",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-3",
+                "num": "Test 3",
+                "title": "Üçgende Açılar Test 3",
+                "pages": "145-146",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-4",
+                "num": "Test 4",
+                "title": "Üçgende Açılar Test 4",
+                "pages": "146-147",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-5",
+                "num": "Test 5",
+                "title": "Üçgende Açılar Test 5",
+                "pages": "147-148",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-6",
+                "num": "Test 6",
+                "title": "Üçgende Açılar Test 6",
+                "pages": "148-149",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-7",
+                "num": "Test 7",
+                "title": "Üçgende Açılar Test 7",
+                "pages": "149-150",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-8",
+                "num": "Test 8",
+                "title": "Üçgende Açılar Test 8",
+                "pages": "150-151",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-9",
+                "num": "Test 9",
+                "title": "Üçgende Açılar Test 9",
+                "pages": "151-152",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "3.2 Üçgende Açı - Kenar İlişkileri",
+            "tests": [
+              {
+                "id": "orig-t3-test-10",
+                "num": "Test 10",
+                "title": "Açı-Kenar Bağıntıları Test 1",
+                "pages": "158-159",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-11",
+                "num": "Test 11",
+                "title": "Açı-Kenar Bağıntıları Test 2",
+                "pages": "159-160",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-12",
+                "num": "Test 12",
+                "title": "Açı-Kenar Bağıntıları Test 3",
+                "pages": "160-161",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-13",
+                "num": "Test 13",
+                "title": "Açı-Kenar Bağıntıları Test 4",
+                "pages": "161-162",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t3-test-14",
+                "num": "Test 14",
+                "title": "Açı-Kenar Bağıntıları Test 5",
+                "pages": "162-163",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "t4",
+        "name": "4. Tema: Eşlik ve Benzerlik",
+        "description": "Dönüşüm geometrisi, eş ve benzer üçgenler, Öklid ve Pisagor teoremleri",
+        "subtopics": [
+          {
+            "id": "sub-4-1",
+            "name": "4.1 Geometrik Dönüşümler",
+            "tests": [
+              {
+                "id": "orig-t4-test-1",
+                "num": "Test 1",
+                "title": "Dönüşüm Geometrisi Test 1",
+                "pages": "168-170",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-4-2",
+            "name": "4.2 Üçgenlerin Eşliği ve Benzerliği (Tales)",
+            "tests": [
+              {
+                "id": "orig-t4-test-2",
+                "num": "Test 2",
+                "title": "Eş Üçgenler Test 1",
+                "pages": "171-172",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-3",
+                "num": "Test 3",
+                "title": "Eş Üçgenler Test 2",
+                "pages": "172-173",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-4",
+                "num": "Test 4",
+                "title": "Benzer Üçgenler Test 1",
+                "pages": "174-175",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-5",
+                "num": "Test 5",
+                "title": "Benzer Üçgenler Test 2",
+                "pages": "175-176",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-6",
+                "num": "Test 6",
+                "title": "Benzer Üçgenler Test 3",
+                "pages": "176-177",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-7",
+                "num": "Test 7",
+                "title": "Benzer Üçgenler Test 4",
+                "pages": "177-178",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-8",
+                "num": "Test 8",
+                "title": "Benzer Üçgenler Test 5",
+                "pages": "178-179",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-9",
+                "num": "Test 9",
+                "title": "Benzer Üçgenler Test 6",
+                "pages": "179-180",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-10",
+                "num": "Test 10",
+                "title": "Benzer Üçgenler Test 7",
+                "pages": "180-181",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-11",
+                "num": "Test 11",
+                "title": "Benzer Üçgenler Test 8",
+                "pages": "181-182",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-12",
+                "num": "Test 12",
+                "title": "Benzer Üçgenler Test 9",
+                "pages": "182-183",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-13",
+                "num": "Test 13",
+                "title": "Benzer Üçgenler Test 10",
+                "pages": "183-184",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-14",
+                "num": "Test 14",
+                "title": "Benzer Üçgenler Test 11",
+                "pages": "184-185",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-15",
+                "num": "Test 15",
+                "title": "Benzer Üçgenler Test 12",
+                "pages": "185-186",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-16",
+                "num": "Test 16",
+                "title": "Benzer Üçgenler Test 13",
+                "pages": "186-187",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-4-3",
+            "name": "4.3 Öklid ve Pisagor Teoremleri",
+            "tests": [
+              {
+                "id": "orig-t4-test-17",
+                "num": "Test 17",
+                "title": "Öklid Bağıntısı Test 1",
+                "pages": "193-194",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-18",
+                "num": "Test 18",
+                "title": "Öklid Bağıntısı Test 2",
+                "pages": "194-195",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-19",
+                "num": "Test 19",
+                "title": "Öklid Bağıntısı Test 3",
+                "pages": "195-196",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-20",
+                "num": "Test 20",
+                "title": "Pisagor Bağıntısı Test 1",
+                "pages": "197-198",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-21",
+                "num": "Test 21",
+                "title": "Pisagor Bağıntısı Test 2",
+                "pages": "198-199",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-22",
+                "num": "Test 22",
+                "title": "Pisagor Bağıntısı Test 3",
+                "pages": "199-200",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-23",
+                "num": "Test 23",
+                "title": "Pisagor Bağıntısı Test 4",
+                "pages": "200-201",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-24",
+                "num": "Test 24",
+                "title": "Pisagor Bağıntısı Test 5",
+                "pages": "201-202",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-25",
+                "num": "Test 25",
+                "title": "Pisagor Bağıntısı Test 6",
+                "pages": "202-203",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-26",
+                "num": "Test 26",
+                "title": "Pisagor Bağıntısı Test 7",
+                "pages": "203-204",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-27",
+                "num": "Test 27",
+                "title": "Pisagor Bağıntısı Test 8",
+                "pages": "204-205",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-28",
+                "num": "Test 28",
+                "title": "Açı-Kenar Bağıntıları Test 1",
+                "pages": "207-208",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-29",
+                "num": "Test 29",
+                "title": "Açı-Kenar Bağıntıları Test 2",
+                "pages": "208-209",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-30",
+                "num": "Test 30",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 1",
+                "pages": "209-210",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-31",
+                "num": "Test 31",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 2",
+                "pages": "211-212",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-32",
+                "num": "Test 32",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 3",
+                "pages": "213-214",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-33",
+                "num": "Test 33",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 4",
+                "pages": "215-216",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-34",
+                "num": "Test 34",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 5",
+                "pages": "217-218",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-35",
+                "num": "Test 35",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 6",
+                "pages": "219-220",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "4.1 Geometrik Dönüşümler",
+            "tests": [
+              {
+                "id": "orig-t4-test-1",
+                "num": "Test 1",
+                "title": "Dönüşüm Geometrisi Test 1",
+                "pages": "168-170",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "4.2 Üçgenlerin Eşliği ve Benzerliği (Tales)",
+            "tests": [
+              {
+                "id": "orig-t4-test-2",
+                "num": "Test 2",
+                "title": "Eş Üçgenler Test 1",
+                "pages": "171-172",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-3",
+                "num": "Test 3",
+                "title": "Eş Üçgenler Test 2",
+                "pages": "172-173",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-4",
+                "num": "Test 4",
+                "title": "Benzer Üçgenler Test 1",
+                "pages": "174-175",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-5",
+                "num": "Test 5",
+                "title": "Benzer Üçgenler Test 2",
+                "pages": "175-176",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-6",
+                "num": "Test 6",
+                "title": "Benzer Üçgenler Test 3",
+                "pages": "176-177",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-7",
+                "num": "Test 7",
+                "title": "Benzer Üçgenler Test 4",
+                "pages": "177-178",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-8",
+                "num": "Test 8",
+                "title": "Benzer Üçgenler Test 5",
+                "pages": "178-179",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-9",
+                "num": "Test 9",
+                "title": "Benzer Üçgenler Test 6",
+                "pages": "179-180",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-10",
+                "num": "Test 10",
+                "title": "Benzer Üçgenler Test 7",
+                "pages": "180-181",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-11",
+                "num": "Test 11",
+                "title": "Benzer Üçgenler Test 8",
+                "pages": "181-182",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-12",
+                "num": "Test 12",
+                "title": "Benzer Üçgenler Test 9",
+                "pages": "182-183",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-13",
+                "num": "Test 13",
+                "title": "Benzer Üçgenler Test 10",
+                "pages": "183-184",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-14",
+                "num": "Test 14",
+                "title": "Benzer Üçgenler Test 11",
+                "pages": "184-185",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-15",
+                "num": "Test 15",
+                "title": "Benzer Üçgenler Test 12",
+                "pages": "185-186",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-16",
+                "num": "Test 16",
+                "title": "Benzer Üçgenler Test 13",
+                "pages": "186-187",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "4.3 Öklid ve Pisagor Teoremleri",
+            "tests": [
+              {
+                "id": "orig-t4-test-17",
+                "num": "Test 17",
+                "title": "Öklid Bağıntısı Test 1",
+                "pages": "193-194",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-18",
+                "num": "Test 18",
+                "title": "Öklid Bağıntısı Test 2",
+                "pages": "194-195",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-19",
+                "num": "Test 19",
+                "title": "Öklid Bağıntısı Test 3",
+                "pages": "195-196",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-20",
+                "num": "Test 20",
+                "title": "Pisagor Bağıntısı Test 1",
+                "pages": "197-198",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-21",
+                "num": "Test 21",
+                "title": "Pisagor Bağıntısı Test 2",
+                "pages": "198-199",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-22",
+                "num": "Test 22",
+                "title": "Pisagor Bağıntısı Test 3",
+                "pages": "199-200",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-23",
+                "num": "Test 23",
+                "title": "Pisagor Bağıntısı Test 4",
+                "pages": "200-201",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-24",
+                "num": "Test 24",
+                "title": "Pisagor Bağıntısı Test 5",
+                "pages": "201-202",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-25",
+                "num": "Test 25",
+                "title": "Pisagor Bağıntısı Test 6",
+                "pages": "202-203",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-26",
+                "num": "Test 26",
+                "title": "Pisagor Bağıntısı Test 7",
+                "pages": "203-204",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-27",
+                "num": "Test 27",
+                "title": "Pisagor Bağıntısı Test 8",
+                "pages": "204-205",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-28",
+                "num": "Test 28",
+                "title": "Açı-Kenar Bağıntıları Test 1",
+                "pages": "207-208",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-29",
+                "num": "Test 29",
+                "title": "Açı-Kenar Bağıntıları Test 2",
+                "pages": "208-209",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-30",
+                "num": "Test 30",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 1",
+                "pages": "209-210",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-31",
+                "num": "Test 31",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 2",
+                "pages": "211-212",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-32",
+                "num": "Test 32",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 3",
+                "pages": "213-214",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-33",
+                "num": "Test 33",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 4",
+                "pages": "215-216",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-34",
+                "num": "Test 34",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 5",
+                "pages": "217-218",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t4-test-35",
+                "num": "Test 35",
+                "title": "İkizkenar ve Eşkenar Üçgende Öklid-Pisagor Test 6",
+                "pages": "219-220",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "t5",
+        "name": "5. Tema: Algoritma ve Bilişim",
+        "description": "Algoritmik problem çözme, çizge kuramı, mantık bağlaçları",
+        "subtopics": [
+          {
+            "id": "sub-5-1",
+            "name": "5.1 Algoritmik Problem Çözme ve Çizge Kuramı",
+            "tests": [
+              {
+                "id": "orig-t5-tk1",
+                "num": "Temel Kabul",
+                "title": "5. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "224-225",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-1",
+                "num": "Test 1",
+                "title": "Algoritmik Problem Çözme Test 1",
+                "pages": "226-227",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-2",
+                "num": "Test 2",
+                "title": "Algoritmik Problem Çözme Test 2",
+                "pages": "228-229",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-3",
+                "num": "Test 3",
+                "title": "Algoritmik Problem Çözme Test 3",
+                "pages": "230-231",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-4",
+                "num": "Test 4",
+                "title": "Algoritmik Problem Çözme Test 4",
+                "pages": "232-233",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-5",
+                "num": "Test 5",
+                "title": "Algoritmik Problem Çözme Test 5",
+                "pages": "234-235",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-6",
+                "num": "Test 6",
+                "title": "Algoritmik Problem Çözme Test 6",
+                "pages": "236-237",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-7",
+                "num": "Test 7",
+                "title": "Çizge Kuramı Test 1",
+                "pages": "238-239",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-8",
+                "num": "Test 8",
+                "title": "Çizge Kuramı Test 2",
+                "pages": "240-241",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-9",
+                "num": "Test 9",
+                "title": "Çizge Kuramı Test 3",
+                "pages": "242-243",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "id": "sub-5-2",
+            "name": "5.2 Mantık Bağlaçları ve Niceleyiciler",
+            "tests": [
+              {
+                "id": "orig-t5-test-10",
+                "num": "Test 10",
+                "title": "Mantık Bağlaçları Test 1",
+                "pages": "246-247",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-11",
+                "num": "Test 11",
+                "title": "Mantık Bağlaçları Test 2",
+                "pages": "247-248",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-12",
+                "num": "Test 12",
+                "title": "Mantık Bağlaçları Test 3",
+                "pages": "248-249",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-13",
+                "num": "Test 13",
+                "title": "Mantık Bağlaçları Test 4",
+                "pages": "249-250",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-14",
+                "num": "Test 14",
+                "title": "Mantık Bağlaçları Test 5",
+                "pages": "250-251",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-15",
+                "num": "Test 15",
+                "title": "Mantık Bağlaçları Test 6",
+                "pages": "251-252",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-16",
+                "num": "Test 16",
+                "title": "Mantık Bağlaçları Test 7",
+                "pages": "252-253",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-17",
+                "num": "Test 17",
+                "title": "Mantık Bağlaçları Test 8",
+                "pages": "253-254",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "5.1 Algoritmik Problem Çözme ve Çizge Kuramı",
+            "tests": [
+              {
+                "id": "orig-t5-tk1",
+                "num": "Temel Kabul",
+                "title": "5. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "224-225",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-1",
+                "num": "Test 1",
+                "title": "Algoritmik Problem Çözme Test 1",
+                "pages": "226-227",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-2",
+                "num": "Test 2",
+                "title": "Algoritmik Problem Çözme Test 2",
+                "pages": "228-229",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-3",
+                "num": "Test 3",
+                "title": "Algoritmik Problem Çözme Test 3",
+                "pages": "230-231",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-4",
+                "num": "Test 4",
+                "title": "Algoritmik Problem Çözme Test 4",
+                "pages": "232-233",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-5",
+                "num": "Test 5",
+                "title": "Algoritmik Problem Çözme Test 5",
+                "pages": "234-235",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-6",
+                "num": "Test 6",
+                "title": "Algoritmik Problem Çözme Test 6",
+                "pages": "236-237",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-7",
+                "num": "Test 7",
+                "title": "Çizge Kuramı Test 1",
+                "pages": "238-239",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-8",
+                "num": "Test 8",
+                "title": "Çizge Kuramı Test 2",
+                "pages": "240-241",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-9",
+                "num": "Test 9",
+                "title": "Çizge Kuramı Test 3",
+                "pages": "242-243",
+                "q_count": 12
+              }
+            ]
+          },
+          {
+            "name": "5.2 Mantık Bağlaçları ve Niceleyiciler",
+            "tests": [
+              {
+                "id": "orig-t5-test-10",
+                "num": "Test 10",
+                "title": "Mantık Bağlaçları Test 1",
+                "pages": "246-247",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-11",
+                "num": "Test 11",
+                "title": "Mantık Bağlaçları Test 2",
+                "pages": "247-248",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-12",
+                "num": "Test 12",
+                "title": "Mantık Bağlaçları Test 3",
+                "pages": "248-249",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-13",
+                "num": "Test 13",
+                "title": "Mantık Bağlaçları Test 4",
+                "pages": "249-250",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-14",
+                "num": "Test 14",
+                "title": "Mantık Bağlaçları Test 5",
+                "pages": "250-251",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-15",
+                "num": "Test 15",
+                "title": "Mantık Bağlaçları Test 6",
+                "pages": "251-252",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-16",
+                "num": "Test 16",
+                "title": "Mantık Bağlaçları Test 7",
+                "pages": "252-253",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t5-test-17",
+                "num": "Test 17",
+                "title": "Mantık Bağlaçları Test 8",
+                "pages": "253-254",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "t6",
+        "name": "6. Tema: İstatistiksel Araştırma Süreci",
+        "description": "Veri toplama, analiz, dağılımlar ve süreç testleri",
+        "subtopics": [
+          {
+            "id": "sub-6-1",
+            "name": "6.1 Tek Nicel Değişkenli Veri Dağılımları ve Süreç Testleri",
+            "tests": [
+              {
+                "id": "orig-t6-tk1",
+                "num": "Temel Kabul",
+                "title": "6. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "262-263",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-1",
+                "num": "Test 1",
+                "title": "İstatistiksel Süreç & Beceri Testi 1",
+                "pages": "264-265",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-2",
+                "num": "Test 2",
+                "title": "İstatistiksel Süreç & Beceri Testi 2",
+                "pages": "265-266",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-3",
+                "num": "Test 3",
+                "title": "İstatistiksel Süreç & Beceri Testi 3",
+                "pages": "266-267",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-4",
+                "num": "Test 4",
+                "title": "İstatistiksel Süreç & Beceri Testi 4",
+                "pages": "267-268",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-5",
+                "num": "Test 5",
+                "title": "İstatistiksel Süreç & Beceri Testi 5",
+                "pages": "268-269",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-6",
+                "num": "Test 6",
+                "title": "İstatistiksel Süreç & Beceri Testi 6",
+                "pages": "269-270",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-7",
+                "num": "Test 7",
+                "title": "İstatistiksel Süreç & Beceri Testi 7",
+                "pages": "270-271",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-8",
+                "num": "Test 8",
+                "title": "İstatistiksel Süreç & Beceri Testi 8",
+                "pages": "271-272",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-9",
+                "num": "Test 9",
+                "title": "İstatistiksel Süreç & Beceri Testi 9",
+                "pages": "272-273",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-10",
+                "num": "Test 10",
+                "title": "İstatistiksel Süreç & Beceri Testi 10",
+                "pages": "273-274",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-11",
+                "num": "Test 11",
+                "title": "İstatistiksel Süreç & Beceri Testi 11",
+                "pages": "274-275",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-12",
+                "num": "Test 12",
+                "title": "İstatistiksel Süreç & Beceri Testi 12",
+                "pages": "275-276",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-13",
+                "num": "Test 13",
+                "title": "İstatistiksel Süreç & Beceri Testi 13",
+                "pages": "276-277",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-14",
+                "num": "Test 14",
+                "title": "İstatistiksel Süreç & Beceri Testi 14",
+                "pages": "277-278",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-15",
+                "num": "Test 15",
+                "title": "İstatistiksel Süreç & Beceri Testi 15",
+                "pages": "278-279",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-16",
+                "num": "Test 16",
+                "title": "İstatistiksel Süreç & Beceri Testi 16",
+                "pages": "279-280",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-17",
+                "num": "Test 17",
+                "title": "İstatistiksel Süreç & Beceri Testi 17",
+                "pages": "280-281",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-18",
+                "num": "Test 18",
+                "title": "İstatistiksel Süreç & Beceri Testi 18",
+                "pages": "281-282",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-19",
+                "num": "Test 19",
+                "title": "İstatistiksel Süreç & Beceri Testi 19",
+                "pages": "282-283",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-20",
+                "num": "Test 20",
+                "title": "İstatistiksel Süreç & Beceri Testi 20",
+                "pages": "283-284",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-21",
+                "num": "Test 21",
+                "title": "İstatistiksel Süreç & Beceri Testi 21",
+                "pages": "284-285",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-22",
+                "num": "Test 22",
+                "title": "İstatistiksel Süreç & Beceri Testi 22",
+                "pages": "285-286",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-23",
+                "num": "Test 23",
+                "title": "İstatistiksel Süreç & Beceri Testi 23",
+                "pages": "286-287",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-24",
+                "num": "Test 24",
+                "title": "İstatistiksel Süreç & Beceri Testi 24",
+                "pages": "287-288",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "6.1 Tek Nicel Değişkenli Veri Dağılımları ve Süreç Testleri",
+            "tests": [
+              {
+                "id": "orig-t6-tk1",
+                "num": "Temel Kabul",
+                "title": "6. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "262-263",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-1",
+                "num": "Test 1",
+                "title": "İstatistiksel Süreç & Beceri Testi 1",
+                "pages": "264-265",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-2",
+                "num": "Test 2",
+                "title": "İstatistiksel Süreç & Beceri Testi 2",
+                "pages": "265-266",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-3",
+                "num": "Test 3",
+                "title": "İstatistiksel Süreç & Beceri Testi 3",
+                "pages": "266-267",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-4",
+                "num": "Test 4",
+                "title": "İstatistiksel Süreç & Beceri Testi 4",
+                "pages": "267-268",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-5",
+                "num": "Test 5",
+                "title": "İstatistiksel Süreç & Beceri Testi 5",
+                "pages": "268-269",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-6",
+                "num": "Test 6",
+                "title": "İstatistiksel Süreç & Beceri Testi 6",
+                "pages": "269-270",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-7",
+                "num": "Test 7",
+                "title": "İstatistiksel Süreç & Beceri Testi 7",
+                "pages": "270-271",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-8",
+                "num": "Test 8",
+                "title": "İstatistiksel Süreç & Beceri Testi 8",
+                "pages": "271-272",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-9",
+                "num": "Test 9",
+                "title": "İstatistiksel Süreç & Beceri Testi 9",
+                "pages": "272-273",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-10",
+                "num": "Test 10",
+                "title": "İstatistiksel Süreç & Beceri Testi 10",
+                "pages": "273-274",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-11",
+                "num": "Test 11",
+                "title": "İstatistiksel Süreç & Beceri Testi 11",
+                "pages": "274-275",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-12",
+                "num": "Test 12",
+                "title": "İstatistiksel Süreç & Beceri Testi 12",
+                "pages": "275-276",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-13",
+                "num": "Test 13",
+                "title": "İstatistiksel Süreç & Beceri Testi 13",
+                "pages": "276-277",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-14",
+                "num": "Test 14",
+                "title": "İstatistiksel Süreç & Beceri Testi 14",
+                "pages": "277-278",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-15",
+                "num": "Test 15",
+                "title": "İstatistiksel Süreç & Beceri Testi 15",
+                "pages": "278-279",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-16",
+                "num": "Test 16",
+                "title": "İstatistiksel Süreç & Beceri Testi 16",
+                "pages": "279-280",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-17",
+                "num": "Test 17",
+                "title": "İstatistiksel Süreç & Beceri Testi 17",
+                "pages": "280-281",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-18",
+                "num": "Test 18",
+                "title": "İstatistiksel Süreç & Beceri Testi 18",
+                "pages": "281-282",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-19",
+                "num": "Test 19",
+                "title": "İstatistiksel Süreç & Beceri Testi 19",
+                "pages": "282-283",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-20",
+                "num": "Test 20",
+                "title": "İstatistiksel Süreç & Beceri Testi 20",
+                "pages": "283-284",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-21",
+                "num": "Test 21",
+                "title": "İstatistiksel Süreç & Beceri Testi 21",
+                "pages": "284-285",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-22",
+                "num": "Test 22",
+                "title": "İstatistiksel Süreç & Beceri Testi 22",
+                "pages": "285-286",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-23",
+                "num": "Test 23",
+                "title": "İstatistiksel Süreç & Beceri Testi 23",
+                "pages": "286-287",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t6-test-24",
+                "num": "Test 24",
+                "title": "İstatistiksel Süreç & Beceri Testi 24",
+                "pages": "287-288",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "t7",
+        "name": "7. Tema: Veriden Olasılığa",
+        "description": "Olasılık hesapları, deneysel ve teorik olasılık",
+        "subtopics": [
+          {
+            "id": "sub-7-1",
+            "name": "7.1 Gözleme Dayalı Tahmin ve Olasılık",
+            "tests": [
+              {
+                "id": "orig-t7-tk1",
+                "num": "Temel Kabul",
+                "title": "7. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "308-309",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-1",
+                "num": "Test 1",
+                "title": "Olasılık Test 1",
+                "pages": "310-311",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-2",
+                "num": "Test 2",
+                "title": "Olasılık Test 2",
+                "pages": "311-312",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-3",
+                "num": "Test 3",
+                "title": "Olasılık Test 3",
+                "pages": "312-313",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-4",
+                "num": "Test 4",
+                "title": "Olasılık Test 4",
+                "pages": "313-314",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-5",
+                "num": "Test 5",
+                "title": "Olasılık Test 5",
+                "pages": "314-315",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-6",
+                "num": "Test 6",
+                "title": "Olasılık Test 6",
+                "pages": "315-316",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-7",
+                "num": "Test 7",
+                "title": "Olasılık Test 7",
+                "pages": "316-317",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-8",
+                "num": "Test 8",
+                "title": "Olasılık Test 8",
+                "pages": "317-318",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-9",
+                "num": "Test 9",
+                "title": "Olasılık Test 9",
+                "pages": "318-319",
+                "q_count": 12
+              }
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "name": "7.1 Gözleme Dayalı Tahmin ve Olasılık",
+            "tests": [
+              {
+                "id": "orig-t7-tk1",
+                "num": "Temel Kabul",
+                "title": "7. Tema Temel Kabul Soruları (Hazırbulunuşluk)",
+                "pages": "308-309",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-1",
+                "num": "Test 1",
+                "title": "Olasılık Test 1",
+                "pages": "310-311",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-2",
+                "num": "Test 2",
+                "title": "Olasılık Test 2",
+                "pages": "311-312",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-3",
+                "num": "Test 3",
+                "title": "Olasılık Test 3",
+                "pages": "312-313",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-4",
+                "num": "Test 4",
+                "title": "Olasılık Test 4",
+                "pages": "313-314",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-5",
+                "num": "Test 5",
+                "title": "Olasılık Test 5",
+                "pages": "314-315",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-6",
+                "num": "Test 6",
+                "title": "Olasılık Test 6",
+                "pages": "315-316",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-7",
+                "num": "Test 7",
+                "title": "Olasılık Test 7",
+                "pages": "316-317",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-8",
+                "num": "Test 8",
+                "title": "Olasılık Test 8",
+                "pages": "317-318",
+                "q_count": 12
+              },
+              {
+                "id": "orig-t7-test-9",
+                "num": "Test 9",
+                "title": "Olasılık Test 9",
+                "pages": "318-319",
+                "q_count": 12
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

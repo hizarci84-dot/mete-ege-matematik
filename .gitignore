@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Production build
+frontend/dist/
+
+# Local database file and uploaded images (keep uploads directory structure)
+data/uploads/*
+!data/uploads/.gitkeep
+data/*.tmp
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Heavy Source PDFs & Temp Pages (not needed for deployment)
+*.pdf
+temp_pages/
+google_apps_script/schedule_data.js
