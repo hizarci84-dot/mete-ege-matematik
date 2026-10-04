@@ -17,7 +17,8 @@ export default function PrintReport({
   mockExams = [],
   onClose,
   onSwitchStudent,
-  allStudents = []
+  allStudents = [],
+  isTeacher = false
 }) {
   if (!analyticsData || !student) return null
 
@@ -41,32 +42,45 @@ export default function PrintReport({
       <div className="bg-white text-slate-900 w-full max-w-4xl max-h-[92vh] rounded-2xl shadow-2xl flex flex-col border border-slate-300 overflow-hidden">
         {/* Sticky Action Header (Always visible at the top, hidden in print) */}
         <div className="sticky top-0 z-20 bg-slate-900 text-white px-6 py-3.5 border-b border-slate-800 flex flex-wrap justify-between items-center gap-3 shrink-0 print:hidden">
-          {/* Student Report Switcher */}
-          <div className="flex items-center space-x-2">
-            <span className="text-xs text-slate-400 font-medium mr-1 hidden sm:inline">Rapor Seçimi:</span>
-            <button
-              onClick={() => onSwitchStudent && onSwitchStudent('mete')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 ${
+          {/* Student Report Switcher: SADECE ÖĞRETMEN İSE GÖSTER, ÖĞRENCİDE SADECE KENDİ ROZETİ */}
+          {isTeacher ? (
+            <div className="flex items-center space-x-2">
+              <span className="text-xs text-slate-400 font-medium mr-1 hidden sm:inline">Rapor Seçimi:</span>
+              <button
+                onClick={() => onSwitchStudent && onSwitchStudent('mete')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 ${
+                  student.id === 'mete'
+                    ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30 ring-2 ring-orange-400'
+                    : 'bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700'
+                }`}
+              >
+                <span>👨‍🎓</span>
+                <span>Mete'nin Raporu</span>
+              </button>
+              <button
+                onClick={() => onSwitchStudent && onSwitchStudent('ege')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 ${
+                  student.id === 'ege'
+                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 ring-2 ring-blue-400'
+                    : 'bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700'
+                }`}
+              >
+                <span>🧑‍🎓</span>
+                <span>Ege'nin Raporu</span>
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center space-x-2">
+              <div className={`px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center space-x-2 border shadow-sm ${
                 student.id === 'mete'
-                  ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30 ring-2 ring-orange-400'
-                  : 'bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700'
-              }`}
-            >
-              <span>👨‍🎓</span>
-              <span>Mete'nin Raporu</span>
-            </button>
-            <button
-              onClick={() => onSwitchStudent && onSwitchStudent('ege')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 ${
-                student.id === 'ege'
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 ring-2 ring-blue-400'
-                  : 'bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700'
-              }`}
-            >
-              <span>🧑‍🎓</span>
-              <span>Ege'nin Raporu</span>
-            </button>
-          </div>
+                  ? 'bg-orange-950/60 text-orange-300 border-orange-500/50'
+                  : 'bg-blue-950/60 text-blue-300 border-blue-500/50'
+              }`}>
+                <span className="text-base">{student.id === 'mete' ? '👨‍🎓' : '🧑‍🎓'}</span>
+                <span>{student.name}'in Bireysel Başarı Karnesi</span>
+              </div>
+            </div>
+          )}
 
           <div className="flex items-center space-x-2">
             <button

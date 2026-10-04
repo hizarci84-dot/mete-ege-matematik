@@ -93,7 +93,8 @@ export default function App() {
   const currentStudent = students.find(s => s.id === activeStudentId) || students[0]
 
   const handleOpenPrintReport = async (targetStudentId = null) => {
-    const sid = targetStudentId || (activeStudentId === 'ege' ? 'ege' : 'mete')
+    // Öğrenci ise kesinlikle yalnızca kendi raporunu açabilir
+    const sid = activeStudentId !== 'teacher' ? activeStudentId : (targetStudentId || 'mete')
     setPrintStudentId(sid)
     setIsPrintOpen(true)
     try {
@@ -109,6 +110,8 @@ export default function App() {
   }
 
   const handleSwitchPrintStudent = async (newStudentId) => {
+    // Öğretmen değilse başka öğrencinin raporuna geçiş kesinlikle engellenir
+    if (activeStudentId !== 'teacher') return
     setPrintStudentId(newStudentId)
     try {
       const [data, exams] = await Promise.all([
@@ -469,14 +472,15 @@ export default function App() {
         onSubmitSuccess={handleMockExamSubmitSuccess}
       />
 
-      {/* Printable Report Modal (Aşağı kaydırma çubuğu ve öğrenci seçimi aktif) */}
+      {/* Printable Report Modal (Yalnızca öğretmen her iki öğrenciyi görebilir, öğrenci yalnızca kendini görür) */}
       {isPrintOpen && (
         <PrintReport
           student={students.find(s => s.id === printStudentId) || currentStudent}
           analyticsData={printAnalyticsData || analyticsData}
           mockExams={printMockExams.length > 0 ? printMockExams : mockExams}
           onClose={() => setIsPrintOpen(false)}
-          onSwitchStudent={handleSwitchPrintStudent}
+          onSwitchStudent={activeStudentId === 'teacher' ? handleSwitchPrintStudent : null}
+          isTeacher={activeStudentId === 'teacher'}
           allStudents={students}
         />
       )}
