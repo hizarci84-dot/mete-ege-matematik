@@ -16,8 +16,8 @@ var GREEN_API_TOKEN       = "41919f0f1ff94b00a0daf0b5a20028811dba6ffbe274471bbd"
 var WHATSAPP_GRUP_ADI     = "MÜFİT HOCA İLE MATEMATİK";
 var WHATSAPP_GRUP_ID      = "120363414194493647@g.us"; 
 
-// =========================================================================
-// 1. SAAT 16:00 ZAMAN TETİKLEYİCİSİ (BİLGİSAYARINIZ KAPALI OLSA BİLE ÇALIŞIR)
+// Canlı Sunucu Adresiniz:
+var APP_SERVER_URL        = "https://mete-ege-matematik.onrender.com";
 // =========================================================================
 
 /**
