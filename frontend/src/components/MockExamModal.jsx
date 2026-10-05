@@ -32,10 +32,10 @@ const GENERAL_EXAM_TEMPLATES = [
     title: '9. Sınıf Kurumsal (120 Soru)',
     sub: 'Özdebir / TÖDER Standardı (4 x 30)',
     subjects: [
-      { key: 'turkce', name: 'Türk Dili ve Edebiyatı', icon: '📚', qCount: 30, correct: 25, wrong: 4, empty: 1 },
-      { key: 'matematik', name: 'Matematik', icon: '📐', qCount: 30, correct: 26, wrong: 2, empty: 2 },
-      { key: 'fen', name: 'Fen Bilimleri (Fizik-Kimya-Biyo)', icon: '🔬', qCount: 30, correct: 24, wrong: 4, empty: 2 },
-      { key: 'sosyal', name: 'Sosyal Bilimler (Tar-Coğ-Din-Fel)', icon: '🌍', qCount: 30, correct: 26, wrong: 3, empty: 1 }
+      { key: 'turkce', name: 'Türk Dili ve Edebiyatı', icon: '📚', qCount: 30, correct: 0, wrong: 0, empty: 0 },
+      { key: 'matematik', name: 'Matematik', icon: '📐', qCount: 30, correct: 0, wrong: 0, empty: 0 },
+      { key: 'fen', name: 'Fen Bilimleri (Fizik-Kimya-Biyo)', icon: '🔬', qCount: 30, correct: 0, wrong: 0, empty: 0 },
+      { key: 'sosyal', name: 'Sosyal Bilimler (Tar-Coğ-Din-Fel)', icon: '🌍', qCount: 30, correct: 0, wrong: 0, empty: 0 }
     ]
   },
   {
@@ -43,10 +43,10 @@ const GENERAL_EXAM_TEMPLATES = [
     title: '9. Sınıf 4\'lü Deneme (100 Soru)',
     sub: '4 Temel Ders (4 x 25)',
     subjects: [
-      { key: 'turkce', name: 'Türk Dili ve Edebiyatı', icon: '📚', qCount: 25, correct: 22, wrong: 2, empty: 1 },
-      { key: 'matematik', name: 'Matematik', icon: '📐', qCount: 25, correct: 23, wrong: 1, empty: 1 },
-      { key: 'fen', name: 'Fen Bilimleri', icon: '🔬', qCount: 25, correct: 21, wrong: 3, empty: 1 },
-      { key: 'sosyal', name: 'Sosyal Bilimler', icon: '🌍', qCount: 25, correct: 22, wrong: 2, empty: 1 }
+      { key: 'turkce', name: 'Türk Dili ve Edebiyatı', icon: '📚', qCount: 25, correct: 0, wrong: 0, empty: 0 },
+      { key: 'matematik', name: 'Matematik', icon: '📐', qCount: 25, correct: 0, wrong: 0, empty: 0 },
+      { key: 'fen', name: 'Fen Bilimleri', icon: '🔬', qCount: 25, correct: 0, wrong: 0, empty: 0 },
+      { key: 'sosyal', name: 'Sosyal Bilimler', icon: '🌍', qCount: 25, correct: 0, wrong: 0, empty: 0 }
     ]
   },
   {
@@ -54,10 +54,10 @@ const GENERAL_EXAM_TEMPLATES = [
     title: 'TYT Deneme Formatı (120 Soru)',
     sub: 'Türkçe 40, Mat 40, Fen 20, Sos 20',
     subjects: [
-      { key: 'turkce', name: 'Türkçe', icon: '📚', qCount: 40, correct: 33, wrong: 5, empty: 2 },
-      { key: 'matematik', name: 'Temel Matematik', icon: '📐', qCount: 40, correct: 34, wrong: 3, empty: 3 },
-      { key: 'fen', name: 'Fen Bilimleri', icon: '🔬', qCount: 20, correct: 16, wrong: 3, empty: 1 },
-      { key: 'sosyal', name: 'Sosyal Bilimler', icon: '🌍', qCount: 20, correct: 17, wrong: 2, empty: 1 }
+      { key: 'turkce', name: 'Türkçe', icon: '📚', qCount: 40, correct: 0, wrong: 0, empty: 0 },
+      { key: 'matematik', name: 'Temel Matematik', icon: '📐', qCount: 40, correct: 0, wrong: 0, empty: 0 },
+      { key: 'fen', name: 'Fen Bilimleri', icon: '🔬', qCount: 20, correct: 0, wrong: 0, empty: 0 },
+      { key: 'sosyal', name: 'Sosyal Bilimler', icon: '🌍', qCount: 20, correct: 0, wrong: 0, empty: 0 }
     ]
   },
   {
@@ -65,19 +65,19 @@ const GENERAL_EXAM_TEMPLATES = [
     title: 'Okul Ortak Sınavı (80 Soru)',
     sub: '4 Temel Ders (4 x 20)',
     subjects: [
-      { key: 'turkce', name: 'Türk Dili ve Edebiyatı', icon: '📚', qCount: 20, correct: 18, wrong: 1, empty: 1 },
-      { key: 'matematik', name: 'Matematik', icon: '📐', qCount: 20, correct: 18, wrong: 1, empty: 1 },
-      { key: 'fen', name: 'Fen Bilimleri', icon: '🔬', qCount: 20, correct: 17, wrong: 2, empty: 1 },
-      { key: 'sosyal', name: 'Sosyal Bilimler', icon: '🌍', qCount: 20, correct: 18, wrong: 1, empty: 1 }
+      { key: 'turkce', name: 'Türk Dili ve Edebiyatı', icon: '📚', qCount: 20, correct: 0, wrong: 0, empty: 0 },
+      { key: 'matematik', name: 'Matematik', icon: '📐', qCount: 20, correct: 0, wrong: 0, empty: 0 },
+      { key: 'fen', name: 'Fen Bilimleri', icon: '🔬', qCount: 20, correct: 0, wrong: 0, empty: 0 },
+      { key: 'sosyal', name: 'Sosyal Bilimler', icon: '🌍', qCount: 20, correct: 0, wrong: 0, empty: 0 }
     ]
   }
 ]
 
 const SINGLE_SUBJECT_TEMPLATES = [
-  { key: 'matematik', name: 'Matematik', icon: '📐', qCount: 30, correct: 26, wrong: 2, empty: 2 },
-  { key: 'fen', name: 'Fen Bilimleri', icon: '🔬', qCount: 30, correct: 25, wrong: 3, empty: 2 },
-  { key: 'turkce', name: 'Türk Dili ve Edebiyatı', icon: '📚', qCount: 30, correct: 26, wrong: 3, empty: 1 },
-  { key: 'sosyal', name: 'Sosyal Bilimler', icon: '🌍', qCount: 30, correct: 26, wrong: 3, empty: 1 }
+  { key: 'matematik', name: 'Matematik', icon: '📐', qCount: 30, correct: 0, wrong: 0, empty: 0 },
+  { key: 'fen', name: 'Fen Bilimleri', icon: '🔬', qCount: 30, correct: 0, wrong: 0, empty: 0 },
+  { key: 'turkce', name: 'Türk Dili ve Edebiyatı', icon: '📚', qCount: 30, correct: 0, wrong: 0, empty: 0 },
+  { key: 'sosyal', name: 'Sosyal Bilimler', icon: '🌍', qCount: 30, correct: 0, wrong: 0, empty: 0 }
 ]
 
 const PUBLISHERS = [
@@ -126,9 +126,7 @@ export default function MockExamModal({
   )
 
   // Exam details
-  const [examTitle, setExamTitle] = useState(
-    existingExam?.examTitle || '1. Dönem Kurumsal Genel Deneme'
-  )
+  const [examTitle, setExamTitle] = useState(existingExam?.examTitle || '')
   const [publisher, setPublisher] = useState(existingExam?.publisher || 'Özdebir')
   const [customPublisher, setCustomPublisher] = useState('')
   const [date, setDate] = useState(
@@ -152,7 +150,7 @@ export default function MockExamModal({
         empty: s.empty !== undefined ? Number(s.empty) : Math.max(0, (Number(s.qCount) || 30) - (Number(s.correct) || 0) - (Number(s.wrong) || 0))
       }))
     }
-    // Default to 9th Grade General Template
+    // Default to 9th Grade General Template with clean 0s
     return GENERAL_EXAM_TEMPLATES[0].subjects.map(s => ({ ...s }))
   })
 
@@ -169,12 +167,50 @@ export default function MockExamModal({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [photoSubjectSelect, setPhotoSubjectSelect] = useState('Matematik')
 
+  // Reset or initialize state cleanly whenever modal opens
+  useEffect(() => {
+    if (isOpen) {
+      if (existingExam) {
+        setExamType(existingExam.examType || (existingExam.subjects && existingExam.subjects.length > 1 ? 'general' : 'single'))
+        setExamTitle(existingExam.examTitle || '')
+        setPublisher(existingExam.publisher || 'Özdebir')
+        setCustomPublisher('')
+        setDate(existingExam.date || new Date().toISOString().split('T')[0])
+        setDurationMinutes(existingExam.durationMinutes || (existingExam.examType === 'single' ? 45 : 135))
+        setStudentNote(existingExam.studentNote || '')
+        setQuestionPhotos(existingExam.questionPhotos || [])
+        if (existingExam.subjects && existingExam.subjects.length > 0) {
+          setSubjects(existingExam.subjects.map(s => ({
+            key: s.key || s.name.toLowerCase().replace(/\s+/g, '_'),
+            name: s.name,
+            icon: s.icon || (s.name.includes('Mat') ? '📐' : s.name.includes('Türk') ? '📚' : s.name.includes('Fen') ? '🔬' : '🌍'),
+            qCount: Number(s.qCount) || 30,
+            correct: Number(s.correct) || 0,
+            wrong: Number(s.wrong) || 0,
+            empty: s.empty !== undefined ? Number(s.empty) : Math.max(0, (Number(s.qCount) || 30) - (Number(s.correct) || 0) - (Number(s.wrong) || 0))
+          })))
+        }
+      } else {
+        // Fresh entry - clean state with zero fake numbers
+        setExamType('general')
+        setExamTitle('')
+        setPublisher('Özdebir')
+        setCustomPublisher('')
+        setDate(new Date().toISOString().split('T')[0])
+        setDurationMinutes(135)
+        setStudentNote('')
+        setQuestionPhotos([])
+        setSelectedTemplateId('9_kurumsal_120')
+        setSubjects(GENERAL_EXAM_TEMPLATES[0].subjects.map(s => ({ ...s })))
+      }
+    }
+  }, [isOpen, existingExam])
+
   // Apply template
   const handleApplyTemplate = (tmpl) => {
     setSelectedTemplateId(tmpl.id)
     setSubjects(tmpl.subjects.map(s => ({ ...s })))
     if (!existingExam) {
-      setExamTitle(`${publisher} ${tmpl.title}`)
       setDurationMinutes(tmpl.id === 'okul_80' ? 90 : 135)
     }
   }

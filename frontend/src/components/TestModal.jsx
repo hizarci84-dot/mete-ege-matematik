@@ -40,21 +40,52 @@ export default function TestModal({
   const [isUploadingPhoto, setIsUploadingPhoto] = useState(false)
   const [previewPhoto, setPreviewPhoto] = useState(null)
 
-  // Quick mode states
-  const [correct, setCorrect] = useState(existingSubmission?.correct ?? qCount - 1)
-  const [wrong, setWrong] = useState(existingSubmission?.wrong ?? 1)
-  const [empty, setEmpty] = useState(existingSubmission?.empty ?? 0)
+  // Quick mode states - clean by default for fresh test entry
+  const [correct, setCorrect] = useState(existingSubmission?.correct !== undefined ? existingSubmission.correct : '')
+  const [wrong, setWrong] = useState(existingSubmission?.wrong !== undefined ? existingSubmission.wrong : '')
+  const [empty, setEmpty] = useState(existingSubmission?.empty !== undefined ? existingSubmission.empty : '')
   const [durationMinutes, setDurationMinutes] = useState(
-    existingSubmission?.durationMinutes ?? 18
+    existingSubmission?.durationMinutes !== undefined ? existingSubmission.durationMinutes : ''
   )
   const [studentNote, setStudentNote] = useState(existingSubmission?.studentNote || '')
 
-  // Reset or initialize photos if existing submission changes
+  // Reset or initialize fields whenever modal opens or target assignment changes
   useEffect(() => {
-    if (existingSubmission?.questionPhotos) {
-      setQuestionPhotos(existingSubmission.questionPhotos)
+    if (isOpen) {
+      if (existingSubmission) {
+        setCorrect(existingSubmission.correct !== undefined ? existingSubmission.correct : '')
+        setWrong(existingSubmission.wrong !== undefined ? existingSubmission.wrong : '')
+        setEmpty(existingSubmission.empty !== undefined ? existingSubmission.empty : '')
+        setDurationMinutes(existingSubmission.durationMinutes !== undefined ? existingSubmission.durationMinutes : '')
+        setStudentNote(existingSubmission.studentNote || '')
+        setQuestionPhotos(existingSubmission.questionPhotos || [])
+        if (existingSubmission.answers && existingSubmission.answers.length > 0) {
+          setAnswers(existingSubmission.answers)
+        } else {
+          setAnswers(Array.from({ length: qCount }, (_, i) => ({
+            qNum: i + 1,
+            status: null,
+            selectedOption: '',
+            difficult: false
+          })))
+        }
+      } else {
+        // Fresh entry - completely clean, zero fake numbers
+        setCorrect('')
+        setWrong('')
+        setEmpty('')
+        setDurationMinutes('')
+        setStudentNote('')
+        setQuestionPhotos([])
+        setAnswers(Array.from({ length: qCount }, (_, i) => ({
+          qNum: i + 1,
+          status: null,
+          selectedOption: '',
+          difficult: false
+        })))
+      }
     }
-  }, [existingSubmission])
+  }, [isOpen, assignment?.id, existingSubmission, qCount])
 
   // Canvas image compression for fast mobile upload and crystal clear math equations
   const compressImage = (file) => {
@@ -132,8 +163,8 @@ export default function TestModal({
     }
     return Array.from({ length: qCount }, (_, i) => ({
       qNum: i + 1,
-      status: 'correct', // 'correct', 'wrong', 'empty'
-      selectedOption: 'A',
+      status: null, // clean, not pre-marked
+      selectedOption: '',
       difficult: false
     }))
   })
@@ -160,17 +191,25 @@ export default function TestModal({
   }
 
   // Calculate live Net and Score
-  const currentTotal = Number(correct) + Number(wrong) + Number(empty)
-  const net = Math.max(0, parseFloat((correct - (wrong / 4)).toFixed(2)))
-  const scorePercent = qCount > 0 ? Math.round((correct / qCount) * 100) : 0
-  const isCountValid = currentTotal === qCount
+  const numCorrect = correct === '' ? 0 : Number(correct)
+  const numWrong = wrong === '' ? 0 : Number(wrong)
+  const numEmpty = empty === '' ? 0 : Number(empty)
+  const hasInput = correct !== '' || wrong !== '' || empty !== ''
+  const currentTotal = hasInput ? numCorrect + numWrong + numEmpty : 0
+  const net = hasInput ? Math.max(0, parseFloat((numCorrect - (numWrong / 4)).toFixed(2))) : 0
+  const scorePercent = (hasInput && qCount > 0) ? Math.round((numCorrect / qCount) * 100) : 0
+  const isCountValid = hasInput && currentTotal === qCount
 
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (!hasInput) {
+      alert('Lütfen test sonuçlarınızı (doğru, yanlış ve boş sayılarını) giriniz.')
+      return
+    }
     if (!isCountValid) {
-      alert(`Doğru (${correct}) + Yanlış (${wrong}) + Boş (${empty}) toplamı soru sayısına (${qCount}) eşit olmalıdır!`)
+      alert(`Doğru (${numCorrect}) + Yanlış (${numWrong}) + Boş (${numEmpty}) toplamı soru sayısına (${qCount}) eşit olmalıdır!`)
       return
     }
 
@@ -188,12 +227,12 @@ export default function TestModal({
         pages: assignment.pages,
         date: assignment.date,
         qCount,
-        correct: Number(correct),
-        wrong: Number(wrong),
-        empty: Number(empty),
+        correct: numCorrect,
+        wrong: numWrong,
+        empty: numEmpty,
         net,
         scorePercent,
-        durationMinutes: Number(durationMinutes),
+        durationMinutes: durationMinutes !== '' ? Number(durationMinutes) : 0,
         mode,
         answers: mode === 'detailed' ? answers : [],
         studentNote,
@@ -285,20 +324,28 @@ export default function TestModal({
                 <div className="bg-slate-800/70 p-3.5 rounded-xl border border-slate-700">
                   <label className="block text-xs font-medium text-emerald-400 mb-1 flex items-center justify-between">
                     <span>Doğru Sayısı</span>
-                    <span className="text-[10px] text-slate-400">(+{correct})</span>
+                    <span className="text-[10px] text-slate-400">(+{correct !== '' ? correct : 0})</span>
                   </label>
                   <input
                     type="number"
                     min="0"
                     max={qCount}
+                    placeholder="0"
                     value={correct}
                     onChange={(e) => {
-                      const val = Math.max(0, Math.min(qCount, Number(e.target.value)))
+                      const valStr = e.target.value
+                      if (valStr === '') {
+                        setCorrect('')
+                        return
+                      }
+                      const val = Math.max(0, Math.min(qCount, Number(valStr)))
                       setCorrect(val)
-                      const rem = qCount - val - wrong
-                      if (rem >= 0) setEmpty(rem)
+                      if (wrong !== '') {
+                        const rem = qCount - val - Number(wrong)
+                        if (rem >= 0) setEmpty(rem)
+                      }
                     }}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 px-3 text-lg font-bold text-emerald-400 text-center focus:outline-none focus:border-emerald-500"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 px-3 text-lg font-bold text-emerald-400 text-center focus:outline-none focus:border-emerald-500 placeholder:text-slate-600"
                   />
                 </div>
 
@@ -306,20 +353,28 @@ export default function TestModal({
                 <div className="bg-slate-800/70 p-3.5 rounded-xl border border-slate-700">
                   <label className="block text-xs font-medium text-rose-400 mb-1 flex items-center justify-between">
                     <span>Yanlış Sayısı</span>
-                    <span className="text-[10px] text-slate-400">(-{wrong})</span>
+                    <span className="text-[10px] text-slate-400">(-{wrong !== '' ? wrong : 0})</span>
                   </label>
                   <input
                     type="number"
                     min="0"
                     max={qCount}
+                    placeholder="0"
                     value={wrong}
                     onChange={(e) => {
-                      const val = Math.max(0, Math.min(qCount, Number(e.target.value)))
+                      const valStr = e.target.value
+                      if (valStr === '') {
+                        setWrong('')
+                        return
+                      }
+                      const val = Math.max(0, Math.min(qCount, Number(valStr)))
                       setWrong(val)
-                      const rem = qCount - correct - val
-                      if (rem >= 0) setEmpty(rem)
+                      if (correct !== '') {
+                        const rem = qCount - Number(correct) - val
+                        if (rem >= 0) setEmpty(rem)
+                      }
                     }}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 px-3 text-lg font-bold text-rose-400 text-center focus:outline-none focus:border-rose-500"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 px-3 text-lg font-bold text-rose-400 text-center focus:outline-none focus:border-rose-500 placeholder:text-slate-600"
                   />
                 </div>
 
@@ -327,21 +382,29 @@ export default function TestModal({
                 <div className="bg-slate-800/70 p-3.5 rounded-xl border border-slate-700">
                   <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center justify-between">
                     <span>Boş Sayısı</span>
-                    <span className="text-[10px] text-slate-400">(0)</span>
+                    <span className="text-[10px] text-slate-400">({empty !== '' ? empty : 0})</span>
                   </label>
                   <input
                     type="number"
                     min="0"
                     max={qCount}
+                    placeholder="0"
                     value={empty}
-                    onChange={(e) => setEmpty(Math.max(0, Number(e.target.value)))}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 px-3 text-lg font-bold text-slate-300 text-center focus:outline-none focus:border-slate-500"
+                    onChange={(e) => {
+                      const valStr = e.target.value
+                      if (valStr === '') {
+                        setEmpty('')
+                        return
+                      }
+                      setEmpty(Math.max(0, Math.min(qCount, Number(valStr))))
+                    }}
+                    className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 px-3 text-lg font-bold text-slate-300 text-center focus:outline-none focus:border-slate-500 placeholder:text-slate-600"
                   />
                 </div>
               </div>
 
-              {/* Total validation warning */}
-              {!isCountValid && (
+              {/* Total validation warning (Only show after user starts typing if total does not match) */}
+              {hasInput && !isCountValid && (
                 <div className="flex items-center space-x-2 text-xs text-rose-400 bg-rose-500/10 p-2.5 rounded-lg border border-rose-500/20">
                   <AlertTriangle className="w-4 h-4 shrink-0" />
                   <span>
@@ -356,7 +419,11 @@ export default function TestModal({
                   <Clock className="w-4 h-4 text-indigo-400" />
                   <div>
                     <span className="font-semibold block text-white">Çözüm Süresi</span>
-                    <span className="text-slate-400 text-[11px]">Soru başına: {(durationMinutes / qCount).toFixed(1)} dk</span>
+                    <span className="text-slate-400 text-[11px]">
+                      {durationMinutes !== '' && Number(durationMinutes) > 0
+                        ? `Soru başına: ${(Number(durationMinutes) / qCount).toFixed(1)} dk`
+                        : 'Süre giriniz'}
+                    </span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -364,9 +431,13 @@ export default function TestModal({
                     type="number"
                     min="1"
                     max="180"
+                    placeholder="örn. 15"
                     value={durationMinutes}
-                    onChange={(e) => setDurationMinutes(Number(e.target.value))}
-                    className="w-20 bg-slate-900 border border-slate-700 rounded-lg py-1.5 px-3 text-sm font-bold text-white text-center focus:outline-none focus:border-indigo-500"
+                    onChange={(e) => {
+                      const valStr = e.target.value
+                      setDurationMinutes(valStr === '' ? '' : Math.max(0, Number(valStr)))
+                    }}
+                    className="w-24 bg-slate-900 border border-slate-700 rounded-lg py-1.5 px-3 text-sm font-bold text-white text-center focus:outline-none focus:border-indigo-500 placeholder:text-slate-600"
                   />
                   <span className="text-xs text-slate-400">Dakika</span>
                 </div>
@@ -435,15 +506,15 @@ export default function TestModal({
             </div>
             <div>
               <span className="block text-[10px] text-emerald-400 uppercase">Doğru</span>
-              <strong className="text-base text-emerald-400">{correct}</strong>
+              <strong className="text-base text-emerald-400">{correct !== '' ? correct : '-'}</strong>
             </div>
             <div>
               <span className="block text-[10px] text-amber-400 uppercase">Hesaplanan Net</span>
-              <strong className="text-base text-amber-300">{net}</strong>
+              <strong className="text-base text-amber-300">{hasInput ? net : '-'}</strong>
             </div>
             <div>
               <span className="block text-[10px] text-indigo-400 uppercase">Başarı</span>
-              <strong className="text-base text-indigo-300">%{scorePercent}</strong>
+              <strong className="text-base text-indigo-300">{hasInput ? `%${scorePercent}` : '-%'}</strong>
             </div>
           </div>
 
