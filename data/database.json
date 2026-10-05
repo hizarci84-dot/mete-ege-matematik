@@ -357,7 +357,7 @@
                   "num": "Öğreniyorum 1",
                   "title": "Üslü Sayılar",
                   "pages": "7-8",
-                  "q_count": 12
+                  "q_count": 14
                 },
                 {
                   "id": "cap-t1-ogr-2",
@@ -4912,7 +4912,7 @@
       "testNum": "Öğreniyorum 1",
       "testTitle": "Üslü Sayılar",
       "pages": "7-8",
-      "qCount": 12,
+      "qCount": 14,
       "stage": "Kavrama & Öğrenme (ÇAP Plus)",
       "difficulty": "Temel Düzey"
     },
@@ -9787,7 +9787,7 @@
       "testNum": "Öğreniyorum 1",
       "testTitle": "Üslü Sayılar",
       "pages": "7-8",
-      "qCount": 12,
+      "qCount": 14,
       "stage": "Kavrama & Öğrenme (ÇAP Plus)",
       "difficulty": "Temel Düzey",
       "status": "pending",
@@ -18299,7 +18299,7 @@
       "testNum": "Öğreniyorum 1",
       "testTitle": "Üslü Sayılar",
       "pages": "7-8",
-      "qCount": 12,
+      "qCount": 14,
       "stage": "Kavrama & Öğrenme (ÇAP Plus)",
       "difficulty": "Temel Düzey",
       "status": "pending",

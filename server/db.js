@@ -494,6 +494,7 @@ export function addSubmission(submissionData) {
     if (asgn) {
       asgn.status = 'completed'
       asgn.submissionId = subId
+      if (newSub.qCount) asgn.qCount = newSub.qCount
     }
   } else {
     // Check if there is an assignment matching student, date, and testId
@@ -503,6 +504,7 @@ export function addSubmission(submissionData) {
     if (asgn) {
       asgn.status = 'completed'
       asgn.submissionId = subId
+      if (newSub.qCount) asgn.qCount = newSub.qCount
     }
   }
 

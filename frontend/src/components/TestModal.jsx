@@ -14,7 +14,9 @@ import {
   Trash2,
   Maximize2,
   UploadCloud,
-  Loader2
+  Loader2,
+  Plus,
+  Minus
 } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import { uploadPhoto } from '../api'
@@ -29,7 +31,14 @@ export default function TestModal({
 }) {
   if (!isOpen || !assignment) return null
 
-  const qCount = assignment.qCount || 12
+  const [qCount, setQCount] = useState(assignment?.qCount || 14)
+
+  useEffect(() => {
+    if (assignment?.qCount) {
+      setQCount(assignment.qCount)
+    }
+  }, [assignment?.id, assignment?.qCount])
+
   const [mode, setMode] = useState('quick') // 'quick' | 'detailed'
 
   // Photo upload states
@@ -168,6 +177,23 @@ export default function TestModal({
       difficult: false
     }))
   })
+
+  // Synchronize detailed answers array length when qCount is changed by user
+  useEffect(() => {
+    setAnswers(prev => {
+      if (!prev || prev.length === qCount) return prev
+      if (prev.length < qCount) {
+        const added = Array.from({ length: qCount - prev.length }, (_, i) => ({
+          qNum: prev.length + i + 1,
+          status: null,
+          selectedOption: '',
+          difficult: false
+        }))
+        return [...prev, ...added]
+      }
+      return prev.slice(0, qCount)
+    })
+  }, [qCount])
 
   // Synchronize detailed answers with counts
   const handleDetailedStatusChange = (qIndex, newStatus) => {
@@ -316,6 +342,50 @@ export default function TestModal({
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          {/* Toplam Soru Sayısı Ayarlayıcı */}
+          <div className="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/80 flex items-center justify-between">
+            <div className="flex items-center space-x-2.5">
+              <div className="p-2 rounded-lg bg-indigo-500/20 text-indigo-400">
+                <BookOpen className="w-4 h-4" />
+              </div>
+              <div>
+                <span className="text-xs font-bold text-white block">Kitaptaki Soru Sayısı</span>
+                <span className="text-[11px] text-slate-400">Kitaptaki test farklı sayıda soru içeriyorsa buradan değiştirebilirsiniz</span>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 bg-slate-900 border border-slate-700 rounded-lg p-1 shrink-0">
+              <button
+                type="button"
+                onClick={() => setQCount(prev => Math.max(1, prev - 1))}
+                className="w-8 h-8 flex items-center justify-center rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 text-base font-bold transition active:scale-95"
+                title="Soru sayısını azalt"
+              >
+                <Minus className="w-4 h-4" />
+              </button>
+              <input
+                type="number"
+                min="1"
+                max="50"
+                value={qCount}
+                onChange={(e) => {
+                  const val = parseInt(e.target.value, 10)
+                  if (!isNaN(val) && val >= 1 && val <= 50) {
+                    setQCount(val)
+                  }
+                }}
+                className="w-12 text-center bg-transparent text-indigo-300 font-extrabold text-base focus:outline-none"
+              />
+              <button
+                type="button"
+                onClick={() => setQCount(prev => Math.min(50, prev + 1))}
+                className="w-8 h-8 flex items-center justify-center rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 text-base font-bold transition active:scale-95"
+                title="Soru sayısını artır"
+              >
+                <Plus className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
           {/* Quick Entry Form */}
           {mode === 'quick' ? (
             <div className="space-y-4">
