@@ -289,7 +289,7 @@ export default function CalendarView({
                           {asgn.topicName}
                         </p>
                         <p className="text-[11px] text-slate-400">
-                          Sayfa {asgn.pages} • {asgn.qCount || 12} Soru
+                          Sayfa {asgn.pages}
                         </p>
                       </div>
                     </div>
@@ -474,7 +474,7 @@ export default function CalendarView({
                         {asgn.topicName}
                       </h4>
                       <p className="text-[11px] text-slate-400 mb-3">
-                        Sayfa {asgn.pages} • {asgn.qCount || 12} Soru
+                        Sayfa {asgn.pages}
                       </p>
 
                       {done ? (

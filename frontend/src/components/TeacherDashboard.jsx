@@ -1450,7 +1450,7 @@ function otomatik1600TetikleyiciKur() {
                       <strong className="text-xl text-amber-300">{comparison.comparison.avgNet.ege}</strong>
                     </div>
                   </div>
-                  <span className="text-[10px] text-slate-500 block mt-1">12 Soru Üzerinden</span>
+                  <span className="text-[10px] text-slate-500 block mt-1">Ortalama Test Neti</span>
                 </div>
 
                 <div className="bg-slate-800/60 p-4 rounded-xl border border-slate-700/60 text-center">

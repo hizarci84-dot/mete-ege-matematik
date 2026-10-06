@@ -301,7 +301,7 @@ export default function TestModal({
                 {assignment.topicName} — {assignment.testNum}
               </h3>
               <p className="text-[11px] sm:text-xs text-slate-400 truncate">
-                Sayfa {assignment.pages} • {qCount} Soru • Tarih: {assignment.date}
+                Sayfa {assignment.pages} • Tarih: {assignment.date}
               </p>
             </div>
           </div>

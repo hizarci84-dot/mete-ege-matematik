@@ -178,7 +178,7 @@ export default function TodayHero({
                   {assignment.topicName} — {assignment.testNum}
                 </h3>
                 <p className="text-sm text-slate-400 mt-1">
-                  {assignment.testTitle} ({assignment.qCount} Soru)
+                  {assignment.testTitle}
                 </p>
               </div>
 
@@ -289,7 +289,7 @@ export default function TodayHero({
                 {item.testNum}: {item.topicName}
               </h4>
               <p className="text-xs text-slate-400 mt-1 line-clamp-1">
-                {item.bookTitle} • {item.qCount} Soru
+                {item.bookTitle}
               </p>
               <div className="mt-3 flex items-center text-[11px] text-slate-400 group-hover:text-indigo-400 transition">
                 <span>İncele / Önceden Çöz</span>

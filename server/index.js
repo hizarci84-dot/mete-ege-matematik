@@ -155,7 +155,6 @@ function formatWhatsAppDailyMessage(dateStr = null) {
       msg += `   📚 Kitap: ${a.bookTitle}\n`
       msg += `   📂 Konu: ${a.topicName || a.themeName}\n`
       msg += `   📝 Test: ${a.testTitle} (${a.testNum || ''}) • Sayfa ${a.pages || ''}\n`
-      msg += `   ❓ Soru Sayısı: ${a.qCount} Soru\n`
     })
   } else {
     msg += `   Bugün için planlanmış test bulunmuyor.\n`
@@ -172,7 +171,6 @@ function formatWhatsAppDailyMessage(dateStr = null) {
       msg += `   📚 Kitap: ${a.bookTitle}\n`
       msg += `   📂 Konu: ${a.topicName || a.themeName}\n`
       msg += `   📝 Test: ${a.testTitle} (${a.testNum || ''}) • Sayfa ${a.pages || ''}\n`
-      msg += `   ❓ Soru Sayısı: ${a.qCount} Soru\n`
     })
   } else {
     msg += `   Bugün için planlanmış test bulunmuyor.\n`

@@ -215,7 +215,7 @@ export default function CurriculumView({
                           </div>
 
                           <div className="mt-3 pt-2 border-t border-slate-700/40 flex items-center justify-between text-[11px]">
-                            <span className="text-slate-400">{test.q_count || 12} Soru</span>
+                            <span className="text-slate-400 font-medium">Kazanım Testi</span>
                             {isCompleted ? (
                               <span className="flex items-center text-emerald-400 font-semibold space-x-1">
                                 <CheckCircle2 className="w-3.5 h-3.5" />
