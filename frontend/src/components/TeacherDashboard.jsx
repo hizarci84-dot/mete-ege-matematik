@@ -569,10 +569,10 @@ function otomatik1600TetikleyiciKur() {
         </div>
 
         {/* Teacher Navigation Tabs */}
-        <div className="flex items-center space-x-2 border-t border-purple-800/40 pt-4 mt-6">
+        <div className="flex items-center space-x-2 border-t border-purple-800/40 pt-4 mt-6 overflow-x-auto pb-1 scrollbar-none">
           <button
             onClick={() => setActiveTeacherTab('overview')}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
+            className={`shrink-0 flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
               activeTeacherTab === 'overview'
                 ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
                 : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-800'
@@ -584,7 +584,7 @@ function otomatik1600TetikleyiciKur() {
 
           <button
             onClick={() => setActiveTeacherTab('unsolved')}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
+            className={`shrink-0 flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
               activeTeacherTab === 'unsolved'
                 ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
                 : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-800'
@@ -601,7 +601,7 @@ function otomatik1600TetikleyiciKur() {
 
           <button
             onClick={() => setActiveTeacherTab('mock_exams')}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
+            className={`shrink-0 flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
               activeTeacherTab === 'mock_exams'
                 ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
                 : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-800'
@@ -618,7 +618,7 @@ function otomatik1600TetikleyiciKur() {
 
           <button
             onClick={() => setActiveTeacherTab('detailed_stats')}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
+            className={`shrink-0 flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
               activeTeacherTab === 'detailed_stats'
                 ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
                 : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-800'
@@ -630,7 +630,7 @@ function otomatik1600TetikleyiciKur() {
 
           <button
             onClick={() => setActiveTeacherTab('whatsapp_and_drive')}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
+            className={`shrink-0 flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
               activeTeacherTab === 'whatsapp_and_drive'
                 ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
                 : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-800'

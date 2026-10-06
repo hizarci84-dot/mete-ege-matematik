@@ -286,6 +286,40 @@ body.light-theme .bg-slate-950 {
   color: #c2410c !important;
 }
 
+/* LIGHT ACCENT TEXT SHADES IN LIGHT MODE (Prevent pale/washed-out text) */
+.light-theme .text-purple-100,
+.light-theme .text-purple-200 {
+  color: #6b21a8 !important;
+}
+.light-theme .text-emerald-100,
+.light-theme .text-emerald-200 {
+  color: #065f46 !important;
+}
+.light-theme .text-sky-100,
+.light-theme .text-sky-200 {
+  color: #0369a1 !important;
+}
+.light-theme .text-indigo-100,
+.light-theme .text-indigo-200 {
+  color: #3730a3 !important;
+}
+.light-theme .text-amber-100,
+.light-theme .text-amber-200 {
+  color: #92400e !important;
+}
+.light-theme .text-blue-100,
+.light-theme .text-blue-200 {
+  color: #1e40af !important;
+}
+.light-theme .text-orange-100,
+.light-theme .text-orange-200 {
+  color: #9a3412 !important;
+}
+.light-theme .text-rose-100,
+.light-theme .text-rose-200 {
+  color: #9f1239 !important;
+}
+
 /* 8. SOLID COLORED BUTTONS & BADGES THAT MUST RETAIN WHITE TEXT */
 .light-theme .bg-indigo-600,
 .light-theme .bg-indigo-500,
@@ -328,6 +362,37 @@ body.light-theme .bg-slate-950 {
   color: #ffffff !important;
 }
 
+/* ACTION BUTTONS IN LIGHT MODE */
+.light-theme button.bg-slate-800,
+.light-theme button.bg-slate-700 {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  border-color: #334155 !important;
+}
+.light-theme button.bg-slate-800:hover,
+.light-theme button.bg-slate-700:hover {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+.light-theme button.bg-slate-800 *,
+.light-theme button.bg-slate-700 * {
+  color: #ffffff !important;
+}
+
+/* INACTIVE TABS IN LIGHT MODE */
+.light-theme button.bg-slate-800\/60 {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+  border-color: #e2e8f0 !important;
+}
+.light-theme button.bg-slate-800\/60:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+.light-theme button.bg-slate-800\/60 * {
+  color: #334155 !important;
+}
+
 /* 9. NAVIGATION & FOOTER */
 .light-theme header {
   background-color: rgba(255, 255, 255, 0.9) !important;
@@ -367,12 +432,20 @@ body.light-theme .bg-slate-950 {
 }
 
 /* 11. HEADER & BANNER GRADIENTS IN LIGHT MODE */
-.light-theme .bg-gradient-to-r.from-purple-950 {
+.light-theme .bg-gradient-to-r.from-purple-950,
+.light-theme [class*="from-purple-950"] {
   background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 50%, #e0e7ff 100%) !important;
   border-color: #ddd6fe !important;
 }
 
-.light-theme .bg-gradient-to-r.from-slate-900 {
+.light-theme .from-emerald-950\/70,
+.light-theme [class*="from-emerald-950"] {
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #f0f9ff 100%) !important;
+  border-color: #a7f3d0 !important;
+}
+
+.light-theme .bg-gradient-to-r.from-slate-900,
+.light-theme [class*="from-slate-900"] {
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%) !important;
   border-color: #e2e8f0 !important;
 }
