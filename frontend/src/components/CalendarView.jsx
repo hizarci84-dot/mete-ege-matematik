@@ -418,7 +418,7 @@ export default function CalendarView({
           </div>
 
           {/* B) MOBILE SELECTED DAY INSPECTOR CARD (< md screens) */}
-          <div className="block md:hidden bg-slate-900/95 border border-slate-800 rounded-2xl p-4 shadow-xl">
+          <div className="block md:hidden bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
             <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
               <div>
                 <span className="text-[10px] uppercase font-bold text-indigo-400 tracking-wider">
@@ -449,7 +449,7 @@ export default function CalendarView({
                       className={`p-3.5 rounded-xl border transition ${
                         done
                           ? 'bg-emerald-950/15 border-emerald-500/30'
-                          : 'bg-slate-800/70 border-slate-700/80'
+                          : 'bg-slate-800/80 border-slate-700/80'
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2 mb-1.5">

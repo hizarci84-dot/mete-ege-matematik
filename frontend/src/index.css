@@ -78,53 +78,160 @@ body.light-theme ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 
-/* Base surface backgrounds */
-.light-theme .bg-slate-950,
-body.light-theme .bg-slate-950 {
-  background-color: #f8fafc !important;
-}
-
+/* 1. PRIMARY SURFACES & CARDS (Clean White in Light Mode) */
 .light-theme .bg-slate-900,
+.light-theme .bg-slate-900\/95,
 .light-theme .bg-slate-900\/90,
 .light-theme .bg-slate-900\/80,
 .light-theme .bg-slate-900\/70,
 .light-theme .bg-slate-900\/60,
-.light-theme .bg-slate-900\/50 {
+.light-theme .bg-slate-900\/50,
+.light-theme .bg-slate-900\/40,
+.light-theme .bg-sky-900\/60 {
   background-color: #ffffff !important;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
 }
 
+/* 2. SECONDARY / NESTED PANELS & TILES (Soft Slate Gray in Light Mode) */
 .light-theme .bg-slate-800,
 .light-theme .bg-slate-800\/90,
 .light-theme .bg-slate-800\/80,
+.light-theme .bg-slate-800\/70,
 .light-theme .bg-slate-800\/60,
 .light-theme .bg-slate-800\/50,
-.light-theme .bg-slate-800\/40 {
+.light-theme .bg-slate-800\/40,
+.light-theme .bg-slate-800\/30,
+.light-theme .bg-slate-700,
+.light-theme .bg-slate-700\/70,
+.light-theme .bg-slate-700\/60,
+.light-theme .bg-slate-700\/50 {
   background-color: #f1f5f9 !important;
 }
 
+/* 3. BASE BACKGROUNDS & MUTED TILES (Light Slate in Light Mode) */
+.light-theme .bg-slate-950,
 .light-theme .bg-slate-950\/95,
 .light-theme .bg-slate-950\/90,
 .light-theme .bg-slate-950\/80,
-.light-theme .bg-slate-950\/60 {
+.light-theme .bg-slate-950\/60,
+.light-theme .bg-slate-950\/40,
+.light-theme .bg-slate-950\/30,
+.light-theme .bg-slate-950\/20,
+body.light-theme .bg-slate-950 {
   background-color: #f8fafc !important;
 }
 
-/* Borders */
+/* 4. BORDERS IN LIGHT MODE */
 .light-theme .border-slate-900,
+.light-theme .border-slate-900\/40,
 .light-theme .border-slate-800,
-.light-theme .border-slate-700,
 .light-theme .border-slate-800\/80,
+.light-theme .border-slate-800\/60,
+.light-theme .border-slate-800\/40,
+.light-theme .border-slate-700,
 .light-theme .border-slate-700\/80,
+.light-theme .border-slate-700\/70,
 .light-theme .border-slate-700\/60,
 .light-theme .border-slate-700\/50,
-.light-theme .border-slate-800\/60,
-.light-theme .border-slate-800\/50,
-.light-theme .border-slate-800\/40 {
+.light-theme .border-slate-700\/40,
+.light-theme .border-slate-700\/30,
+.light-theme .border-slate-600 {
   border-color: #e2e8f0 !important;
 }
 
-/* Typography in Light Mode */
+/* 5. PASTEL TINTED BOXES IN LIGHT MODE */
+.light-theme .bg-indigo-950\/40,
+.light-theme .bg-indigo-950\/30,
+.light-theme .bg-indigo-950\/25,
+.light-theme .bg-indigo-950\/20,
+.light-theme .bg-indigo-950 {
+  background-color: #eef2ff !important;
+  border-color: #c7d2fe !important;
+}
+
+.light-theme .bg-emerald-950\/70,
+.light-theme .bg-emerald-950\/60,
+.light-theme .bg-emerald-950\/50,
+.light-theme .bg-emerald-950\/40,
+.light-theme .bg-emerald-950\/30,
+.light-theme .bg-emerald-950\/20,
+.light-theme .bg-emerald-950\/15,
+.light-theme .bg-emerald-950 {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+}
+
+.light-theme .bg-amber-950\/70,
+.light-theme .bg-amber-950\/20,
+.light-theme .bg-amber-950\/15,
+.light-theme .bg-amber-950 {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+}
+
+.light-theme .bg-purple-950\/40,
+.light-theme .bg-purple-950\/20,
+.light-theme .bg-purple-950 {
+  background-color: #f5f3ff !important;
+  border-color: #ddd6fe !important;
+}
+
+.light-theme .bg-blue-950\/60,
+.light-theme .bg-blue-950 {
+  background-color: #eff6ff !important;
+  border-color: #bfdbfe !important;
+}
+
+.light-theme .bg-rose-950\/60,
+.light-theme .bg-rose-950\/50,
+.light-theme .bg-rose-950 {
+  background-color: #fff1f2 !important;
+  border-color: #fecdd3 !important;
+}
+
+.light-theme .bg-orange-950\/60,
+.light-theme .bg-orange-950 {
+  background-color: #fff7ed !important;
+  border-color: #fed7aa !important;
+}
+
+/* 6. PILL BADGES IN LIGHT MODE */
+.light-theme .bg-blue-500\/20 {
+  background-color: #eff6ff !important;
+  border-color: #bfdbfe !important;
+  color: #1d4ed8 !important;
+}
+.light-theme .bg-orange-500\/20,
+.light-theme .bg-orange-500\/10 {
+  background-color: #fff7ed !important;
+  border-color: #fed7aa !important;
+  color: #c2410c !important;
+}
+.light-theme .bg-purple-500\/20 {
+  background-color: #f5f3ff !important;
+  border-color: #ddd6fe !important;
+  color: #7e22ce !important;
+}
+.light-theme .bg-emerald-500\/20,
+.light-theme .bg-emerald-500\/10 {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+  color: #047857 !important;
+}
+.light-theme .bg-indigo-500\/20,
+.light-theme .bg-indigo-500\/10 {
+  background-color: #eef2ff !important;
+  border-color: #c7d2fe !important;
+  color: #4338ca !important;
+}
+.light-theme .bg-amber-500\/20,
+.light-theme .bg-amber-500\/10 {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+  color: #b45309 !important;
+}
+
+/* 7. TYPOGRAPHY IN LIGHT MODE */
 .light-theme .text-slate-100 {
   color: #0f172a !important;
 }
@@ -140,13 +247,46 @@ body.light-theme .bg-slate-950 {
 .light-theme .text-slate-500 {
   color: #64748b !important;
 }
+.light-theme .text-slate-600 {
+  color: #94a3b8 !important;
+}
 
-/* Make sure text-white flips to dark slate UNLESS inside a solid colored button/badge */
+/* Make sure text-white flips to dark charcoal UNLESS inside solid buttons */
 .light-theme .text-white {
   color: #0f172a !important;
 }
 
-/* Colored elements that MUST keep white text */
+/* STRONG CONTRAST ACCENT TEXT IN LIGHT MODE */
+.light-theme .text-indigo-400,
+.light-theme .text-indigo-300 {
+  color: #4338ca !important;
+}
+.light-theme .text-emerald-400,
+.light-theme .text-emerald-300 {
+  color: #047857 !important;
+}
+.light-theme .text-amber-400,
+.light-theme .text-amber-300 {
+  color: #b45309 !important;
+}
+.light-theme .text-purple-400,
+.light-theme .text-purple-300 {
+  color: #7e22ce !important;
+}
+.light-theme .text-blue-400,
+.light-theme .text-blue-300 {
+  color: #1d4ed8 !important;
+}
+.light-theme .text-rose-400,
+.light-theme .text-rose-300 {
+  color: #be123c !important;
+}
+.light-theme .text-orange-400,
+.light-theme .text-orange-300 {
+  color: #c2410c !important;
+}
+
+/* 8. SOLID COLORED BUTTONS & BADGES THAT MUST RETAIN WHITE TEXT */
 .light-theme .bg-indigo-600,
 .light-theme .bg-indigo-500,
 .light-theme .bg-emerald-600,
@@ -188,7 +328,7 @@ body.light-theme .bg-slate-950 {
   color: #ffffff !important;
 }
 
-/* Navigation & Footer */
+/* 9. NAVIGATION & FOOTER */
 .light-theme header {
   background-color: rgba(255, 255, 255, 0.9) !important;
   border-bottom-color: #e2e8f0 !important;
@@ -205,7 +345,7 @@ body.light-theme .bg-slate-950 {
   border-top-color: #e2e8f0 !important;
 }
 
-/* Form inputs & controls */
+/* 10. FORM INPUTS & CONTROLS */
 .light-theme input,
 .light-theme textarea,
 .light-theme select {
@@ -226,7 +366,7 @@ body.light-theme .bg-slate-950 {
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
-/* Header & Banner Gradients in Light Mode */
+/* 11. HEADER & BANNER GRADIENTS IN LIGHT MODE */
 .light-theme .bg-gradient-to-r.from-purple-950 {
   background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 50%, #e0e7ff 100%) !important;
   border-color: #ddd6fe !important;
@@ -237,19 +377,20 @@ body.light-theme .bg-slate-950 {
   border-color: #e2e8f0 !important;
 }
 
-/* Calendar Cells in Light Mode */
-.light-theme .bg-indigo-950\/20 {
+/* 12. CALENDAR TILES IN LIGHT MODE */
+.light-theme .aspect-square.bg-slate-950\/20 {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+.light-theme button[class*="bg-slate-950/30"] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #94a3b8 !important;
+}
+
+.light-theme button[class*="bg-indigo-950"] {
   background-color: #eef2ff !important;
-}
-.light-theme .bg-emerald-950\/15,
-.light-theme .bg-emerald-950\/20 {
-  background-color: #ecfdf5 !important;
-}
-.light-theme .bg-amber-950\/15,
-.light-theme .bg-amber-950\/20 {
-  background-color: #fffbeb !important;
-}
-.light-theme .bg-purple-950\/40 {
-  background-color: #f5f3ff !important;
-  border-color: #ddd6fe !important;
+  border-color: #6366f1 !important;
+  color: #4338ca !important;
 }
