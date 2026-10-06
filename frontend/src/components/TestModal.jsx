@@ -285,175 +285,178 @@ export default function TestModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden my-8">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-sm">
+      <div className="relative w-full max-w-2xl h-[94vh] sm:h-auto sm:max-h-[90vh] flex flex-col bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+        {/* Header - Fixed at Top */}
+        <div className="shrink-0 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-800 flex items-center justify-between">
+          <div className="flex items-center space-x-3 min-w-0">
+            <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 shrink-0">
               <BookOpen className="w-5 h-5" />
             </div>
-            <div>
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-indigo-400">
+            <div className="min-w-0">
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-indigo-400 block truncate">
                 {assignment.bookTitle}
               </span>
-              <h3 className="text-lg font-bold text-white leading-tight">
+              <h3 className="text-sm sm:text-base md:text-lg font-bold text-white leading-tight truncate">
                 {assignment.topicName} — {assignment.testNum}
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-[11px] sm:text-xs text-slate-400 truncate">
                 Sayfa {assignment.pages} • {qCount} Soru • Tarih: {assignment.date}
               </p>
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition shrink-0 ml-2"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Mode Switcher */}
-        <div className="px-6 pt-4 flex space-x-2">
+        {/* Mode Switcher - Fixed Under Header */}
+        <div className="shrink-0 px-4 sm:px-6 py-2.5 flex space-x-2 bg-slate-900 border-b border-slate-800/80">
           <button
             type="button"
             onClick={() => setMode('quick')}
-            className={`flex-1 py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center space-x-2 border transition ${
+            className={`flex-1 py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 border transition ${
               mode === 'quick'
                 ? 'bg-indigo-600/30 border-indigo-500 text-white'
                 : 'bg-slate-800/60 border-slate-700 text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+            <Sparkles className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
             <span>Hızlı Giriş (D / Y / B)</span>
           </button>
           <button
             type="button"
             onClick={() => setMode('detailed')}
-            className={`flex-1 py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center space-x-2 border transition ${
+            className={`flex-1 py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 border transition ${
               mode === 'detailed'
                 ? 'bg-indigo-600/30 border-indigo-500 text-white'
                 : 'bg-slate-800/60 border-slate-700 text-slate-400 hover:text-slate-200'
             }`}
           >
-            <FileSpreadsheet className="w-3.5 h-3.5 text-indigo-400" />
+            <FileSpreadsheet className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
             <span>Soru Soru Detaylı Giriş</span>
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          {/* Toplam Soru Sayısı Ayarlayıcı */}
-          <div className="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/80 flex items-center justify-between">
-            <div className="flex items-center space-x-2.5">
-              <div className="p-2 rounded-lg bg-indigo-500/20 text-indigo-400">
-                <BookOpen className="w-4 h-4" />
+        <form onSubmit={handleSubmit} className="flex-1 flex flex-col min-h-0 overflow-hidden">
+          {/* Scrollable Body Content */}
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
+            {/* Toplam Soru Sayısı Ayarlayıcı */}
+            <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/80 flex items-center justify-between gap-2">
+              <div className="flex items-center space-x-2.5 min-w-0">
+                <div className="p-2 rounded-lg bg-indigo-500/20 text-indigo-400 shrink-0">
+                  <BookOpen className="w-4 h-4" />
+                </div>
+                <div className="min-w-0">
+                  <span className="text-xs font-bold text-white block">Kitaptaki Soru Sayısı</span>
+                  <span className="text-[11px] text-slate-400 block truncate">Farklıysa buradan ayarlayın</span>
+                </div>
               </div>
-              <div>
-                <span className="text-xs font-bold text-white block">Kitaptaki Soru Sayısı</span>
-                <span className="text-[11px] text-slate-400">Kitaptaki test farklı sayıda soru içeriyorsa buradan değiştirebilirsiniz</span>
+              <div className="flex items-center space-x-1.5 bg-slate-900 border border-slate-700 rounded-lg p-1 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setQCount(prev => Math.max(1, prev - 1))}
+                  className="w-8 h-8 flex items-center justify-center rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 text-base font-bold transition active:scale-95"
+                  title="Soru sayısını azalt"
+                >
+                  <Minus className="w-4 h-4" />
+                </button>
+                <input
+                  type="number"
+                  min="1"
+                  max="50"
+                  value={qCount}
+                  onChange={(e) => {
+                    const val = parseInt(e.target.value, 10)
+                    if (!isNaN(val) && val >= 1 && val <= 50) {
+                      setQCount(val)
+                    }
+                  }}
+                  className="w-10 text-center bg-transparent text-indigo-300 font-extrabold text-base focus:outline-none"
+                />
+                <button
+                  type="button"
+                  onClick={() => setQCount(prev => Math.min(50, prev + 1))}
+                  className="w-8 h-8 flex items-center justify-center rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 text-base font-bold transition active:scale-95"
+                  title="Soru sayısını artır"
+                >
+                  <Plus className="w-4 h-4" />
+                </button>
               </div>
             </div>
-            <div className="flex items-center space-x-2 bg-slate-900 border border-slate-700 rounded-lg p-1 shrink-0">
-              <button
-                type="button"
-                onClick={() => setQCount(prev => Math.max(1, prev - 1))}
-                className="w-8 h-8 flex items-center justify-center rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 text-base font-bold transition active:scale-95"
-                title="Soru sayısını azalt"
-              >
-                <Minus className="w-4 h-4" />
-              </button>
-              <input
-                type="number"
-                min="1"
-                max="50"
-                value={qCount}
-                onChange={(e) => {
-                  const val = parseInt(e.target.value, 10)
-                  if (!isNaN(val) && val >= 1 && val <= 50) {
-                    setQCount(val)
-                  }
-                }}
-                className="w-12 text-center bg-transparent text-indigo-300 font-extrabold text-base focus:outline-none"
-              />
-              <button
-                type="button"
-                onClick={() => setQCount(prev => Math.min(50, prev + 1))}
-                className="w-8 h-8 flex items-center justify-center rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 text-base font-bold transition active:scale-95"
-                title="Soru sayısını artır"
-              >
-                <Plus className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
 
-          {/* Quick Entry Form */}
-          {mode === 'quick' ? (
-            <div className="space-y-4">
-              <div className="grid grid-cols-3 gap-3">
-                {/* Doğru */}
-                <div className="bg-slate-800/70 p-3.5 rounded-xl border border-slate-700">
-                  <label className="block text-xs font-medium text-emerald-400 mb-1 flex items-center justify-between">
-                    <span>Doğru Sayısı</span>
-                    <span className="text-[10px] text-slate-400">(+{correct !== '' ? correct : 0})</span>
-                  </label>
-                  <input
-                    type="number"
-                    min="0"
-                    max={qCount}
-                    placeholder="0"
-                    value={correct}
-                    onChange={(e) => {
-                      const valStr = e.target.value
-                      if (valStr === '') {
-                        setCorrect('')
-                        return
-                      }
-                      const val = Math.max(0, Math.min(qCount, Number(valStr)))
-                      setCorrect(val)
-                      if (wrong !== '') {
-                        const rem = qCount - val - Number(wrong)
-                        if (rem >= 0) setEmpty(rem)
-                      }
-                    }}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 px-3 text-lg font-bold text-emerald-400 text-center focus:outline-none focus:border-emerald-500 placeholder:text-slate-600"
-                  />
-                </div>
+            {/* Quick Entry Form */}
+            {mode === 'quick' ? (
+              <div className="space-y-4">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                  {/* Doğru */}
+                  <div className="bg-slate-800/70 p-2.5 sm:p-3.5 rounded-xl border border-slate-700">
+                    <label className="block text-xs font-medium text-emerald-400 mb-1 flex items-center justify-between">
+                      <span>Doğru</span>
+                      <span className="text-[10px] text-slate-400">(+{correct !== '' ? correct : 0})</span>
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      max={qCount}
+                      placeholder="0"
+                      value={correct}
+                      onChange={(e) => {
+                        const valStr = e.target.value
+                        if (valStr === '') {
+                          setCorrect('')
+                          return
+                        }
+                        const val = Math.max(0, Math.min(qCount, Number(valStr)))
+                        setCorrect(val)
+                        if (wrong !== '') {
+                          const rem = qCount - val - Number(wrong)
+                          if (rem >= 0) setEmpty(rem)
+                        }
+                      }}
+                      className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 px-3 text-lg font-bold text-emerald-400 text-center focus:outline-none focus:border-emerald-500 placeholder:text-slate-600"
+                    />
+                  </div>
 
-                {/* Yanlış */}
-                <div className="bg-slate-800/70 p-3.5 rounded-xl border border-slate-700">
-                  <label className="block text-xs font-medium text-rose-400 mb-1 flex items-center justify-between">
-                    <span>Yanlış Sayısı</span>
-                    <span className="text-[10px] text-slate-400">(-{wrong !== '' ? wrong : 0})</span>
-                  </label>
-                  <input
-                    type="number"
-                    min="0"
-                    max={qCount}
-                    placeholder="0"
-                    value={wrong}
-                    onChange={(e) => {
-                      const valStr = e.target.value
-                      if (valStr === '') {
-                        setWrong('')
-                        return
-                      }
-                      const val = Math.max(0, Math.min(qCount, Number(valStr)))
-                      setWrong(val)
-                      if (correct !== '') {
-                        const rem = qCount - Number(correct) - val
-                        if (rem >= 0) setEmpty(rem)
-                      }
-                    }}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 px-3 text-lg font-bold text-rose-400 text-center focus:outline-none focus:border-rose-500 placeholder:text-slate-600"
-                  />
-                </div>
+                  {/* Yanlış */}
+                  <div className="bg-slate-800/70 p-2.5 sm:p-3.5 rounded-xl border border-slate-700">
+                    <label className="block text-xs font-medium text-rose-400 mb-1 flex items-center justify-between">
+                      <span>Yanlış</span>
+                      <span className="text-[10px] text-slate-400">(-{wrong !== '' ? wrong : 0})</span>
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      max={qCount}
+                      placeholder="0"
+                      value={wrong}
+                      onChange={(e) => {
+                        const valStr = e.target.value
+                        if (valStr === '') {
+                          setWrong('')
+                          return
+                        }
+                        const val = Math.max(0, Math.min(qCount, Number(valStr)))
+                        setWrong(val)
+                        if (correct !== '') {
+                          const rem = qCount - Number(correct) - val
+                          if (rem >= 0) setEmpty(rem)
+                        }
+                      }}
+                      className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 px-3 text-lg font-bold text-rose-400 text-center focus:outline-none focus:border-rose-500 placeholder:text-slate-600"
+                    />
+                  </div>
 
-                {/* Boş */}
-                <div className="bg-slate-800/70 p-3.5 rounded-xl border border-slate-700">
-                  <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center justify-between">
-                    <span>Boş Sayısı</span>
-                    <span className="text-[10px] text-slate-400">({empty !== '' ? empty : 0})</span>
-                  </label>
+                  {/* Boş */}
+                  <div className="bg-slate-800/70 p-2.5 sm:p-3.5 rounded-xl border border-slate-700">
+                    <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center justify-between">
+                      <span>Boş</span>
+                      <span className="text-[10px] text-slate-400">({empty !== '' ? empty : 0})</span>
+                    </label>
                   <input
                     type="number"
                     min="0"
@@ -708,8 +711,10 @@ export default function TestModal({
             />
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center justify-end space-x-3 pt-2">
+          </div>
+
+          {/* Sticky Footer */}
+          <div className="shrink-0 bg-slate-950/90 backdrop-blur border-t border-slate-800 px-4 py-3 sm:px-6 flex items-center justify-between sm:justify-end space-x-3">
             <button
               type="button"
               onClick={onClose}
@@ -720,7 +725,7 @@ export default function TestModal({
             <button
               type="submit"
               disabled={isSubmitting || !isCountValid}
-              className="py-2.5 px-6 rounded-xl text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-600/25 transition disabled:opacity-50 flex items-center space-x-2"
+              className="py-2.5 px-5 sm:px-6 rounded-xl text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-600/25 transition disabled:opacity-50 flex items-center space-x-2"
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>{isSubmitting ? 'Kaydediliyor...' : 'Testi Sisteme Kaydet'}</span>
