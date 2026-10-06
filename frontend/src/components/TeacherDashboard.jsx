@@ -834,7 +834,7 @@ function otomatik1600TetikleyiciKur() {
           </div>
 
           {/* Quick WhatsApp 16:00 Notification & Google Drive Status Bar */}
-          <div className="bg-gradient-to-r from-emerald-950/70 via-slate-900 to-sky-950/70 border border-emerald-500/30 rounded-2xl p-4 sm:p-5 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="bg-slate-900/90 border border-emerald-500/30 rounded-2xl p-4 sm:p-5 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center space-x-3 w-full md:w-auto">
               <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0 text-emerald-400">
                 <Smartphone className="w-5 h-5" />
@@ -879,11 +879,11 @@ function otomatik1600TetikleyiciKur() {
               <button
                 type="button"
                 onClick={() => setActiveTeacherTab('whatsapp_and_drive')}
-                className="px-3.5 py-2 bg-sky-900/60 hover:bg-sky-800 text-sky-200 border border-sky-600/30 rounded-xl text-xs font-semibold transition flex items-center space-x-1"
+                className="px-3.5 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold transition flex items-center space-x-1 shadow-md shadow-sky-600/20"
                 title="Google Drive & WhatsApp Detayları"
               >
-                <Cloud className="w-4 h-4" />
-                <span>Drive & Kılavuz</span>
+                <Cloud className="w-4 h-4 text-white" />
+                <span className="text-white">Drive & Kılavuz</span>
               </button>
             </div>
           </div>

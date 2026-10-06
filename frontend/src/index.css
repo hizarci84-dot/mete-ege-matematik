@@ -86,8 +86,7 @@ body.light-theme ::-webkit-scrollbar-thumb:hover {
 .light-theme .bg-slate-900\/70,
 .light-theme .bg-slate-900\/60,
 .light-theme .bg-slate-900\/50,
-.light-theme .bg-slate-900\/40,
-.light-theme .bg-sky-900\/60 {
+.light-theme .bg-slate-900\/40 {
   background-color: #ffffff !important;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
 }
@@ -329,6 +328,8 @@ body.light-theme .bg-slate-950 {
 .light-theme .bg-orange-500,
 .light-theme .bg-blue-600,
 .light-theme .bg-blue-500,
+.light-theme .bg-sky-600,
+.light-theme .bg-sky-500,
 .light-theme .bg-purple-600,
 .light-theme .bg-purple-500,
 .light-theme .bg-rose-600,
@@ -341,6 +342,8 @@ body.light-theme .bg-slate-950 {
 .light-theme button.bg-orange-500,
 .light-theme button.bg-blue-600,
 .light-theme button.bg-blue-500,
+.light-theme button.bg-sky-600,
+.light-theme button.bg-sky-500,
 .light-theme button.bg-purple-600,
 .light-theme button.bg-purple-500,
 .light-theme button.bg-rose-600,
@@ -350,12 +353,14 @@ body.light-theme .bg-slate-950 {
 .light-theme .bg-emerald-600 *,
 .light-theme .bg-orange-600 *,
 .light-theme .bg-blue-600 *,
+.light-theme .bg-sky-600 *,
 .light-theme .bg-purple-600 *,
 .light-theme .bg-rose-600 *,
 .light-theme button.bg-indigo-600 *,
 .light-theme button.bg-emerald-600 *,
 .light-theme button.bg-orange-600 *,
 .light-theme button.bg-blue-600 *,
+.light-theme button.bg-sky-600 *,
 .light-theme button.bg-purple-600 *,
 .light-theme button.bg-rose-600 *,
 .light-theme button.bg-gradient-to-r * {
