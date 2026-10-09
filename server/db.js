@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { loadUserDataFromCloud, queueCloudSync } from './cloudStorage.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -341,11 +342,16 @@ export function getInitialData() {
   }
 }
 
+let memoryDB = null
+
 // Read database
 export function readDB() {
+  if (memoryDB) return memoryDB
+
   if (!fs.existsSync(DB_FILE)) {
     const initial = getInitialData()
     writeDB(initial)
+    memoryDB = initial
     return initial
   }
   try {
@@ -356,6 +362,7 @@ export function readDB() {
       console.log('Regenerating database with weekday 1 / weekend 2 tests ending 29 May 2027...')
       const initial = getInitialData()
       writeDB(initial)
+      memoryDB = initial
       return initial
     }
     if (!parsed.unsolvedQuestions) {
@@ -376,20 +383,119 @@ export function readDB() {
     if (parsed.settings.whatsAppGroupName === undefined) {
       parsed.settings.whatsAppGroupName = 'Mete & Ege 9. Sınıf'
     }
+    memoryDB = parsed
     return parsed
   } catch (e) {
     console.error('Error reading database, creating new:', e.message)
     const initial = getInitialData()
     writeDB(initial)
+    memoryDB = initial
     return initial
   }
 }
 
-// Write database atomically
+// Write database atomically and trigger background cloud sync
 export function writeDB(data) {
+  memoryDB = data
   const tempFile = `${DB_FILE}.tmp`
   fs.writeFileSync(tempFile, JSON.stringify(data, null, 2), 'utf-8')
   fs.renameSync(tempFile, DB_FILE)
+  queueCloudSync(data)
+}
+
+// Initialize database with cloud hydration on server startup
+export async function initDatabaseWithCloudSync() {
+  const currentDb = readDB()
+  try {
+    const cloudData = await loadUserDataFromCloud()
+    if (cloudData) {
+      // 1. Merge submissions
+      if (cloudData.submissions && Array.isArray(cloudData.submissions)) {
+        cloudData.submissions.forEach(cloudSub => {
+          const exists = currentDb.submissions.some(s => s.id === cloudSub.id || (s.studentId === cloudSub.studentId && s.assignmentId && s.assignmentId === cloudSub.assignmentId))
+          if (!exists) {
+            currentDb.submissions.push(cloudSub)
+          }
+          // Mark assignment completed
+          if (cloudSub.assignmentId) {
+            const asgn = currentDb.assignments.find(a => a.id === cloudSub.assignmentId)
+            if (asgn) {
+              asgn.status = 'completed'
+              asgn.submissionId = cloudSub.id
+              if (cloudSub.qCount) asgn.qCount = cloudSub.qCount
+            }
+          } else if (cloudSub.studentId && cloudSub.date) {
+            const asgn = currentDb.assignments.find(a => a.studentId === cloudSub.studentId && a.date === cloudSub.date)
+            if (asgn) {
+              asgn.status = 'completed'
+              asgn.submissionId = cloudSub.id
+              if (cloudSub.qCount) asgn.qCount = cloudSub.qCount
+            }
+          }
+        })
+      }
+
+      // 2. Merge mock exams
+      if (cloudData.mockExams && Array.isArray(cloudData.mockExams)) {
+        if (!currentDb.mockExams) currentDb.mockExams = []
+        cloudData.mockExams.forEach(cloudExam => {
+          const exists = currentDb.mockExams.some(e => e.id === cloudExam.id)
+          if (!exists) {
+            currentDb.mockExams.push(cloudExam)
+          }
+        })
+      }
+
+      // 3. Merge unsolved questions
+      if (cloudData.unsolvedQuestions && Array.isArray(cloudData.unsolvedQuestions)) {
+        if (!currentDb.unsolvedQuestions) currentDb.unsolvedQuestions = []
+        cloudData.unsolvedQuestions.forEach(cloudQ => {
+          const exists = currentDb.unsolvedQuestions.some(q => q.id === cloudQ.id)
+          if (!exists) {
+            currentDb.unsolvedQuestions.push(cloudQ)
+          }
+        })
+      }
+
+      // 4. Merge teacher notes
+      if (cloudData.teacherNotes && Array.isArray(cloudData.teacherNotes) && cloudData.teacherNotes.length > 0) {
+        currentDb.teacherNotes = cloudData.teacherNotes
+      }
+
+      // 5. Merge student pins
+      if (cloudData.studentPins) {
+        if (cloudData.studentPins.mete) {
+          const s = currentDb.students.find(x => x.id === 'mete')
+          if (s) s.pin = cloudData.studentPins.mete
+        }
+        if (cloudData.studentPins.ege) {
+          const s = currentDb.students.find(x => x.id === 'ege')
+          if (s) s.pin = cloudData.studentPins.ege
+        }
+      }
+
+      // 6. Merge settings
+      if (cloudData.settings && Object.keys(cloudData.settings).length > 0) {
+        currentDb.settings = { ...currentDb.settings, ...cloudData.settings }
+      }
+
+      // Recalculate student streaks
+      currentDb.students.forEach(st => {
+        const studentSubs = currentDb.submissions.filter(s => s.studentId === st.id)
+        st.streakDays = studentSubs.length
+      })
+
+      // Update memory and write to disk
+      memoryDB = currentDb
+      const tempFile = `${DB_FILE}.tmp`
+      fs.writeFileSync(tempFile, JSON.stringify(currentDb, null, 2), 'utf-8')
+      fs.renameSync(tempFile, DB_FILE)
+      console.log(`[Database] Cloud sync complete! Restored ${currentDb.submissions.length} submissions, ${currentDb.mockExams?.length || 0} mock exams.`)
+    }
+  } catch (err) {
+    console.error('[Database] Failed to hydrate cloud data:', err.message)
+  }
+  return currentDb
 }
 
 // Helper methods

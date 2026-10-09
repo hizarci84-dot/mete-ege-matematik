@@ -26818,7 +26818,8 @@
     "whatsAppGroupName": "MÜFİT HOCA İLE MATEMATİK",
     "whatsAppGroupId": "120363414194493647@g.us",
     "whatsAppWebhookUrl": "https://7107.api.greenapi.com/waInstance7107639595/sendMessage/41919f0f1ff94b00a0daf0b5a20028811dba6ffbe274471bbd",
-    "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbxdw_sKaymUjvHehDuCtLUvbwFa6uXfBniGVfnAakGBrr5x6AxDsMp2ax6s6mt3wao3/exec"
+    "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbxdw_sKaymUjvHehDuCtLUvbwFa6uXfBniGVfnAakGBrr5x6AxDsMp2ax6s6mt3wao3/exec",
+    "whatsAppDailyTime": "16:00"
   },
   "unsolvedQuestions": [],
   "mockExams": []

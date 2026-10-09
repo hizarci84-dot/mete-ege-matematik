@@ -210,6 +210,37 @@ export default function App() {
       setAnalyticsData(analyticsRes)
       setMockExams(mockExamsRes || [])
 
+      // Auto-heal / Auto-sync: Check if student device has local backups missing on server
+      try {
+        const backupKey = `submissions_backup_${studentId}`
+        const localSubs = JSON.parse(localStorage.getItem(backupKey) || '[]')
+        const serverSubs = analyticsRes?.submissions || []
+
+        if (localSubs.length > 0 && serverSubs.length < localSubs.length) {
+          console.log(`[AutoRecovery] Re-syncing ${localSubs.length - serverSubs.length} local backups to server...`)
+          let hasSyncedAny = false
+          for (const localSub of localSubs) {
+            const alreadyOnServer = serverSubs.some(s => s.assignmentId === localSub.assignmentId || (s.testId === localSub.testId && s.date === localSub.date))
+            if (!alreadyOnServer) {
+              await submitTest(localSub)
+              hasSyncedAny = true
+            }
+          }
+          if (hasSyncedAny) {
+            const [newToday, newSched, newAnalytics] = await Promise.all([
+              fetchToday(studentId),
+              fetchSchedule(studentId),
+              fetchAnalytics(studentId)
+            ])
+            setTodayData(newToday)
+            setScheduleList(newSched)
+            setAnalyticsData(newAnalytics)
+          }
+        }
+      } catch (e) {
+        console.warn('Auto-recovery check error:', e)
+      }
+
       // Only fetch comparison if in teacher mode or unlocked
       if (!isLockedStudent) {
         const compRes = await fetchComparison()
@@ -233,6 +264,17 @@ export default function App() {
 
   // Handle submit test
   const handleTestSubmitSuccess = async (payload) => {
+    // 1. Save to device local backup
+    try {
+      const backupKey = `submissions_backup_${payload.studentId}`
+      const existing = JSON.parse(localStorage.getItem(backupKey) || '[]')
+      const filtered = existing.filter(s => s.assignmentId !== payload.assignmentId && s.testId !== payload.testId)
+      filtered.push(payload)
+      localStorage.setItem(backupKey, JSON.stringify(filtered))
+    } catch (e) {
+      console.warn('LocalStorage save error:', e)
+    }
+
     await submitTest(payload)
     await refreshStudentData(activeStudentId)
   }

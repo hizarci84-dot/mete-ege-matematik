@@ -22,7 +22,8 @@ import {
   updateMockExam,
   deleteMockExam,
   getSettings,
-  updateSettings
+  updateSettings,
+  initDatabaseWithCloudSync
 } from './db.js'
 import { computeStudentAnalytics, computeComparisonAnalytics } from './analytics.js'
 
@@ -864,6 +865,11 @@ app.get('*', (req, res, next) => {
   })
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Backend API sunucusu http://localhost:${PORT} üzerinde çalışıyor`)
+  try {
+    await initDatabaseWithCloudSync()
+  } catch (err) {
+    console.error('Failed to initialize cloud database sync:', err.message)
+  }
 })

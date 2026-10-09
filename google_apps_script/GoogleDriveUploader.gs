@@ -199,6 +199,43 @@ function doPost(e) {
       return ContentService.createTextOutput(JSON.stringify(res)).setMimeType(ContentService.MimeType.JSON);
     }
 
+    if (data.action === "save_db") {
+      var rootFolder = getOrCreateFolder(DriveApp.getRootFolder(), ROOT_FOLDER_NAME);
+      var files = rootFolder.getFilesByName("mete_ege_database.json");
+      var dbFile;
+      var dbContent = JSON.stringify(data.payload || data.db || {});
+      if (files.hasNext()) {
+        dbFile = files.next();
+        dbFile.setContent(dbContent);
+      } else {
+        dbFile = rootFolder.createFile("mete_ege_database.json", dbContent, "application/json");
+      }
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        message: "Veritabanı Google Drive'a başarıyla yedeklendi",
+        fileId: dbFile.getId(),
+        fileUrl: dbFile.getUrl()
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    if (data.action === "get_db") {
+      var rootFolder = getOrCreateFolder(DriveApp.getRootFolder(), ROOT_FOLDER_NAME);
+      var files = rootFolder.getFilesByName("mete_ege_database.json");
+      if (files.hasNext()) {
+        var dbFile = files.next();
+        var content = dbFile.getBlob().getDataAsString();
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "success",
+          payload: JSON.parse(content)
+        })).setMimeType(ContentService.MimeType.JSON);
+      } else {
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "not_found",
+          message: "Henüz kayıtlı veritabanı bulunamadı"
+        })).setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+
     return ContentService.createTextOutput(JSON.stringify({ status: "error", message: "Bilinmeyen eylem" })).setMimeType(ContentService.MimeType.JSON);
 
   } catch (err) {
