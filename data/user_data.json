@@ -1,18 +1,5 @@
 {
-  "submissions": [
-    {
-      "id": "sub_test_1",
-      "studentId": "mete",
-      "testId": "cap-t1-ogr-1",
-      "topicName": "Üslü Sayılar",
-      "date": "2026-10-05",
-      "correct": 12,
-      "wrong": 0,
-      "empty": 0,
-      "net": 12,
-      "scorePercent": 100
-    }
-  ],
+  "submissions": [],
   "mockExams": [],
   "unsolvedQuestions": [],
   "teacherNotes": [],
@@ -21,5 +8,5 @@
     "ege": "5678"
   },
   "settings": {},
-  "updated_at": "2026-10-09T20:18:45.384Z"
+  "updated_at": "2026-10-09T20:18:53.913Z"
 }
