@@ -1,12 +1,65 @@
 {
-  "submissions": [],
+  "submissions": [
+    {
+      "id": "sub_1791640785514",
+      "submittedAt": "2026-10-10T13:59:45.514Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_6",
+      "testId": "orig-t1-test-2",
+      "bookId": "orijinal-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
+      "testTitle": "Üslü Gösterim Test 2",
+      "testNum": "Test 2",
+      "pages": "9-10",
+      "date": "2026-10-10",
+      "qCount": 10,
+      "correct": 10,
+      "wrong": 0,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 10,
+      "scorePercent": 100
+    }
+  ],
   "mockExams": [],
   "unsolvedQuestions": [],
-  "teacherNotes": [],
+  "teacherNotes": [
+    {
+      "id": "note-1",
+      "title": "2026-2027 Maarif Modeli Matematik Hızlandırılmış Programı",
+      "content": "Program 5 Ekim 2026 Pazartesi günü başladı. Hafta içi günde 1 test, hafta sonları günde 2 test (haftalık 9 test) kuralıyla toplam 304 test, okullar kapanmadan önce 29 Mayıs 2027 Cumartesi günü (237 günde) tamamlanacaktır. Mete ve Ege için ÇAP Plus ve Orijinal kitapları alt konu düzeyinde senkronize şekilde dönüşümlü ilerlemektedir.",
+      "date": "2026-10-05"
+    }
+  ],
   "studentPins": {
     "mete": "1234",
     "ege": "5678"
   },
-  "settings": {},
-  "updated_at": "2026-10-09T20:18:53.913Z"
+  "settings": {
+    "dailyScheduleRule": "Hafta İçi 1 Test, Hafta Sonu 2 Test",
+    "weekdayLimit": 1,
+    "weekendLimit": 2,
+    "startDate": "2026-10-05",
+    "endDate": "2027-05-29",
+    "totalTests": 304,
+    "totalDays": 237,
+    "schoolYear": "2026-2027",
+    "allowWeekendTests": true,
+    "skipActivities": true,
+    "teacherPin": "2026",
+    "greenApiHost": "https://7107.api.greenapi.com",
+    "greenApiInstanceId": "7107639595",
+    "greenApiToken": "41919f0f1ff94b00a0daf0b5a20028811dba6ffbe274471bbd",
+    "whatsAppGroupName": "MÜFİT HOCA İLE MATEMATİK",
+    "whatsAppGroupId": "120363414194493647@g.us",
+    "whatsAppWebhookUrl": "https://7107.api.greenapi.com/waInstance7107639595/sendMessage/41919f0f1ff94b00a0daf0b5a20028811dba6ffbe274471bbd",
+    "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbxdw_sKaymUjvHehDuCtLUvbwFa6uXfBniGVfnAakGBrr5x6AxDsMp2ax6s6mt3wao3/exec",
+    "whatsAppDailyTime": "16:00"
+  },
+  "updated_at": "2026-10-10T13:59:46.758Z"
 }
