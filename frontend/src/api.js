@@ -214,3 +214,27 @@ export async function sendWhatsAppWebhook(webhookUrl = '', date = null) {
   return res.json()
 }
 
+// Email Notifications API
+export async function sendTestEmail(recipients = '') {
+  const res = await fetch(`${API_BASE}/email/test`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ recipients })
+  })
+  return res.json()
+}
+
+export async function sendWeeklyReportEmail(recipients = '') {
+  const res = await fetch(`${API_BASE}/email/send-weekly`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ recipients })
+  })
+  return res.json()
+}
+
+export async function fetchWeeklyReportPreview() {
+  const res = await fetch(`${API_BASE}/email/preview-weekly`)
+  return res.json()
+}
+

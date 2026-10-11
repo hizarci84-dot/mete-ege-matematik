@@ -337,7 +337,11 @@ export function getInitialData() {
       teacherPin: '2026',
       googleAppsScriptUrl: '',
       whatsAppGroupName: 'Mete & Ege 9. Sınıf',
-      whatsAppDailyTime: '16:00'
+      whatsAppDailyTime: '16:00',
+      notificationEmails: '',
+      emailDailyEnabled: true,
+      emailWeeklyFridayEnabled: true,
+      emailWeeklyFridayTime: '21:00'
     }
   }
 }
@@ -382,6 +386,18 @@ export function readDB() {
     }
     if (parsed.settings.whatsAppGroupName === undefined) {
       parsed.settings.whatsAppGroupName = 'Mete & Ege 9. Sınıf'
+    }
+    if (parsed.settings.notificationEmails === undefined) {
+      parsed.settings.notificationEmails = ''
+    }
+    if (parsed.settings.emailDailyEnabled === undefined) {
+      parsed.settings.emailDailyEnabled = true
+    }
+    if (parsed.settings.emailWeeklyFridayEnabled === undefined) {
+      parsed.settings.emailWeeklyFridayEnabled = true
+    }
+    if (parsed.settings.emailWeeklyFridayTime === undefined) {
+      parsed.settings.emailWeeklyFridayTime = '21:00'
     }
     memoryDB = parsed
     return parsed

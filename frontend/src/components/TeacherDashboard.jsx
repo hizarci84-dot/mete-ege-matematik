@@ -37,7 +37,10 @@ import {
   Smartphone,
   RefreshCw,
   Folder,
-  FolderOpen
+  FolderOpen,
+  Mail,
+  MailCheck,
+  Eye
 } from 'lucide-react'
 import {
   updateStudentPin,
@@ -50,7 +53,10 @@ import {
   testGoogleDriveConnection,
   syncAllQuestionsToDrive,
   fetchWhatsAppDailyMessage,
-  sendWhatsAppWebhook
+  sendWhatsAppWebhook,
+  sendTestEmail,
+  sendWeeklyReportEmail,
+  fetchWeeklyReportPreview
 } from '../api'
 
 export default function TeacherDashboard({
@@ -128,6 +134,20 @@ export default function TeacherDashboard({
   const [isTestingWebhook, setIsTestingWebhook] = useState(false)
   const [webhookTestResult, setWebhookTestResult] = useState(null)
 
+  // Email Notification states
+  const [notificationEmailsInput, setNotificationEmailsInput] = useState('')
+  const [emailDailyEnabled, setEmailDailyEnabled] = useState(true)
+  const [emailWeeklyFridayEnabled, setEmailWeeklyFridayEnabled] = useState(true)
+  const [isSavingEmailSettings, setIsSavingEmailSettings] = useState(false)
+  const [emailSettingsSaveMsg, setEmailSettingsSaveMsg] = useState(null)
+  const [isSendingTestEmail, setIsSendingTestEmail] = useState(false)
+  const [testEmailResult, setTestEmailResult] = useState(null)
+  const [isSendingWeeklyEmail, setIsSendingWeeklyEmail] = useState(false)
+  const [weeklyEmailResult, setWeeklyEmailResult] = useState(null)
+  const [showWeeklyPreviewModal, setShowWeeklyPreviewModal] = useState(false)
+  const [weeklyPreviewHtml, setWeeklyPreviewHtml] = useState('')
+  const [isLoadingWeeklyPreview, setIsLoadingWeeklyPreview] = useState(false)
+
   // Fetch settings on mount
   React.useEffect(() => {
     fetchSettings()
@@ -137,6 +157,9 @@ export default function TeacherDashboard({
           if (st.googleAppsScriptUrl) setScriptUrlInput(st.googleAppsScriptUrl)
           if (st.whatsAppWebhookUrl) setWhatsAppWebhookInput(st.whatsAppWebhookUrl)
           if (st.teacherPin) setTeacherPinInput(st.teacherPin)
+          if (st.notificationEmails !== undefined) setNotificationEmailsInput(st.notificationEmails)
+          if (st.emailDailyEnabled !== undefined) setEmailDailyEnabled(st.emailDailyEnabled)
+          if (st.emailWeeklyFridayEnabled !== undefined) setEmailWeeklyFridayEnabled(st.emailWeeklyFridayEnabled)
         }
       })
       .catch(console.error)
@@ -258,8 +281,93 @@ export default function TeacherDashboard({
     }
   }
 
+  const handleSaveEmailSettings = async () => {
+    setIsSavingEmailSettings(true)
+    setEmailSettingsSaveMsg(null)
+    try {
+      const updated = await updateSettings({
+        notificationEmails: notificationEmailsInput.trim(),
+        emailDailyEnabled,
+        emailWeeklyFridayEnabled
+      })
+      if (updated && updated.settings) {
+        setSystemSettings(updated.settings)
+        setEmailSettingsSaveMsg('E-posta bildirim ayarları başarıyla kaydedildi.')
+      }
+    } catch (err) {
+      alert('Ayarlar kaydedilirken hata oluştu: ' + err.message)
+    } finally {
+      setIsSavingEmailSettings(false)
+      setTimeout(() => setEmailSettingsSaveMsg(null), 4000)
+    }
+  }
+
+  const handleSendTestEmail = async () => {
+    if (!notificationEmailsInput.trim()) {
+      alert('Lütfen en az bir alıcı e-posta adresi giriniz.')
+      return
+    }
+    setIsSendingTestEmail(true)
+    setTestEmailResult(null)
+    try {
+      await updateSettings({ notificationEmails: notificationEmailsInput.trim() })
+      const res = await sendTestEmail(notificationEmailsInput.trim())
+      if (res && res.success) {
+        setTestEmailResult({ success: true, message: res.message || 'Test e-postası başarıyla gönderildi!' })
+      } else {
+        setTestEmailResult({ success: false, message: res?.error || 'Test e-postası gönderilemedi.' })
+      }
+    } catch (err) {
+      setTestEmailResult({ success: false, message: 'Hata: ' + err.message })
+    } finally {
+      setIsSendingTestEmail(false)
+      setTimeout(() => setTestEmailResult(null), 7000)
+    }
+  }
+
+  const handleSendWeeklyReportEmail = async () => {
+    if (!notificationEmailsInput.trim()) {
+      alert('Lütfen en az bir alıcı e-posta adresi giriniz.')
+      return
+    }
+    if (!window.confirm('Cuma haftalık performans raporu belirlenen e-posta adreslerine gönderilsin mi?')) {
+      return
+    }
+    setIsSendingWeeklyEmail(true)
+    setWeeklyEmailResult(null)
+    try {
+      await updateSettings({ notificationEmails: notificationEmailsInput.trim() })
+      const res = await sendWeeklyReportEmail(notificationEmailsInput.trim())
+      if (res && res.success) {
+        setWeeklyEmailResult({ success: true, message: res.message || 'Haftalık rapor e-postası başarıyla gönderildi!' })
+      } else {
+        setWeeklyEmailResult({ success: false, message: res?.error || 'Haftalık rapor gönderilemedi.' })
+      }
+    } catch (err) {
+      setWeeklyEmailResult({ success: false, message: 'Hata: ' + err.message })
+    } finally {
+      setIsSendingWeeklyEmail(false)
+      setTimeout(() => setWeeklyEmailResult(null), 8000)
+    }
+  }
+
+  const handleOpenWeeklyPreview = async () => {
+    setShowWeeklyPreviewModal(true)
+    setIsLoadingWeeklyPreview(true)
+    try {
+      const res = await fetchWeeklyReportPreview()
+      if (res && res.success && res.html) {
+        setWeeklyPreviewHtml(res.html)
+      }
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setIsLoadingWeeklyPreview(false)
+    }
+  }
+
   const scriptSampleCode = `/**
- * METE VE EGE TEST PROGRAMI: GOOGLE DRIVE & SAAT 16:00 OTOMATİK WHATSAPP
+ * METE VE EGE TEST PROGRAMI: GOOGLE DRIVE & SAAT 16:00 OTOMATİK WHATSAPP & E-POSTA
  * Öğretmen: Müfit Hoca
  */
 var ROOT_FOLDER_NAME = "mete-ege yapılamayan sorular";
@@ -275,7 +383,7 @@ var WHATSAPP_GRUP_ADI     = "MÜFİT HOCA İLE MATEMATİK";
 var WHATSAPP_GRUP_ID      = "120363414194493647@g.us";
 
 function doGet(e) {
-  return ContentService.createTextOutput(JSON.stringify({ status: "ok", message: "Drive & WhatsApp Aktif" })).setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify({ status: "ok", message: "Drive & WhatsApp & E-posta Aktif" })).setMimeType(ContentService.MimeType.JSON);
 }
 
 function doPost(e) {
@@ -303,6 +411,21 @@ function doPost(e) {
         downloadUrl: file.getDownloadUrl(),
         folderPath: ROOT_FOLDER_NAME + "/" + dateStr
       })).setMimeType(ContentService.MimeType.JSON);
+    }
+    if (data.action === "send_email" || data.action === "send_daily_email" || data.action === "send_weekly_email" || data.action === "test_email") {
+      var recipients = data.to || data.recipients || "";
+      var subject = data.subject || "Mete & Ege Matematik Bildirimi";
+      var htmlBody = data.htmlBody || data.bodyHtml || "";
+      var textBody = data.textBody || data.bodyText || "Mete & Ege Matematik bilgilendirme mesajıdır.";
+
+      MailApp.sendEmail({
+        to: recipients,
+        subject: subject,
+        htmlBody: htmlBody,
+        body: textBody
+      });
+
+      return ContentService.createTextOutput(JSON.stringify({ status: "success", recipients: recipients })).setMimeType(ContentService.MimeType.JSON);
     }
     if (data.action === "save_db") {
       var rootFolder = getOrCreateFolder(DriveApp.getRootFolder(), ROOT_FOLDER_NAME);
@@ -338,42 +461,31 @@ function getOrCreateFolder(parent, name) {
   return it.hasNext() ? it.next() : parent.createFolder(name);
 }
 
-function sendDaily1600WhatsApp() {
-  try {
-    var todayStr = Utilities.formatDate(new Date(), "GMT+3", "yyyy-MM-dd");
-    var messageText = "📅 *GÜNLÜK ÖDEV VE ÇALIŞMA BİLDİRİMİ (Saat 16:00)*\\n" +
-      "🗓 *Tarih:* " + todayStr + "\\n" +
-      "👨‍🏫 *Öğretmen:* Müfit Hoca\\n" +
-      "━━━━━━━━━━━━━━━━━━━━━\\n\\n" +
-      "👨‍🎓 *METE VE EGE'NİN DİKKATİNE:*\\n" +
-      "Günün test ödevleriniz sisteme tanımlanmıştır. Okul çıkışında süre tutarak çözünüz.\\n\\n" +
-      "📸 *ÖNEMLİ HATIRLATMA:*\\n" +
-      "Çözemediğiniz veya boş bıraktığınız soruların fotoğrafını sisteme yükleyiniz (Sorular anında Müfit Hoca'nın Google Drive arşivine aktarılır).\\n\\n" +
-      "🚀 Başarılar gençler, iyi çalışmalar!";
-
-    if (WHATSAPP_SERVISI === "greenapi") {
-      var targetChat = WHATSAPP_GRUP_ID.indexOf("@g.us") !== -1 ? WHATSAPP_GRUP_ID : (WHATSAPP_GRUP_ID + "@g.us");
-      var greenUrl = "https://api.green-api.com/waInstance" + GREEN_API_INSTANCE_ID + "/sendMessage/" + GREEN_API_TOKEN;
-      var resp = UrlFetchApp.fetch(greenUrl, {
-        method: "post",
-        contentType: "application/json",
-        payload: JSON.stringify({ chatId: targetChat, message: messageText }),
-        muteHttpExceptions: true
-      });
-      Logger.log(resp.getContentText());
-    }
-  } catch (err) {
-    Logger.log("Hata: " + err.toString());
-  }
-}
-
 function otomatik1600TetikleyiciKur() {
   var triggers = ScriptApp.getProjectTriggers();
   for (var i = 0; i < triggers.length; i++) {
     if (triggers[i].getHandlerFunction() === "sendDaily1600WhatsApp") ScriptApp.deleteTrigger(triggers[i]);
   }
   ScriptApp.newTrigger("sendDaily1600WhatsApp").timeBased().everyDays(1).atHour(16).create();
-  Logger.log("Tetikleyici kuruldu!");
+  Logger.log("Saat 16:00 WhatsApp tetikleyicisi kuruldu!");
+}
+
+function otomatikCuma2100TetikleyiciKur() {
+  var triggers = ScriptApp.getProjectTriggers();
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === "sendWeeklyFriday2100Report") ScriptApp.deleteTrigger(triggers[i]);
+  }
+  ScriptApp.newTrigger("sendWeeklyFriday2100Report").timeBased().onWeekDay(ScriptApp.WeekDay.FRIDAY).atHour(21).create();
+  Logger.log("Cuma Saat 21:00 Haftalık Rapor tetikleyicisi kuruldu!");
+}
+
+function sendWeeklyFriday2100Report() {
+  UrlFetchApp.fetch("https://mete-ege-matematik.onrender.com/api/email/send-weekly", {
+    method: "post",
+    contentType: "application/json",
+    payload: JSON.stringify({ source: "google_apps_script_cron" }),
+    muteHttpExceptions: true
+  });
 }`
 
   if (!teacherData) {
@@ -2296,6 +2408,171 @@ function otomatik1600TetikleyiciKur() {
             </div>
           </div>
 
+          {/* CARD 3: E-POSTA BİLDİRİMLERİ & CUMA 21:00 HAFTALIK RAPOR MERKEZİ */}
+          <div className="bg-slate-900/90 border border-indigo-500/30 rounded-3xl p-6 shadow-xl space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-10 h-10 rounded-2xl bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400 shrink-0">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-base font-bold text-white flex items-center gap-2">
+                    <span>E-posta Bildirimleri & Cuma 21:00 Haftalık Karne Raporu</span>
+                    <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30 font-semibold">
+                      Otomatik & Çoklu Alıcı
+                    </span>
+                  </h4>
+                  <p className="text-xs text-slate-300 mt-1">
+                    Öğrencileriniz günlük ödevlerini tamamlayıp kaydettiklerinde anlık sonuçlar, her Cuma akşamı saat 21:00'da ise tüm haftalık gelişim karnesi tanımlanan e-posta adreslerine (öğretmen ve veliler) otomatik postalanır.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <span className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 border ${
+                  notificationEmailsInput.trim()
+                    ? 'bg-emerald-950/70 border-emerald-500/40 text-emerald-300'
+                    : 'bg-amber-950/70 border-amber-500/40 text-amber-300'
+                }`}>
+                  <span className={`w-2 h-2 rounded-full ${notificationEmailsInput.trim() ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
+                  <span>{notificationEmailsInput.trim() ? 'E-posta Aktif' : 'E-posta Tanımlanmadı'}</span>
+                </span>
+              </div>
+            </div>
+
+            {/* Email Input Field */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Bildirim Gönderilecek E-posta Adresleri (Birden fazla adres için virgülle ayırınız):</span>
+                </label>
+                <span className="text-[11px] text-slate-400">Örnek: Öğretmen + Mete'nin Velisi + Ege'nin Velisi</span>
+              </div>
+              <input
+                type="text"
+                value={notificationEmailsInput}
+                onChange={(e) => setNotificationEmailsInput(e.target.value)}
+                placeholder="mufithoca@gmail.com, mete_veli@gmail.com, ege_veli@gmail.com"
+                className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 font-mono focus:outline-none focus:border-indigo-500"
+              />
+              <p className="text-[11px] text-slate-400">
+                💡 <strong>İpucu:</strong> Buraya dilediğiniz kadar e-posta adresi yazabilirsiniz. Her ödev tesliminde ve Cuma 21:00 haftalık raporda tüm bu adreslere aynı anda mail ulaşır.
+              </p>
+            </div>
+
+            {/* Notification Checkboxes / Toggles */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+              {/* Option 1: Daily Instant Email */}
+              <label className="bg-slate-950/70 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 flex items-start gap-3 cursor-pointer transition">
+                <input
+                  type="checkbox"
+                  checked={emailDailyEnabled}
+                  onChange={(e) => setEmailDailyEnabled(e.target.checked)}
+                  className="mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500 bg-slate-900 border-slate-700 cursor-pointer"
+                />
+                <div className="space-y-1">
+                  <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                    <span>⚡ Günlük Test Tamamlandığında Anlık Bildirim</span>
+                  </span>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                    Mete veya Ege testini bitirip kaydettiğinde; Doğru, Yanlış, Boş, Net skor, Süre ve yüklenen soru fotoğrafları anında tüm adreslere postalanır.
+                  </p>
+                </div>
+              </label>
+
+              {/* Option 2: Friday 21:00 Weekly Report */}
+              <label className="bg-slate-950/70 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 flex items-start gap-3 cursor-pointer transition">
+                <input
+                  type="checkbox"
+                  checked={emailWeeklyFridayEnabled}
+                  onChange={(e) => setEmailWeeklyFridayEnabled(e.target.checked)}
+                  className="mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500 bg-slate-900 border-slate-700 cursor-pointer"
+                />
+                <div className="space-y-1">
+                  <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                    <span>📊 Her Cuma Saat 21:00'da Haftalık Performans Raporu</span>
+                  </span>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                    Cuma akşamı saat 21:00'da haftanın tüm testleri, soru sayıları, netleri, başarı yüzdeleri ve çözülemeyen sorular derlenerek detaylı karne halinde velilere gider.
+                  </p>
+                </div>
+              </label>
+            </div>
+
+            {/* Action Feedback Alerts */}
+            {emailSettingsSaveMsg && (
+              <div className="p-3 bg-emerald-950/50 border border-emerald-500/40 text-emerald-300 rounded-xl text-xs flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>{emailSettingsSaveMsg}</span>
+              </div>
+            )}
+
+            {testEmailResult && (
+              <div className={`p-3 rounded-xl border text-xs flex items-center gap-2 ${
+                testEmailResult.success
+                  ? 'bg-emerald-950/50 border-emerald-500/40 text-emerald-300'
+                  : 'bg-rose-950/50 border-rose-500/40 text-rose-300'
+              }`}>
+                {testEmailResult.success ? <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" /> : <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />}
+                <span>{testEmailResult.message}</span>
+              </div>
+            )}
+
+            {weeklyEmailResult && (
+              <div className={`p-3 rounded-xl border text-xs flex items-center gap-2 ${
+                weeklyEmailResult.success
+                  ? 'bg-emerald-950/50 border-emerald-500/40 text-emerald-300'
+                  : 'bg-rose-950/50 border-rose-500/40 text-rose-300'
+              }`}>
+                {weeklyEmailResult.success ? <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" /> : <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />}
+                <span>{weeklyEmailResult.message}</span>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-slate-800">
+              <button
+                type="button"
+                onClick={handleSaveEmailSettings}
+                disabled={isSavingEmailSettings}
+                className="py-2.5 px-5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow-lg shadow-indigo-600/30 disabled:opacity-50"
+              >
+                {isSavingEmailSettings ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <CheckCircle2 className="w-3.5 h-3.5" />}
+                <span>{isSavingEmailSettings ? 'Kaydediliyor...' : 'E-posta Ayarlarını Kaydet'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleSendTestEmail}
+                disabled={isSendingTestEmail}
+                className="py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-xl text-xs font-bold transition flex items-center space-x-2 disabled:opacity-50"
+              >
+                {isSendingTestEmail ? <RefreshCw className="w-3.5 h-3.5 animate-spin text-indigo-400" /> : <Send className="w-3.5 h-3.5" />}
+                <span>{isSendingTestEmail ? 'Test Maili Gönderiliyor...' : 'Test E-postası Gönder'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleSendWeeklyReportEmail}
+                disabled={isSendingWeeklyEmail}
+                className="py-2.5 px-4 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow-lg shadow-emerald-700/20 disabled:opacity-50"
+              >
+                {isSendingWeeklyEmail ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <MailCheck className="w-3.5 h-3.5" />}
+                <span>{isSendingWeeklyEmail ? 'Rapor Gönderiliyor...' : 'Cuma Raporunu Şimdi Gönder (Test Et)'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleOpenWeeklyPreview}
+                className="py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-indigo-500/30 rounded-xl text-xs font-bold transition flex items-center space-x-2 ml-auto"
+              >
+                <Eye className="w-3.5 h-3.5 text-indigo-400" />
+                <span>Haftalık Rapor E-postasını Önizle</span>
+              </button>
+            </div>
+          </div>
+
           {/* Expandable Step-by-Step Guide & Apps Script Code */}
           {showScriptCode && (
             <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-4 animate-fade-in">
@@ -2380,6 +2657,53 @@ function otomatik1600TetikleyiciKur() {
                 alt="Soru Büyük Önizleme"
                 className="max-h-[80vh] w-auto object-contain rounded-lg"
               />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Weekly Friday Report Email Preview Modal */}
+      {showWeeklyPreviewModal && (
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
+          <div className="bg-slate-900 border border-slate-700 rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+            <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/80">
+              <span className="text-sm font-bold text-white flex items-center gap-2">
+                <Mail className="w-4 h-4 text-indigo-400" />
+                Cuma 21:00 Haftalık Karne E-postası Canlı Önizlemesi
+              </span>
+              <button
+                type="button"
+                onClick={() => setShowWeeklyPreviewModal(false)}
+                className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-4 flex-1 overflow-auto bg-slate-950/40">
+              {isLoadingWeeklyPreview ? (
+                <div className="py-24 text-center text-slate-400 text-xs flex items-center justify-center gap-2">
+                  <RefreshCw className="w-5 h-5 animate-spin text-indigo-400" />
+                  <span>Haftalık karne verileri derleniyor...</span>
+                </div>
+              ) : (
+                <iframe
+                  srcDoc={weeklyPreviewHtml}
+                  title="Weekly Report Preview"
+                  className="w-full h-[65vh] border-0 rounded-2xl bg-white shadow-xl"
+                />
+              )}
+            </div>
+            <div className="p-3.5 border-t border-slate-800 bg-slate-950/80 flex items-center justify-between">
+              <span className="text-xs text-slate-400">
+                💡 Bu şablon, her Cuma 21:00'da veya "Cuma Raporunu Şimdi Gönder" butonuna tıklandığında tanımlı mail adreslerine gider.
+              </span>
+              <button
+                type="button"
+                onClick={() => setShowWeeklyPreviewModal(false)}
+                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition"
+              >
+                Kapat
+              </button>
             </div>
           </div>
         </div>

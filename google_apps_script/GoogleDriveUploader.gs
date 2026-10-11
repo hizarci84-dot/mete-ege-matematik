@@ -42,6 +42,58 @@ function otomatik1600TetikleyiciKur() {
 }
 
 /**
+ * ⏰ BU FONKSİYONU 1 KERE ÇALIŞTIRIN:
+ * Her Cuma akşamı saat 21:00'da Google Bulutunda otomatik çalışan haftalık karne tetikleyicisini kurar.
+ */
+function otomatikCuma2100TetikleyiciKur() {
+  var triggers = ScriptApp.getProjectTriggers();
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === "sendWeeklyFriday2100Report") {
+      ScriptApp.deleteTrigger(triggers[i]);
+    }
+  }
+
+  ScriptApp.newTrigger("sendWeeklyFriday2100Report")
+    .timeBased()
+    .onWeekDay(ScriptApp.WeekDay.FRIDAY)
+    .atHour(21)
+    .create();
+
+  Logger.log("🎉 TEBRİKLER HOCAM! Her Cuma Saat 21:00 Haftalık Rapor Tetikleyicisi Kuruldu.");
+}
+
+/**
+ * Cuma Saat 21:00 Tetikleyicisi tarafından çağrılır:
+ * Canlı sunucuya (Render) istek atarak haftalık raporu derletir ve e-postaları postalar.
+ */
+function sendWeeklyFriday2100Report() {
+  try {
+    Logger.log("⏰ Cuma 21:00 Haftalık Rapor Tetiklendi...");
+    var fetchUrl = APP_SERVER_URL + "/api/email/send-weekly";
+    var resp = UrlFetchApp.fetch(fetchUrl, {
+      method: "post",
+      contentType: "application/json",
+      payload: JSON.stringify({ source: "google_apps_script_cron" }),
+      muteHttpExceptions: true
+    });
+    Logger.log("Rapor İletim Yanıtı: " + resp.getContentText());
+    return JSON.parse(resp.getContentText());
+  } catch (err) {
+    Logger.log("❌ Cuma Raporu Gönderim Hatası: " + err.toString());
+    return { status: "error", error: err.toString() };
+  }
+}
+
+/**
+ * 🧪 Cuma Raporunu Şimdi Test Et:
+ * Saat 21:00'ı veya Cuma gününü beklemeden hemen haftalık rapor mailini tetikler.
+ */
+function testCumaRaporuGonder() {
+  var res = sendWeeklyFriday2100Report();
+  Logger.log("Test Sonucu: " + JSON.stringify(res));
+}
+
+/**
  * 🧪 HEMEN ŞİMDİ TEST ET:
  * Saat 16:00'ı beklemeden gruba hemen bugünün test ödevini atmak için bu fonksiyonu çalıştırın.
  */
@@ -234,6 +286,33 @@ function doPost(e) {
           message: "Henüz kayıtlı veritabanı bulunamadı"
         })).setMimeType(ContentService.MimeType.JSON);
       }
+    }
+
+    if (data.action === "send_email" || data.action === "send_daily_email" || data.action === "send_weekly_email" || data.action === "test_email") {
+      var recipients = data.to || data.recipients || "";
+      var subject = data.subject || "Mete & Ege Matematik Bildirimi";
+      var htmlBody = data.htmlBody || data.bodyHtml || "";
+      var textBody = data.textBody || data.bodyText || "Mete & Ege Matematik bilgilendirme mesajıdır.";
+
+      if (!recipients) {
+        return ContentService.createTextOutput(JSON.stringify({ status: "error", message: "Alıcı e-posta adresi (to/recipients) bulunamadı." })).setMimeType(ContentService.MimeType.JSON);
+      }
+
+      // MailApp.sendEmail natively supports comma-separated list of email addresses
+      MailApp.sendEmail({
+        to: recipients,
+        subject: subject,
+        htmlBody: htmlBody,
+        body: textBody
+      });
+
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        message: "E-posta başarıyla gönderildi: " + recipients,
+        recipients: recipients,
+        subject: subject,
+        sentAt: Utilities.formatDate(new Date(), "GMT+3", "yyyy-MM-dd HH:mm:ss")
+      })).setMimeType(ContentService.MimeType.JSON);
     }
 
     return ContentService.createTextOutput(JSON.stringify({ status: "error", message: "Bilinmeyen eylem" })).setMimeType(ContentService.MimeType.JSON);

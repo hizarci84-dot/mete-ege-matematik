@@ -194,6 +194,567 @@ function formatWhatsAppDailyMessage(dateStr = null) {
   }
 }
 
+// =========================================================================
+// EMAIL NOTIFICATION SYSTEM (GOOGLE APPS SCRIPT VIA MAILAPP)
+// =========================================================================
+
+function formatTrDate(dateStr) {
+  if (!dateStr) return ''
+  try {
+    const d = new Date(dateStr + (dateStr.includes('T') ? '' : 'T12:00:00'))
+    const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
+    const days = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi']
+    return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} ${days[d.getDay()]}`
+  } catch (e) {
+    return dateStr
+  }
+}
+
+/**
+ * Asynchronously sends an email via Müfit Hoca's Google Apps Script Web App
+ */
+async function sendEmailViaAppsScript({ to, subject, htmlBody, textBody }) {
+  try {
+    const settings = getSettings()
+    if (!settings.googleAppsScriptUrl || !settings.googleAppsScriptUrl.trim()) {
+      return { success: false, error: 'Google Apps Script URL ayarlanmamış.' }
+    }
+    const targetRecipients = (to || settings.notificationEmails || '').trim()
+    if (!targetRecipients) {
+      return { success: false, error: 'Alıcı e-posta adresi belirtilmemiş.' }
+    }
+
+    const payload = {
+      action: 'send_email',
+      to: targetRecipients,
+      recipients: targetRecipients,
+      subject: subject || 'Mete & Ege Matematik Bildirimi',
+      htmlBody: htmlBody || '',
+      textBody: textBody || 'Mete & Ege Matematik bilgilendirme mesajıdır.'
+    }
+
+    const resp = await fetch(settings.googleAppsScriptUrl.trim(), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      redirect: 'follow'
+    })
+
+    const result = await resp.json()
+    return result
+  } catch (err) {
+    console.error('[Apps Script Email Send Error]:', err.message)
+    return { success: false, error: err.message }
+  }
+}
+
+/**
+ * Generates responsive HTML for instant daily test submission notification
+ */
+function buildDailySubmissionEmailHtml(submission, student, settings) {
+  const studentName = student?.name || (submission.studentId === 'mete' ? 'Mete' : 'Ege')
+  const dateFormatted = formatTrDate(submission.date) || submission.date
+  const net = submission.net !== undefined ? submission.net : parseFloat((Number(submission.correct || 0) - Number(submission.wrong || 0) * 0.25).toFixed(2))
+  const questionCount = submission.qCount || (Number(submission.correct || 0) + Number(submission.wrong || 0) + Number(submission.empty || 0)) || 12
+  const scorePercent = submission.scorePercent !== undefined ? submission.scorePercent : Math.round((Number(submission.correct || 0) / questionCount) * 100)
+  const photoCount = Array.isArray(submission.questionPhotos) ? submission.questionPhotos.length : 0
+
+  return `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ödev Tamamlama Bildirimi - ${studentName}</title>
+</head>
+<body style="margin: 0; padding: 20px; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
+    <tr>
+      <td style="background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%); padding: 26px 24px; text-align: center; color: #ffffff;">
+        <div style="display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; letter-spacing: 0.5px; margin-bottom: 8px;">
+          GÜNLÜK ÖDEV SONUÇ BİLDİRİMİ
+        </div>
+        <h1 style="margin: 0; font-size: 22px; font-weight: 800; color: #ffffff;">
+          ${studentName} Testini Başarıyla Kaydetti! 🎯
+        </h1>
+        <p style="margin: 6px 0 0 0; font-size: 13px; color: #e0e7ff;">
+          Öğretmen: Müfit Hoca • ${dateFormatted}
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 24px;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; border-left: 4px solid #4f46e5; border-radius: 0 8px 8px 0; margin-bottom: 20px; padding: 14px;">
+          <tr>
+            <td>
+              <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #64748b; letter-spacing: 0.5px;">Çözülen Test Bilgisi</div>
+              <div style="font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 2px;">${submission.testTitle || 'Matematik Testi'}</div>
+              <div style="font-size: 13px; color: #475569; margin-top: 4px;">
+                📚 <strong>${submission.themeName || submission.topicName || 'Matematik'}</strong> ${submission.pages ? '• Sayfa ' + submission.pages : ''}
+              </div>
+            </td>
+          </tr>
+        </table>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 20px;">
+          <tr>
+            <td width="23%" align="center" style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 12px 6px;">
+              <div style="font-size: 22px; font-weight: 900; color: #16a34a;">${submission.correct || 0}</div>
+              <div style="font-size: 11px; font-weight: 700; color: #15803d; text-transform: uppercase; margin-top: 2px;">Doğru</div>
+            </td>
+            <td width="2%">&nbsp;</td>
+            <td width="23%" align="center" style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 12px 6px;">
+              <div style="font-size: 22px; font-weight: 900; color: #dc2626;">${submission.wrong || 0}</div>
+              <div style="font-size: 11px; font-weight: 700; color: #b91c1c; text-transform: uppercase; margin-top: 2px;">Yanlış</div>
+            </td>
+            <td width="2%">&nbsp;</td>
+            <td width="23%" align="center" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 6px;">
+              <div style="font-size: 22px; font-weight: 900; color: #64748b;">${submission.empty || 0}</div>
+              <div style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase; margin-top: 2px;">Boş</div>
+            </td>
+            <td width="2%">&nbsp;</td>
+            <td width="27%" align="center" style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 12px 6px;">
+              <div style="font-size: 22px; font-weight: 900; color: #2563eb;">${net}</div>
+              <div style="font-size: 11px; font-weight: 700; color: #1d4ed8; text-transform: uppercase; margin-top: 2px;">Net Skor</div>
+            </td>
+          </tr>
+        </table>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; border-radius: 12px; padding: 14px; margin-bottom: 20px; font-size: 13px;">
+          <tr>
+            <td style="padding: 6px 0; color: #64748b;">📊 <strong>Başarı Yüzdesi:</strong></td>
+            <td align="right" style="padding: 6px 0; font-weight: 800; color: ${scorePercent >= 80 ? '#16a34a' : scorePercent >= 60 ? '#f59e0b' : '#dc2626'};">
+              %${scorePercent}
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; color: #64748b; border-top: 1px solid #e2e8f0;">⏱️ <strong>Çözüm Süresi:</strong></td>
+            <td align="right" style="padding: 6px 0; font-weight: 700; color: #1e293b; border-top: 1px solid #e2e8f0;">
+              ${submission.durationMinutes || 15} Dakika
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; color: #64748b; border-top: 1px solid #e2e8f0;">❓ <strong>Toplam Soru:</strong></td>
+            <td align="right" style="padding: 6px 0; font-weight: 700; color: #1e293b; border-top: 1px solid #e2e8f0;">
+              ${questionCount} Soru
+            </td>
+          </tr>
+          ${photoCount > 0 ? `
+          <tr>
+            <td style="padding: 6px 0; color: #b45309; border-top: 1px solid #e2e8f0;">📸 <strong>Yapılamayan Soru Fotoğrafı:</strong></td>
+            <td align="right" style="padding: 6px 0; font-weight: 700; color: #b45309; border-top: 1px solid #e2e8f0;">
+              ${photoCount} Adet Google Drive'a Aktarıldı
+            </td>
+          </tr>` : ''}
+        </table>
+        ${submission.studentNote ? `
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; margin-bottom: 20px; padding: 12px 14px;">
+          <tr>
+            <td>
+              <div style="font-size: 11px; font-weight: 700; color: #b45309; text-transform: uppercase;">💬 Öğrenci Notu:</div>
+              <div style="font-size: 13px; color: #78350f; margin-top: 3px; font-style: italic;">"${submission.studentNote}"</div>
+            </td>
+          </tr>
+        </table>` : ''}
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="text-align: center; margin-top: 10px;">
+          <tr>
+            <td align="center">
+              <a href="https://mete-ege-matematik.onrender.com" target="_blank" style="display: inline-block; background-color: #4f46e5; color: #ffffff !important; text-decoration: none; padding: 12px 28px; border-radius: 10px; font-weight: 800; font-size: 13px; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);">
+                🌐 Öğretmen & Öğrenci Paneline Git
+              </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 18px 24px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; background-color: #f8fafc;">
+        Mete & Ege 9. Sınıf Matematik Takip Sistemi • Öğretmen: Müfit Hoca<br>
+        Bu bilgilendirme e-postası ödev kaydı sonrası otomatik olarak gönderilmiştir.
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`
+}
+
+/**
+ * Dispatches instant submission email to all registered recipients
+ */
+async function dispatchDailySubmissionEmail(submission, student, settings) {
+  const recipients = settings?.notificationEmails?.trim()
+  if (!recipients) return { success: false, reason: 'Alıcı e-posta adresi kayıtlı değil' }
+
+  const studentName = student?.name || (submission.studentId === 'mete' ? 'Mete' : 'Ege')
+  const net = submission.net !== undefined ? submission.net : parseFloat((Number(submission.correct || 0) - Number(submission.wrong || 0) * 0.25).toFixed(2))
+  const questionCount = submission.qCount || (Number(submission.correct || 0) + Number(submission.wrong || 0) + Number(submission.empty || 0)) || 12
+  const scorePercent = submission.scorePercent !== undefined ? submission.scorePercent : Math.round((Number(submission.correct || 0) / questionCount) * 100)
+  const subject = `📚 [Mete & Ege] ${studentName} Günlük Ödevini Tamamladı: ${submission.testTitle || 'Matematik Testi'} (Net: ${net}, Başarı: %${scorePercent})`
+
+  const htmlBody = buildDailySubmissionEmailHtml(submission, student, settings)
+  const textBody = `${studentName} günlük matematik testini tamamladı!\nTest: ${submission.testTitle}\nDoğru: ${submission.correct}, Yanlış: ${submission.wrong}, Boş: ${submission.empty}, Net: ${net}, Başarı: %${scorePercent}\nSüre: ${submission.durationMinutes} dk.`
+
+  return await sendEmailViaAppsScript({
+    to: recipients,
+    subject,
+    htmlBody,
+    textBody
+  })
+}
+
+function renderTestsTableHtml(subs) {
+  if (!subs || subs.length === 0) {
+    return `<div style="padding: 14px; text-align: center; color: #94a3b8; font-size: 12px; background: #f8fafc; border-radius: 8px;">Bu hafta henüz tamamlanan test kaydı bulunmuyor.</div>`
+  }
+
+  let rows = subs.map(s => {
+    const net = s.net !== undefined ? s.net : parseFloat((Number(s.correct || 0) - Number(s.wrong || 0) * 0.25).toFixed(2))
+    const score = s.scorePercent !== undefined ? s.scorePercent : Math.round((Number(s.correct || 0) / (Number(s.qCount) || 1)) * 100)
+    const scoreColor = score >= 80 ? '#16a34a' : score >= 60 ? '#d97706' : '#dc2626'
+    return `
+    <tr style="border-bottom: 1px solid #f1f5f9;">
+      <td style="padding: 8px 6px; font-size: 11px; color: #64748b; white-space: nowrap;">${s.date}</td>
+      <td style="padding: 8px 6px; font-size: 12px; font-weight: 600; color: #1e293b;">${s.testTitle || 'Test'}</td>
+      <td style="padding: 8px 6px; font-size: 11px; text-align: center; color: #334155;">
+        <span style="color: #16a34a; font-weight: 700;">${s.correct || 0}D</span> / 
+        <span style="color: #dc2626; font-weight: 700;">${s.wrong || 0}Y</span> / 
+        <span style="color: #64748b;">${s.empty || 0}B</span>
+      </td>
+      <td style="padding: 8px 6px; font-size: 12px; font-weight: 800; text-align: center; color: #2563eb;">${net}</td>
+      <td style="padding: 8px 6px; font-size: 12px; font-weight: 800; text-align: right; color: ${scoreColor};">%${score}</td>
+    </tr>`
+  }).join('')
+
+  return `
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="font-size: 12px; border-collapse: collapse; margin-top: 10px;">
+    <thead>
+      <tr style="background-color: #f8fafc; border-bottom: 2px solid #e2e8f0; text-align: left; font-size: 11px; color: #64748b; text-transform: uppercase;">
+        <th style="padding: 8px 6px;">Tarih</th>
+        <th style="padding: 8px 6px;">Test</th>
+        <th style="padding: 8px 6px; text-align: center;">D / Y / B</th>
+        <th style="padding: 8px 6px; text-align: center;">Net</th>
+        <th style="padding: 8px 6px; text-align: right;">Başarı</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${rows}
+    </tbody>
+  </table>`
+}
+
+function renderStudentCardHtml(studentStat, themeColor, avatarEmoji) {
+  return `
+  <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 18px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 12px; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px;">
+      <tr>
+        <td>
+          <div style="font-size: 18px; font-weight: 800; color: #0f172a;">
+            ${avatarEmoji} ${studentStat.studentName}
+            <span style="font-size: 11px; font-weight: 600; color: #64748b; margin-left: 6px;">(${studentStat.student?.school || '9. Sınıf'})</span>
+          </div>
+          ${studentStat.isFallback ? '<div style="font-size: 10px; color: #d97706; margin-top: 2px;">⚠️ Son Çözülen Testler Görüntüleniyor</div>' : ''}
+        </td>
+        <td align="right">
+          <span style="background-color: ${themeColor}15; color: ${themeColor}; border: 1px solid ${themeColor}30; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 800;">
+            ${studentStat.totalTests} Test Çözüldü
+          </span>
+        </td>
+      </tr>
+    </table>
+
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 14px;">
+      <tr>
+        <td width="23%" align="center" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 4px;">
+          <div style="font-size: 18px; font-weight: 900; color: #0f172a;">${studentStat.totalQ}</div>
+          <div style="font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase;">Toplam Soru</div>
+        </td>
+        <td width="2%">&nbsp;</td>
+        <td width="23%" align="center" style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 10px 4px;">
+          <div style="font-size: 18px; font-weight: 900; color: #16a34a;">${studentStat.totalNet}</div>
+          <div style="font-size: 10px; font-weight: 700; color: #15803d; text-transform: uppercase;">Toplam Net</div>
+        </td>
+        <td width="2%">&nbsp;</td>
+        <td width="23%" align="center" style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 10px 4px;">
+          <div style="font-size: 18px; font-weight: 900; color: #2563eb;">%${studentStat.avgScore}</div>
+          <div style="font-size: 10px; font-weight: 700; color: #1d4ed8; text-transform: uppercase;">Ort. Başarı</div>
+        </td>
+        <td width="2%">&nbsp;</td>
+        <td width="27%" align="center" style="background-color: #faf5ff; border: 1px solid #e9d5ff; border-radius: 10px; padding: 10px 4px;">
+          <div style="font-size: 18px; font-weight: 900; color: #9333ea;">${studentStat.totalDuration} dk</div>
+          <div style="font-size: 10px; font-weight: 700; color: #7e22ce; text-transform: uppercase;">Toplam Süre</div>
+        </td>
+      </tr>
+    </table>
+
+    <div style="font-size: 12px; color: #475569; margin-bottom: 8px;">
+      ✅ <strong>Doğru:</strong> ${studentStat.totalCorrect} &nbsp;|&nbsp; 
+      ❌ <strong>Yanlış:</strong> ${studentStat.totalWrong} &nbsp;|&nbsp; 
+      ⚪ <strong>Boş:</strong> ${studentStat.totalEmpty} &nbsp;|&nbsp; 
+      📈 <strong>Test Başına Ort. Net:</strong> ${studentStat.avgNet}
+    </div>
+
+    ${studentStat.unsolvedTotal > 0 ? `
+    <div style="background-color: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 8px 12px; font-size: 11px; color: #b45309; margin-bottom: 10px;">
+      📸 <strong>Yapılamayan Sorular:</strong> Toplam ${studentStat.unsolvedTotal} soru Google Drive arşivinde (${studentStat.unsolvedPending} tanesi incelenmeyi bekliyor).
+    </div>` : ''}
+
+    <div style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; margin-top: 10px; letter-spacing: 0.5px;">
+      Bu Hafta Tamamlanan Testler
+    </div>
+    ${renderTestsTableHtml(studentStat.subs)}
+  </div>`
+}
+
+/**
+ * Computes last 7-day stats for Mete & Ege
+ */
+function generateWeeklyFridayReportData() {
+  const db = readDB()
+  const today = new Date()
+  const endStr = today.toISOString().split('T')[0]
+  const startDateObj = new Date(today)
+  startDateObj.setDate(startDateObj.getDate() - 6)
+  const startStr = startDateObj.toISOString().split('T')[0]
+
+  const weekRangeStr = `${formatTrDate(startStr)} - ${formatTrDate(endStr)}`
+
+  function getStudentStats(studentId) {
+    const student = (db.students || []).find(s => s.id === studentId) || { id: studentId, name: studentId === 'mete' ? 'Mete' : 'Ege' }
+    let subs = (db.submissions || [])
+      .filter(s => s.studentId === studentId && s.date >= startStr && s.date <= endStr)
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+
+    let isFallback = false
+    if (subs.length === 0) {
+      const allStudentSubs = (db.submissions || [])
+        .filter(s => s.studentId === studentId)
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+      if (allStudentSubs.length > 0) {
+        subs = allStudentSubs.slice(0, 5).reverse()
+        isFallback = true
+      }
+    }
+
+    const totalTests = subs.length
+    let totalQ = 0
+    let totalCorrect = 0
+    let totalWrong = 0
+    let totalEmpty = 0
+    let totalNet = 0
+    let totalDuration = 0
+
+    subs.forEach(s => {
+      const q = Number(s.qCount) || (Number(s.correct || 0) + Number(s.wrong || 0) + Number(s.empty || 0)) || 12
+      totalQ += q
+      totalCorrect += Number(s.correct || 0)
+      totalWrong += Number(s.wrong || 0)
+      totalEmpty += Number(s.empty || 0)
+      const n = s.net !== undefined ? Number(s.net) : parseFloat((Number(s.correct || 0) - Number(s.wrong || 0) * 0.25).toFixed(2))
+      totalNet += n
+      totalDuration += Number(s.durationMinutes || 0)
+    })
+
+    const avgNet = totalTests > 0 ? parseFloat((totalNet / totalTests).toFixed(2)) : 0
+    const avgScore = totalQ > 0 ? Math.round((totalCorrect / totalQ) * 100) : 0
+    const totalHours = (totalDuration / 60).toFixed(1)
+
+    const studentUnsolved = (db.unsolvedQuestions || []).filter(q => q.studentId === studentId)
+    const pendingUnsolved = studentUnsolved.filter(q => q.status === 'pending')
+
+    return {
+      student,
+      studentId,
+      studentName: student.name,
+      totalTests,
+      totalQ,
+      totalCorrect,
+      totalWrong,
+      totalEmpty,
+      totalNet: parseFloat(totalNet.toFixed(2)),
+      avgNet,
+      avgScore,
+      totalDuration,
+      totalHours,
+      unsolvedTotal: studentUnsolved.length,
+      unsolvedPending: pendingUnsolved.length,
+      isFallback,
+      subs
+    }
+  }
+
+  const mete = getStudentStats('mete')
+  const ege = getStudentStats('ege')
+
+  return {
+    generatedAt: new Date().toISOString(),
+    startStr,
+    endStr,
+    weekRangeStr,
+    mete,
+    ege
+  }
+}
+
+/**
+ * Builds weekly Friday progress report email HTML
+ */
+function buildWeeklyFridayEmailHtml(reportData, settings) {
+  const meteHtml = renderStudentCardHtml(reportData.mete, '#f97316', '👨‍🎓')
+  const egeHtml = renderStudentCardHtml(reportData.ege, '#2563eb', '🧑‍🎓')
+
+  return `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haftalık Performans Raporu</title>
+</head>
+<body style="margin: 0; padding: 20px; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 640px; margin: 0 auto; background-color: #f8fafc; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+    <tr>
+      <td style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #1e3a8a 100%); padding: 30px 24px; text-align: center; color: #ffffff;">
+        <div style="display: inline-block; background: rgba(255,255,255,0.15); padding: 5px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 10px;">
+          📅 CUMA AKŞAMI HAFTALIK PERFORMANS RAPORU
+        </div>
+        <h1 style="margin: 0; font-size: 24px; font-weight: 900; color: #ffffff; letter-spacing: -0.5px;">
+          Mete & Ege Haftalık İlerleme Karnesi 📊
+        </h1>
+        <p style="margin: 8px 0 0 0; font-size: 13px; color: #c7d2fe;">
+          Dönem: ${reportData.weekRangeStr} • Öğretmen: Müfit Hoca
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 24px;">
+        <div style="background-color: #ffffff; border-left: 4px solid #4f46e5; border-radius: 0 10px 10px 0; padding: 14px 18px; margin-bottom: 22px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-size: 11px; font-weight: 800; color: #4f46e5; text-transform: uppercase;">Öğretmen Değerlendirmesi</div>
+          <div style="font-size: 13px; color: #334155; margin-top: 4px; line-height: 1.5;">
+            "Değerli velilerimiz ve sevgili öğrencilerimiz; bu haftanın matematik çalışma karnesi aşağıda detaylı olarak yer almaktadır. Hafta sonu çözülemeyen soruların tekrar edilmesi ve eksik konuların pekiştirilmesi başarımızı artıracaktır."
+          </div>
+        </div>
+
+        ${meteHtml}
+        ${egeHtml}
+
+        <div style="background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%); border: 1px solid #dbeafe; border-radius: 14px; padding: 18px; margin-bottom: 22px;">
+          <div style="font-size: 14px; font-weight: 800; color: #1e3a8a; margin-bottom: 8px;">
+            ⚖️ Haftalık Genel Değerlendirme
+          </div>
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="font-size: 13px; color: #334155;">
+            <tr>
+              <td style="padding: 4px 0;"><strong>👨‍🎓 Mete:</strong></td>
+              <td align="right" style="padding: 4px 0; font-weight: 700; color: #f97316;">${reportData.mete.totalTests} Test • ${reportData.mete.totalNet} Toplam Net • %${reportData.mete.avgScore} Başarı</td>
+            </tr>
+            <tr>
+              <td style="padding: 4px 0; border-top: 1px solid #e0e7ff;"><strong>🧑‍🎓 Ege:</strong></td>
+              <td align="right" style="padding: 4px 0; font-weight: 700; color: #2563eb; border-top: 1px solid #e0e7ff;">${reportData.ege.totalTests} Test • ${reportData.ege.totalNet} Toplam Net • %${reportData.ege.avgScore} Başarı</td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="text-align: center; margin-top: 10px;">
+          <a href="https://mete-ege-matematik.onrender.com" target="_blank" style="display: inline-block; background-color: #4f46e5; color: #ffffff !important; text-decoration: none; padding: 14px 32px; border-radius: 12px; font-weight: 800; font-size: 14px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);">
+            🌐 Öğretmen Portalına Git & Tüm Grafikleri İncele
+          </a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 20px 24px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; background-color: #ffffff;">
+        Mete & Ege 9. Sınıf Matematik Takip Sistemi • Öğretmen: Müfit Hoca<br>
+        Bu rapor her Cuma saat 21:00'da sistem tarafından otomatik olarak hazırlanıp gönderilmektedir.
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`
+}
+
+/**
+ * Dispatches weekly Friday email report
+ */
+async function dispatchWeeklyFridayEmailReport(customRecipients = null) {
+  const settings = getSettings()
+  const recipients = (customRecipients || settings?.notificationEmails || '').trim()
+  if (!recipients) {
+    return { success: false, error: 'Alıcı e-posta adresi belirtilmemiş.' }
+  }
+
+  const reportData = generateWeeklyFridayReportData()
+  const htmlBody = buildWeeklyFridayEmailHtml(reportData, settings)
+  const subject = `📊 [Mete & Ege Matematik] Haftalık Performans Raporu (Cuma Özeti • ${reportData.weekRangeStr})`
+  const textBody = `Mete & Ege Matematik Haftalık Performans Raporu\n${reportData.weekRangeStr}\nMete: ${reportData.mete.totalTests} test, ${reportData.mete.totalNet} net, %${reportData.mete.avgScore} başarı\nEge: ${reportData.ege.totalTests} test, ${reportData.ege.totalNet} net, %${reportData.ege.avgScore} başarı\nDetaylar: https://mete-ege-matematik.onrender.com`
+
+  return await sendEmailViaAppsScript({
+    to: recipients,
+    subject,
+    htmlBody,
+    textBody
+  })
+}
+
+/**
+ * Dispatches test email to verify mail connection
+ */
+async function dispatchTestEmail(customRecipients = null) {
+  const settings = getSettings()
+  const recipients = (customRecipients || settings?.notificationEmails || '').trim()
+  if (!recipients) {
+    return { success: false, error: 'Lütfen test e-postası göndermek için en az bir e-posta adresi giriniz.' }
+  }
+
+  const subject = `✅ [Mete & Ege Matematik] E-posta Bildirim Testi Başarılı!`
+  const htmlBody = `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>E-posta Testi</title>
+</head>
+<body style="margin: 0; padding: 20px; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1e293b;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 580px; margin: 0 auto; background: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
+    <tr>
+      <td style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 24px; text-align: center; color: #ffffff;">
+        <div style="font-size: 32px; margin-bottom: 6px;">🎉</div>
+        <h1 style="margin: 0; font-size: 20px; font-weight: 800; color: #ffffff;">E-posta Bağlantısı Başarıyla Kuruldu!</h1>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #d1fae5;">Mete & Ege Matematik Takip Sistemi</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 24px; font-size: 14px; line-height: 1.6; color: #334155;">
+        <p>Merhaba <strong>Müfit Hocam ve Değerli Veliler</strong>,</p>
+        <p>Bu e-posta, Mete & Ege Matematik Takip Sistemi'nin e-posta bildirim servisinin eksiksiz çalıştığını doğrulamak amacıyla gönderilmiştir.</p>
+        <div style="background-color: #f8fafc; border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 16px 0;">
+          <div style="font-weight: 700; color: #0f172a; font-size: 13px;">⚡ Aktif Olan Otomatik Bildirimler:</div>
+          <ul style="margin: 8px 0 0 0; padding-left: 18px; font-size: 13px; color: #475569;">
+            <li><strong>Günlük Test Bildirimi:</strong> Mete veya Ege günlük ödev testini bitirip kaydettiğinde sonuçlar anında bu e-posta adreslerine gelir.</li>
+            <li><strong>Cuma 21:00 Haftalık Karne:</strong> Her Cuma saat 21:00'da haftanın tüm performansını gösteren kapsamlı haftalık rapor bu adreslere postalanır.</li>
+          </ul>
+        </div>
+        <p style="margin-top: 16px; font-size: 13px; color: #64748b;">
+          Tanımlanan Alıcılar: <code>${recipients}</code>
+        </p>
+        <div style="text-align: center; margin-top: 24px;">
+          <a href="https://mete-ege-matematik.onrender.com" target="_blank" style="display: inline-block; background-color: #4f46e5; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 10px; font-weight: 800; font-size: 13px;">
+            🌐 Web Portalına Git
+          </a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 16px 24px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; background-color: #f8fafc;">
+        Mete & Ege 9. Sınıf Matematik Takip Sistemi • Öğretmen: Müfit Hoca
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`
+  const textBody = `Tebrikler! Mete & Ege Matematik Takip Sistemi e-posta bağlantısı başarıyla çalışıyor.\nTanımlanan alıcılar: ${recipients}`
+
+  return await sendEmailViaAppsScript({
+    to: recipients,
+    subject,
+    htmlBody,
+    textBody
+  })
+}
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() })
@@ -576,6 +1137,15 @@ app.post('/api/submissions', (req, res) => {
     })
   }
 
+  // Asynchronously dispatch daily submission email to all recipients
+  const settings = getSettings()
+  if (settings.emailDailyEnabled && settings.notificationEmails && settings.notificationEmails.trim() && settings.googleAppsScriptUrl) {
+    const student = (readDB().students || []).find(s => s.id === studentId)
+    dispatchDailySubmissionEmail(submission, student, settings).catch(err => {
+      console.error('[Daily Submission Email Error]:', err.message)
+    })
+  }
+
   res.status(201).json({ success: true, submission })
 })
 
@@ -723,7 +1293,11 @@ app.put('/api/settings', (req, res) => {
     whatsAppGroupName,
     whatsAppDailyTime,
     whatsAppWebhookUrl,
-    teacherPin
+    teacherPin,
+    notificationEmails,
+    emailDailyEnabled,
+    emailWeeklyFridayEnabled,
+    emailWeeklyFridayTime
   } = req.body
   const updates = {}
   if (googleAppsScriptUrl !== undefined) updates.googleAppsScriptUrl = String(googleAppsScriptUrl).trim()
@@ -731,6 +1305,10 @@ app.put('/api/settings', (req, res) => {
   if (whatsAppDailyTime !== undefined) updates.whatsAppDailyTime = String(whatsAppDailyTime).trim()
   if (whatsAppWebhookUrl !== undefined) updates.whatsAppWebhookUrl = String(whatsAppWebhookUrl).trim()
   if (teacherPin !== undefined && String(teacherPin).trim().length >= 4) updates.teacherPin = String(teacherPin).trim()
+  if (notificationEmails !== undefined) updates.notificationEmails = String(notificationEmails).trim()
+  if (emailDailyEnabled !== undefined) updates.emailDailyEnabled = Boolean(emailDailyEnabled)
+  if (emailWeeklyFridayEnabled !== undefined) updates.emailWeeklyFridayEnabled = Boolean(emailWeeklyFridayEnabled)
+  if (emailWeeklyFridayTime !== undefined) updates.emailWeeklyFridayTime = String(emailWeeklyFridayTime).trim()
 
   const updated = updateSettings(updates)
   res.json({ success: true, settings: updated })
@@ -854,6 +1432,52 @@ app.post('/api/whatsapp/send-webhook', async (req, res) => {
   }
 })
 
+// ==========================================
+// Email Notifications API
+// ==========================================
+
+// Test email delivery
+app.post('/api/email/test', async (req, res) => {
+  try {
+    const { recipients } = req.body
+    const result = await dispatchTestEmail(recipients)
+    if (result && (result.status === 'success' || result.success)) {
+      res.json({ success: true, message: result.message || 'Test e-postası başarıyla gönderildi!' })
+    } else {
+      res.status(400).json({ success: false, error: result?.error || result?.message || 'E-posta gönderilemedi.' })
+    }
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message })
+  }
+})
+
+// Trigger weekly Friday email report manually or via Google Apps Script trigger
+app.post('/api/email/send-weekly', async (req, res) => {
+  try {
+    const { recipients } = req.body
+    const result = await dispatchWeeklyFridayEmailReport(recipients)
+    if (result && (result.status === 'success' || result.success)) {
+      res.json({ success: true, message: 'Cuma haftalık performans raporu e-postası başarıyla gönderildi!' })
+    } else {
+      res.status(400).json({ success: false, error: result?.error || result?.message || 'Haftalık rapor e-postası gönderilemedi.' })
+    }
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message })
+  }
+})
+
+// Preview weekly Friday report HTML
+app.get('/api/email/preview-weekly', (req, res) => {
+  try {
+    const reportData = generateWeeklyFridayReportData()
+    const settings = getSettings()
+    const html = buildWeeklyFridayEmailHtml(reportData, settings)
+    res.json({ success: true, reportData, html })
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message })
+  }
+})
+
 // Serve frontend in production
 const frontendDist = path.join(__dirname, '..', 'frontend', 'dist')
 app.use(express.static(frontendDist))
@@ -873,3 +1497,36 @@ app.listen(PORT, async () => {
     console.error('Failed to initialize cloud database sync:', err.message)
   }
 })
+
+// Friday 21:00 Automated Weekly Report Local Cron Trigger (when server is running)
+let lastFridayReportDate = null
+setInterval(() => {
+  try {
+    const now = new Date()
+    // Istanbul / GMT+3 time
+    const trDateParts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Europe/Istanbul',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).format(now) // YYYY-MM-DD
+
+    const trDayOfWeek = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Istanbul' })).getDay() // 5 = Friday
+    const trHours = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Istanbul' })).getHours()
+    const trMinutes = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Istanbul' })).getMinutes()
+
+    // If Friday (day 5) and time is 21:00 (between 21:00 and 21:04) and not already sent today
+    if (trDayOfWeek === 5 && trHours === 21 && trMinutes < 5 && lastFridayReportDate !== trDateParts) {
+      const settings = getSettings()
+      if (settings.emailWeeklyFridayEnabled && settings.notificationEmails && settings.googleAppsScriptUrl) {
+        console.log(`[Cron] Cuma 21:00 Haftalık E-posta Raporu tetikleniyor... (${trDateParts})`)
+        lastFridayReportDate = trDateParts
+        dispatchWeeklyFridayEmailReport().catch(err => {
+          console.error('[Cron Weekly Email Error]:', err.message)
+        })
+      }
+    }
+  } catch (err) {
+    console.error('[Weekly Cron Check Error]:', err.message)
+  }
+}, 60000)
