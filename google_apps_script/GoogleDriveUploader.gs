@@ -63,6 +63,44 @@ function otomatikCuma2100TetikleyiciKur() {
 }
 
 /**
+ * 🔓 TÜM SORU FOTOĞRAFLARINI HERKESE AÇIK (LİNKİ OLAN GÖRÜR) YAPAR:
+ * Google Drive'daki 'mete-ege yapılamayan sorular' klasörünü ve içindeki
+ * tüm soru fotoğraflarını 'Bağlantıya sahip olan herkes görüntüleyebilir' yapar.
+ * Böylece web sitesinde ve e-postalarda görseller şifresiz/sorunsuz açılır.
+ */
+function fotograflariHerkeseAcikYap() {
+  try {
+    var rootFolder = getOrCreateFolder(DriveApp.getRootFolder(), ROOT_FOLDER_NAME);
+    rootFolder.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+    var subFolders = rootFolder.getFolders();
+    while (subFolders.hasNext()) {
+      var sf = subFolders.next();
+      sf.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+      var subFiles = sf.getFiles();
+      while (subFiles.hasNext()) {
+        try {
+          subFiles.next().setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+        } catch (_) {}
+      }
+    }
+
+    var rootFiles = rootFolder.getFiles();
+    while (rootFiles.hasNext()) {
+      try {
+        rootFiles.next().setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+      } catch (_) {}
+    }
+
+    Logger.log("🎉 TEBRİKLER! Tüm soru fotoğrafları herkese açık (görüntülenebilir) yapıldı.");
+    return { status: "success", message: "Tüm soru fotoğrafları erişime açıldı" };
+  } catch (err) {
+    Logger.log("Hata: " + err.toString());
+    return { status: "error", error: err.toString() };
+  }
+}
+
+/**
  * Cuma Saat 21:00 Tetikleyicisi tarafından çağrılır:
  * Canlı sunucuya (Render) istek atarak haftalık raporu derletir ve e-postaları postalar.
  */
@@ -236,6 +274,9 @@ function doPost(e) {
 
       var file = dateFolder.createFile(blob);
       file.setDescription("Öğrenci: " + studentName + "\nDers: " + subject + "\nSoru: " + questionNo + (note ? "\nNot: " + note : ""));
+      try {
+        file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+      } catch (_) {}
 
       return ContentService.createTextOutput(JSON.stringify({
         status: "success",
@@ -313,6 +354,25 @@ function doPost(e) {
         subject: subject,
         sentAt: Utilities.formatDate(new Date(), "GMT+3", "yyyy-MM-dd HH:mm:ss")
       })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    if (data.action === "make_photos_public") {
+      var res = fotograflariHerkeseAcikYap();
+      return ContentService.createTextOutput(JSON.stringify(res)).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    if (data.action === "get_photo_base64") {
+      try {
+        var file = DriveApp.getFileById(data.fileId);
+        var bytes = file.getBlob().getBytes();
+        var b64 = Utilities.base64Encode(bytes);
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "success",
+          base64: "data:" + file.getBlob().getContentType() + ";base64," + b64
+        })).setMimeType(ContentService.MimeType.JSON);
+      } catch (err) {
+        return ContentService.createTextOutput(JSON.stringify({ status: "error", error: err.toString() })).setMimeType(ContentService.MimeType.JSON);
+      }
     }
 
     return ContentService.createTextOutput(JSON.stringify({ status: "error", message: "Bilinmeyen eylem" })).setMimeType(ContentService.MimeType.JSON);

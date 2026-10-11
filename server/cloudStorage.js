@@ -166,3 +166,60 @@ export function queueCloudSync(db) {
     }
   }, 1200) // 1.2 second debounce
 }
+
+/**
+ * Persists an uploaded photo binary to the 'data-storage' GitHub branch.
+ */
+export async function savePhotoToCloud(filename, buffer) {
+  if (!GITHUB_TOKEN) return false
+  try {
+    const filePath = `data/uploads/${filename}`
+    const base64Content = buffer.toString('base64')
+    const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`
+
+    let sha = null
+    try {
+      const checkRes = await fetch(`${url}?ref=${GITHUB_BRANCH}`, {
+        headers: {
+          'Authorization': `token ${GITHUB_TOKEN}`,
+          'User-Agent': 'Mete-Ege-Matematik-Server'
+        }
+      })
+      if (checkRes.ok) {
+        const checkData = await checkRes.json()
+        sha = checkData.sha
+      }
+    } catch (_) {}
+
+    const body = {
+      message: `upload: question photo ${filename}`,
+      content: base64Content,
+      branch: GITHUB_BRANCH
+    }
+    if (sha) body.sha = sha
+
+    const putRes = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${GITHUB_TOKEN}`,
+        'User-Agent': 'Mete-Ege-Matematik-Server',
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify(body)
+    })
+
+    if (putRes.ok) {
+      console.log(`[CloudStorage] Photo ${filename} successfully committed to GitHub branch!`)
+      return true
+    } else {
+      const errText = await putRes.text()
+      console.warn(`[CloudStorage] Failed to commit photo ${filename}:`, errText)
+      return false
+    }
+  } catch (err) {
+    console.error(`[CloudStorage] Error saving photo ${filename} to cloud:`, err.message)
+    return false
+  }
+}
+

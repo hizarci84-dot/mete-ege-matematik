@@ -26,6 +26,7 @@ import {
   initDatabaseWithCloudSync
 } from './db.js'
 import { computeStudentAnalytics, computeComparisonAnalytics } from './analytics.js'
+import { savePhotoToCloud } from './cloudStorage.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -43,7 +44,60 @@ app.use(cors())
 app.use(express.json({ limit: '30mb' }))
 app.use(express.urlencoded({ extended: true, limit: '30mb' }))
 
-// Serve uploaded question photos
+// Smart, resilient serving of uploaded question photos
+app.get('/uploads/:filename', async (req, res) => {
+  const { filename } = req.params
+  const localPath = path.join(UPLOADS_DIR, filename)
+
+  // 1. If exists on local disk, serve immediately
+  if (fs.existsSync(localPath)) {
+    return res.sendFile(localPath)
+  }
+
+  // 2. Try fetching from permanent GitHub 'data-storage' branch
+  try {
+    const rawUrl = `https://raw.githubusercontent.com/hizarci84-dot/mete-ege-matematik/data-storage/data/uploads/${encodeURIComponent(filename)}`
+    const ghRes = await fetch(rawUrl)
+    if (ghRes.ok) {
+      const arrayBuf = await ghRes.arrayBuffer()
+      const buf = Buffer.from(arrayBuf)
+      try { fs.writeFileSync(localPath, buf) } catch (_) {}
+      let contentType = 'image/jpeg'
+      if (filename.endsWith('.png')) contentType = 'image/png'
+      else if (filename.endsWith('.webp')) contentType = 'image/webp'
+      return res.type(contentType).send(buf)
+    }
+  } catch (err) {
+    console.warn(`[Uploads] GitHub fallback error for ${filename}:`, err.message)
+  }
+
+  // 3. Fallback: check if an unsolved question with this photo has a Google Drive link
+  try {
+    const questions = getUnsolvedQuestions()
+    const matchQ = questions.find(q => q.imageUrl && q.imageUrl.includes(filename))
+    if (matchQ && matchQ.driveFileUrl) {
+      const fileIdMatch = matchQ.driveFileUrl.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)
+      const fileId = fileIdMatch ? fileIdMatch[1] : null
+      if (fileId) {
+        return res.redirect(`https://lh3.googleusercontent.com/d/${fileId}`)
+      }
+    }
+  } catch (err) {
+    console.warn(`[Uploads] Drive fallback error:`, err.message)
+  }
+
+  // 4. Return an informative SVG banner rather than falling through to index.html
+  res.status(404).type('image/svg+xml').send(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="400" height="220" viewBox="0 0 400 220">
+      <rect width="100%" height="100%" fill="#0f172a"/>
+      <rect x="15" y="15" width="370" height="190" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+      <circle cx="200" cy="80" r="28" fill="#334155"/>
+      <text x="200" y="88" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="24">📸</text>
+      <text x="200" y="135" text-anchor="middle" fill="#e2e8f0" font-family="sans-serif" font-size="13" font-weight="bold">Fotoğraf Google Drive'da Kayıtlı</text>
+      <text x="200" y="160" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="11">Görüntülemek için aşağıdaki Drive bağlantısına tıklayınız</text>
+    </svg>
+  `)
+})
 app.use('/uploads', express.static(UPLOADS_DIR))
 
 /**
@@ -1084,6 +1138,11 @@ app.post('/api/upload-photo', (req, res) => {
 
     fs.writeFileSync(filePath, buffer)
     const publicUrl = `/uploads/${safeName}`
+
+    // Permanently persist to GitHub data-storage branch in background
+    savePhotoToCloud(safeName, buffer).catch(err => {
+      console.warn(`[UploadPhoto] Background cloud sync warning for ${safeName}:`, err.message)
+    })
 
     res.json({
       success: true,

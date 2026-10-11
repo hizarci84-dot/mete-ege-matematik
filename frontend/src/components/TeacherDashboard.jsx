@@ -432,6 +432,9 @@ function doPost(e) {
       var dateFolder = getOrCreateFolder(rootFolder, dateStr);
       var file = dateFolder.createFile(blob);
       file.setDescription("Öğrenci: " + data.studentName + "\\nSoru: " + data.questionNo + "\\nNot: " + (data.note || ""));
+      try {
+        file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+      } catch (_) {}
 
       return ContentService.createTextOutput(JSON.stringify({
         status: "success",
@@ -440,6 +443,23 @@ function doPost(e) {
         downloadUrl: file.getDownloadUrl(),
         folderPath: ROOT_FOLDER_NAME + "/" + dateStr
       })).setMimeType(ContentService.MimeType.JSON);
+    }
+    if (data.action === "make_photos_public") {
+      var res = fotograflariHerkeseAcikYap();
+      return ContentService.createTextOutput(JSON.stringify(res)).setMimeType(ContentService.MimeType.JSON);
+    }
+    if (data.action === "get_photo_base64") {
+      try {
+        var file = DriveApp.getFileById(data.fileId);
+        var bytes = file.getBlob().getBytes();
+        var b64 = Utilities.base64Encode(bytes);
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "success",
+          base64: "data:" + file.getBlob().getContentType() + ";base64," + b64
+        })).setMimeType(ContentService.MimeType.JSON);
+      } catch (err) {
+        return ContentService.createTextOutput(JSON.stringify({ status: "error", error: err.toString() })).setMimeType(ContentService.MimeType.JSON);
+      }
     }
     if (data.action === "send_email" || data.action === "send_daily_email" || data.action === "send_weekly_email" || data.action === "test_email") {
       var recipients = data.to || data.recipients || "";
@@ -488,6 +508,30 @@ function doPost(e) {
 function getOrCreateFolder(parent, name) {
   var it = parent.getFoldersByName(name);
   return it.hasNext() ? it.next() : parent.createFolder(name);
+}
+
+function fotograflariHerkeseAcikYap() {
+  try {
+    var rootFolder = getOrCreateFolder(DriveApp.getRootFolder(), ROOT_FOLDER_NAME);
+    rootFolder.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+    var subFolders = rootFolder.getFolders();
+    while (subFolders.hasNext()) {
+      var sf = subFolders.next();
+      sf.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+      var subFiles = sf.getFiles();
+      while (subFiles.hasNext()) {
+        try { subFiles.next().setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW); } catch (_) {}
+      }
+    }
+    var rootFiles = rootFolder.getFiles();
+    while (rootFiles.hasNext()) {
+      try { rootFiles.next().setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW); } catch (_) {}
+    }
+    Logger.log("Tüm soru fotoğrafları herkese açık yapıldı!");
+    return { status: "success", message: "Tüm fotoğraflar erişime açıldı" };
+  } catch (err) {
+    return { status: "error", error: err.toString() };
+  }
 }
 
 function otomatik1600TetikleyiciKur() {
@@ -1469,21 +1513,58 @@ function sendWeeklyFriday2100Report() {
                     </div>
 
                     {/* Photo Container */}
-                    <div
-                      onClick={() => setPreviewPhoto(item.imageUrl)}
-                      className="relative bg-slate-950 border border-slate-800 rounded-xl overflow-hidden cursor-zoom-in group max-h-72 flex items-center justify-center"
-                    >
-                      <img
-                        src={item.imageUrl}
-                        alt="Öğrencinin Çözemediği Soru"
-                        className="max-h-72 w-full object-contain p-2 group-hover:scale-105 transition duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
-                        <span className="bg-slate-900/90 text-white text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 shadow-lg">
-                          <Maximize2 className="w-3.5 h-3.5" />
-                          <span>Tam Ekran Büyüt</span>
-                        </span>
+                    <div className="space-y-2">
+                      <div
+                        onClick={() => {
+                          const fileIdMatch = item.driveFileUrl?.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)
+                          const driveFallback = fileIdMatch ? `https://lh3.googleusercontent.com/d/${fileIdMatch[1]}` : null
+                          setPreviewPhoto(item.imageUrl || driveFallback)
+                        }}
+                        className="relative bg-slate-950 border border-slate-800 rounded-xl overflow-hidden cursor-zoom-in group max-h-72 min-h-32 flex items-center justify-center"
+                      >
+                        <img
+                          src={item.imageUrl}
+                          alt="Öğrencinin Çözemediği Soru"
+                          className="max-h-72 w-full object-contain p-2 group-hover:scale-105 transition duration-300"
+                          onError={(e) => {
+                            const fileIdMatch = item.driveFileUrl?.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)
+                            if (fileIdMatch && fileIdMatch[1]) {
+                              const driveFallback = `https://lh3.googleusercontent.com/d/${fileIdMatch[1]}`
+                              if (e.target.src !== driveFallback) {
+                                e.target.src = driveFallback
+                                return
+                              }
+                            }
+                            e.target.style.display = 'none'
+                            const fallbackEl = e.target.parentElement?.querySelector('.photo-fallback-banner')
+                            if (fallbackEl) fallbackEl.classList.remove('hidden')
+                          }}
+                        />
+                        <div className="photo-fallback-banner hidden flex-col items-center justify-center p-6 text-center space-y-1">
+                          <span className="text-3xl">📸</span>
+                          <span className="text-xs font-bold text-slate-200">Fotoğraf Google Drive Arşivinde</span>
+                          <span className="text-[11px] text-slate-400">Aşağıdaki butondan Google Drive ile açabilirsiniz</span>
+                        </div>
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+                          <span className="bg-slate-900/90 text-white text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 shadow-lg">
+                            <Maximize2 className="w-3.5 h-3.5" />
+                            <span>Tam Ekran Büyüt</span>
+                          </span>
+                        </div>
                       </div>
+
+                      {/* Google Drive Direct Link Button */}
+                      {item.driveFileUrl && (
+                        <a
+                          href={item.driveFileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full py-2 px-3 bg-slate-950/80 hover:bg-slate-800 border border-indigo-500/30 hover:border-indigo-400 text-indigo-300 hover:text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition shadow-sm"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                          <span>Google Drive'da Orijinal Fotoğrafı Aç</span>
+                        </a>
+                      )}
                     </div>
 
                     {/* Student Note */}
