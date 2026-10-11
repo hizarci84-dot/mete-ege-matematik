@@ -507,14 +507,14 @@
       "note": "",
       "imageUrl": "/uploads/question_1791709238515_d4blqf.jpg",
       "createdAt": "2026-10-11T09:00:40.213Z",
-      "status": "pending",
+      "status": "resolved",
       "teacherReply": "",
       "teacherReplyAt": null,
       "driveFileUrl": "https://drive.google.com/file/d/12uKe_Vieo7DKMYcX7-sndkIbYWdGfvO8/view?usp=drivesdk",
       "driveDownloadUrl": "https://drive.google.com/uc?id=12uKe_Vieo7DKMYcX7-sndkIbYWdGfvO8&export=download",
       "driveFolder": "mete-ege yapılamayan sorular/2026-10-11",
       "driveSyncedAt": "2026-10-11T09:00:44.542Z",
-      "updatedAt": "2026-10-11T09:00:44.542Z"
+      "updatedAt": "2026-10-11T18:37:42.072Z"
     },
     {
       "id": "qimg_1791709208057_0",
@@ -732,5 +732,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-11T17:56:29.075Z"
+  "updated_at": "2026-10-11T18:37:43.373Z"
 }
