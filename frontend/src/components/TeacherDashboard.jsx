@@ -1518,7 +1518,7 @@ function sendWeeklyFriday2100Report() {
                         onClick={() => {
                           const fileIdMatch = item.driveFileUrl?.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)
                           const driveFallback = fileIdMatch ? `https://lh3.googleusercontent.com/d/${fileIdMatch[1]}` : null
-                          setPreviewPhoto(item.imageUrl || driveFallback)
+                          setPreviewPhoto(driveFallback || item.imageUrl)
                         }}
                         className="relative bg-slate-950 border border-slate-800 rounded-xl overflow-hidden cursor-zoom-in group max-h-72 min-h-32 flex items-center justify-center"
                       >
@@ -1541,9 +1541,13 @@ function sendWeeklyFriday2100Report() {
                           }}
                         />
                         <div className="photo-fallback-banner hidden flex-col items-center justify-center p-6 text-center space-y-1">
-                          <span className="text-3xl">📸</span>
-                          <span className="text-xs font-bold text-slate-200">Fotoğraf Google Drive Arşivinde</span>
-                          <span className="text-[11px] text-slate-400">Aşağıdaki butondan Google Drive ile açabilirsiniz</span>
+                          <span className="text-3xl">{item.driveFileUrl ? '📸' : '⚠️'}</span>
+                          <span className="text-xs font-bold text-slate-200">
+                            {item.driveFileUrl ? "Fotoğraf Google Drive Arşivinde" : "İlk Kurulum Deneme Kaydı"}
+                          </span>
+                          <span className="text-[11px] text-slate-400">
+                            {item.driveFileUrl ? "Aşağıdaki butondan Google Drive ile açabilirsiniz" : "Bu soru ilk denemedir. Sağ üstteki çöp kutusu (🗑️) ile silebilirsiniz."}
+                          </span>
                         </div>
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
                           <span className="bg-slate-900/90 text-white text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 shadow-lg">
@@ -1553,8 +1557,8 @@ function sendWeeklyFriday2100Report() {
                         </div>
                       </div>
 
-                      {/* Google Drive Direct Link Button */}
-                      {item.driveFileUrl && (
+                      {/* Google Drive Direct Link Button or Early Test Notice */}
+                      {item.driveFileUrl ? (
                         <a
                           href={item.driveFileUrl}
                           target="_blank"
@@ -1564,6 +1568,10 @@ function sendWeeklyFriday2100Report() {
                           <ExternalLink className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
                           <span>Google Drive'da Orijinal Fotoğrafı Aç</span>
                         </a>
+                      ) : (
+                        <div className="w-full py-2 px-3 bg-amber-500/10 border border-amber-500/20 text-amber-300 rounded-xl text-[11px] flex items-center justify-center gap-1.5 text-center">
+                          <span>⚠️ İlk deneme kaydı (Drive linki yok). Sağ üstteki çöp kutusu (🗑️) ile silebilirsiniz.</span>
+                        </div>
                       )}
                     </div>
 

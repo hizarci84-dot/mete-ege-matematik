@@ -90,11 +90,12 @@ app.get('/uploads/:filename', async (req, res) => {
   res.status(404).type('image/svg+xml').send(`
     <svg xmlns="http://www.w3.org/2000/svg" width="400" height="220" viewBox="0 0 400 220">
       <rect width="100%" height="100%" fill="#0f172a"/>
-      <rect x="15" y="15" width="370" height="190" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
-      <circle cx="200" cy="80" r="28" fill="#334155"/>
-      <text x="200" y="88" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="24">📸</text>
-      <text x="200" y="135" text-anchor="middle" fill="#e2e8f0" font-family="sans-serif" font-size="13" font-weight="bold">Fotoğraf Google Drive'da Kayıtlı</text>
-      <text x="200" y="160" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="11">Görüntülemek için aşağıdaki Drive bağlantısına tıklayınız</text>
+      <rect x="15" y="15" width="370" height="190" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <circle cx="200" cy="70" r="26" fill="#334155"/>
+      <text x="200" y="78" text-anchor="middle" font-size="22">⚠️</text>
+      <text x="200" y="125" text-anchor="middle" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="bold">İlk Deneme Test Kaydı (Görsel Yok)</text>
+      <text x="200" y="150" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="11">Bu soru ilk kurulumdaki deneme kaydıdır.</text>
+      <text x="200" y="172" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="11">Sağ üstteki çöp kutusu (🗑️) ile silebilirsiniz.</text>
     </svg>
   `)
 })
