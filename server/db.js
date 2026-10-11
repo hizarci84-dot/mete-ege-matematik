@@ -339,6 +339,9 @@ export function getInitialData() {
       whatsAppGroupName: 'Mete & Ege 9. Sınıf',
       whatsAppDailyTime: '16:00',
       notificationEmails: '',
+      teacherEmails: '',
+      meteEmails: '',
+      egeEmails: '',
       emailDailyEnabled: true,
       emailWeeklyFridayEnabled: true,
       emailWeeklyFridayTime: '21:00'
@@ -389,6 +392,15 @@ export function readDB() {
     }
     if (parsed.settings.notificationEmails === undefined) {
       parsed.settings.notificationEmails = ''
+    }
+    if (parsed.settings.teacherEmails === undefined) {
+      parsed.settings.teacherEmails = parsed.settings.notificationEmails || ''
+    }
+    if (parsed.settings.meteEmails === undefined) {
+      parsed.settings.meteEmails = ''
+    }
+    if (parsed.settings.egeEmails === undefined) {
+      parsed.settings.egeEmails = ''
     }
     if (parsed.settings.emailDailyEnabled === undefined) {
       parsed.settings.emailDailyEnabled = true

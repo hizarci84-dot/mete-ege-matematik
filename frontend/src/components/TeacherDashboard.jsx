@@ -134,8 +134,10 @@ export default function TeacherDashboard({
   const [isTestingWebhook, setIsTestingWebhook] = useState(false)
   const [webhookTestResult, setWebhookTestResult] = useState(null)
 
-  // Email Notification states
-  const [notificationEmailsInput, setNotificationEmailsInput] = useState('')
+  // Email Notification states (Targeted Recipient Routing)
+  const [teacherEmailsInput, setTeacherEmailsInput] = useState('')
+  const [meteEmailsInput, setMeteEmailsInput] = useState('')
+  const [egeEmailsInput, setEgeEmailsInput] = useState('')
   const [emailDailyEnabled, setEmailDailyEnabled] = useState(true)
   const [emailWeeklyFridayEnabled, setEmailWeeklyFridayEnabled] = useState(true)
   const [isSavingEmailSettings, setIsSavingEmailSettings] = useState(false)
@@ -146,6 +148,7 @@ export default function TeacherDashboard({
   const [weeklyEmailResult, setWeeklyEmailResult] = useState(null)
   const [showWeeklyPreviewModal, setShowWeeklyPreviewModal] = useState(false)
   const [weeklyPreviewHtml, setWeeklyPreviewHtml] = useState('')
+  const [weeklyPreviewType, setWeeklyPreviewType] = useState('teacher')
   const [isLoadingWeeklyPreview, setIsLoadingWeeklyPreview] = useState(false)
 
   // Fetch settings on mount
@@ -157,7 +160,10 @@ export default function TeacherDashboard({
           if (st.googleAppsScriptUrl) setScriptUrlInput(st.googleAppsScriptUrl)
           if (st.whatsAppWebhookUrl) setWhatsAppWebhookInput(st.whatsAppWebhookUrl)
           if (st.teacherPin) setTeacherPinInput(st.teacherPin)
-          if (st.notificationEmails !== undefined) setNotificationEmailsInput(st.notificationEmails)
+          if (st.teacherEmails !== undefined) setTeacherEmailsInput(st.teacherEmails)
+          else if (st.notificationEmails !== undefined) setTeacherEmailsInput(st.notificationEmails)
+          if (st.meteEmails !== undefined) setMeteEmailsInput(st.meteEmails)
+          if (st.egeEmails !== undefined) setEgeEmailsInput(st.egeEmails)
           if (st.emailDailyEnabled !== undefined) setEmailDailyEnabled(st.emailDailyEnabled)
           if (st.emailWeeklyFridayEnabled !== undefined) setEmailWeeklyFridayEnabled(st.emailWeeklyFridayEnabled)
         }
@@ -286,13 +292,16 @@ export default function TeacherDashboard({
     setEmailSettingsSaveMsg(null)
     try {
       const updated = await updateSettings({
-        notificationEmails: notificationEmailsInput.trim(),
+        teacherEmails: teacherEmailsInput.trim(),
+        meteEmails: meteEmailsInput.trim(),
+        egeEmails: egeEmailsInput.trim(),
+        notificationEmails: teacherEmailsInput.trim(),
         emailDailyEnabled,
         emailWeeklyFridayEnabled
       })
       if (updated && updated.settings) {
         setSystemSettings(updated.settings)
-        setEmailSettingsSaveMsg('E-posta bildirim ayarları başarıyla kaydedildi.')
+        setEmailSettingsSaveMsg('E-posta alıcıları ve bildirim ayarları başarıyla kaydedildi.')
       }
     } catch (err) {
       alert('Ayarlar kaydedilirken hata oluştu: ' + err.message)
@@ -302,18 +311,30 @@ export default function TeacherDashboard({
     }
   }
 
-  const handleSendTestEmail = async () => {
-    if (!notificationEmailsInput.trim()) {
+  const handleSendTestEmail = async (targetRole = null) => {
+    if (!teacherEmailsInput.trim() && !meteEmailsInput.trim() && !egeEmailsInput.trim()) {
       alert('Lütfen en az bir alıcı e-posta adresi giriniz.')
       return
     }
     setIsSendingTestEmail(true)
     setTestEmailResult(null)
     try {
-      await updateSettings({ notificationEmails: notificationEmailsInput.trim() })
-      const res = await sendTestEmail(notificationEmailsInput.trim())
+      await updateSettings({
+        teacherEmails: teacherEmailsInput.trim(),
+        meteEmails: meteEmailsInput.trim(),
+        egeEmails: egeEmailsInput.trim(),
+        notificationEmails: teacherEmailsInput.trim(),
+        emailDailyEnabled,
+        emailWeeklyFridayEnabled
+      })
+      let recipientsToSend = ''
+      if (targetRole === 'teacher') recipientsToSend = teacherEmailsInput.trim()
+      else if (targetRole === 'mete') recipientsToSend = meteEmailsInput.trim()
+      else if (targetRole === 'ege') recipientsToSend = egeEmailsInput.trim()
+
+      const res = await sendTestEmail(recipientsToSend)
       if (res && res.success) {
-        setTestEmailResult({ success: true, message: res.message || 'Test e-postası başarıyla gönderildi!' })
+        setTestEmailResult({ success: true, message: res.message || 'Test e-postası başarıyla iletildi!' })
       } else {
         setTestEmailResult({ success: false, message: res?.error || 'Test e-postası gönderilemedi.' })
       }
@@ -326,20 +347,27 @@ export default function TeacherDashboard({
   }
 
   const handleSendWeeklyReportEmail = async () => {
-    if (!notificationEmailsInput.trim()) {
+    if (!teacherEmailsInput.trim() && !meteEmailsInput.trim() && !egeEmailsInput.trim()) {
       alert('Lütfen en az bir alıcı e-posta adresi giriniz.')
       return
     }
-    if (!window.confirm('Cuma haftalık performans raporu belirlenen e-posta adreslerine gönderilsin mi?')) {
+    if (!window.confirm('Cuma haftalık performans raporları kurala göre ilgili alıcılara (Müfit Hoca’ya genel karşılaştırmalı karne, Mete’nin ailesine Mete’nin karnesi, Ege’nin annesine Ege’nin karnesi) gönderilsin mi?')) {
       return
     }
     setIsSendingWeeklyEmail(true)
     setWeeklyEmailResult(null)
     try {
-      await updateSettings({ notificationEmails: notificationEmailsInput.trim() })
-      const res = await sendWeeklyReportEmail(notificationEmailsInput.trim())
+      await updateSettings({
+        teacherEmails: teacherEmailsInput.trim(),
+        meteEmails: meteEmailsInput.trim(),
+        egeEmails: egeEmailsInput.trim(),
+        notificationEmails: teacherEmailsInput.trim(),
+        emailDailyEnabled,
+        emailWeeklyFridayEnabled
+      })
+      const res = await sendWeeklyReportEmail('')
       if (res && res.success) {
-        setWeeklyEmailResult({ success: true, message: res.message || 'Haftalık rapor e-postası başarıyla gönderildi!' })
+        setWeeklyEmailResult({ success: true, message: res.message || 'Cuma haftalık karne raporları ilgili velilere ve öğretmene başarıyla gönderildi!' })
       } else {
         setWeeklyEmailResult({ success: false, message: res?.error || 'Haftalık rapor gönderilemedi.' })
       }
@@ -351,11 +379,12 @@ export default function TeacherDashboard({
     }
   }
 
-  const handleOpenWeeklyPreview = async () => {
+  const handleOpenWeeklyPreview = async (type = 'teacher') => {
     setShowWeeklyPreviewModal(true)
+    setWeeklyPreviewType(type)
     setIsLoadingWeeklyPreview(true)
     try {
-      const res = await fetchWeeklyReportPreview()
+      const res = await fetchWeeklyReportPreview(type)
       if (res && res.success && res.html) {
         setWeeklyPreviewHtml(res.html)
       }
@@ -2417,48 +2446,96 @@ function sendWeeklyFriday2100Report() {
                 </div>
                 <div>
                   <h4 className="text-base font-bold text-white flex items-center gap-2">
-                    <span>E-posta Bildirimleri & Cuma 21:00 Haftalık Karne Raporu</span>
+                    <span>E-posta Bildirimleri & Cuma 21:00 Haftalık Karne Dağıtımı</span>
                     <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30 font-semibold">
-                      Otomatik & Çoklu Alıcı
+                      Kişiye Özel & Güvenli İzolasyon
                     </span>
                   </h4>
                   <p className="text-xs text-slate-300 mt-1">
-                    Öğrencileriniz günlük ödevlerini tamamlayıp kaydettiklerinde anlık sonuçlar, her Cuma akşamı saat 21:00'da ise tüm haftalık gelişim karnesi tanımlanan e-posta adreslerine (öğretmen ve veliler) otomatik postalanır.
+                    Öğrenci ve veli gizliliği korunur: Mete'nin testleri yalnızca kendi ailesine ve Müfit Hoca'ya, Ege'nin testleri yalnızca kendi annesine ve Müfit Hoca'ya iletilir. Cuma 21:00'da da her veliye sadece kendi çocuğunun karnesi postalanır.
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
                 <span className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 border ${
-                  notificationEmailsInput.trim()
+                  (teacherEmailsInput.trim() || meteEmailsInput.trim() || egeEmailsInput.trim())
                     ? 'bg-emerald-950/70 border-emerald-500/40 text-emerald-300'
                     : 'bg-amber-950/70 border-amber-500/40 text-amber-300'
                 }`}>
-                  <span className={`w-2 h-2 rounded-full ${notificationEmailsInput.trim() ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
-                  <span>{notificationEmailsInput.trim() ? 'E-posta Aktif' : 'E-posta Tanımlanmadı'}</span>
+                  <span className={`w-2 h-2 rounded-full ${(teacherEmailsInput.trim() || meteEmailsInput.trim() || egeEmailsInput.trim()) ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
+                  <span>{(teacherEmailsInput.trim() || meteEmailsInput.trim() || egeEmailsInput.trim()) ? 'E-posta Dağıtımı Aktif' : 'Adres Tanımlanmadı'}</span>
                 </span>
               </div>
             </div>
 
-            {/* Email Input Field */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <label className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>Bildirim Gönderilecek E-posta Adresleri (Birden fazla adres için virgülle ayırınız):</span>
-                </label>
-                <span className="text-[11px] text-slate-400">Örnek: Öğretmen + Mete'nin Velisi + Ege'nin Velisi</span>
+            {/* 3 Dedicated Email Input Sections */}
+            <div className="space-y-4">
+              {/* Recipient 1: Müfit Hoca (Öğretmen) */}
+              <div className="bg-slate-950/60 border border-indigo-900/50 hover:border-indigo-700/60 rounded-2xl p-4 transition space-y-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                  <label className="text-xs font-bold text-indigo-300 flex items-center gap-2">
+                    <span className="text-base">👨‍🏫</span>
+                    <span>1. Müfit Hoca (Öğretmen) E-postası</span>
+                    <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded border border-indigo-500/30">Mete + Ege (Tüm Sonuçlar)</span>
+                  </label>
+                  <span className="text-[11px] text-slate-400">Virgülle birden fazla mail eklenebilir</span>
+                </div>
+                <input
+                  type="text"
+                  value={teacherEmailsInput}
+                  onChange={(e) => setTeacherEmailsInput(e.target.value)}
+                  placeholder="mufithoca@gmail.com"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 font-mono focus:outline-none focus:border-indigo-500"
+                />
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  📌 <strong>Kapsam:</strong> Mete ve Ege'nin her iki öğrencisinin günlük çözdüğü tüm testler anında buraya gelir. Cuma 21:00'da ise her iki öğrencinin karşılaştırmalı haftalık karnesi ve çözülemeyen soruları buraya postalanır.
+                </p>
               </div>
-              <input
-                type="text"
-                value={notificationEmailsInput}
-                onChange={(e) => setNotificationEmailsInput(e.target.value)}
-                placeholder="mufithoca@gmail.com, mete_veli@gmail.com, ege_veli@gmail.com"
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 font-mono focus:outline-none focus:border-indigo-500"
-              />
-              <p className="text-[11px] text-slate-400">
-                💡 <strong>İpucu:</strong> Buraya dilediğiniz kadar e-posta adresi yazabilirsiniz. Her ödev tesliminde ve Cuma 21:00 haftalık raporda tüm bu adreslere aynı anda mail ulaşır.
-              </p>
+
+              {/* Recipient 2: Mete'nin Anne & Babası */}
+              <div className="bg-slate-950/60 border border-blue-900/50 hover:border-blue-700/60 rounded-2xl p-4 transition space-y-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                  <label className="text-xs font-bold text-blue-300 flex items-center gap-2">
+                    <span className="text-base">👨‍🎓</span>
+                    <span>2. Mete'nin Anne & Babası (Veli) E-postaları</span>
+                    <span className="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded border border-blue-500/30">Yalnızca Mete'nin Sonuçları</span>
+                  </label>
+                  <span className="text-[11px] text-slate-400">Anne ve baba için virgülle ayırabilirsiniz</span>
+                </div>
+                <input
+                  type="text"
+                  value={meteEmailsInput}
+                  onChange={(e) => setMeteEmailsInput(e.target.value)}
+                  placeholder="mete_anne@gmail.com, mete_baba@gmail.com"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 font-mono focus:outline-none focus:border-blue-500"
+                />
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  🛡️ <strong>İzolasyon:</strong> Yalnızca Mete'nin günlük çözdüğü testler ve soru fotoğrafları gider. Cuma 21:00'da sadece Mete'nin haftalık bireysel karnesi iletilir. Ege'nin hiçbir verisi bu adreslere <u>asla gönderilmez</u>.
+                </p>
+              </div>
+
+              {/* Recipient 3: Ege'nin Annesi */}
+              <div className="bg-slate-950/60 border border-emerald-900/50 hover:border-emerald-700/60 rounded-2xl p-4 transition space-y-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                  <label className="text-xs font-bold text-emerald-300 flex items-center gap-2">
+                    <span className="text-base">🧑‍🎓</span>
+                    <span>3. Ege'nin Annesi (Veli) E-postası</span>
+                    <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30">Yalnızca Ege'nin Sonuçları</span>
+                  </label>
+                  <span className="text-[11px] text-slate-400">Virgülle birden fazla mail eklenebilir</span>
+                </div>
+                <input
+                  type="text"
+                  value={egeEmailsInput}
+                  onChange={(e) => setEgeEmailsInput(e.target.value)}
+                  placeholder="ege_anne@gmail.com"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 font-mono focus:outline-none focus:border-emerald-500"
+                />
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  🛡️ <strong>İzolasyon:</strong> Yalnızca Ege'nin günlük çözdüğü testler ve soru fotoğrafları gider. Cuma 21:00'da sadece Ege'nin haftalık bireysel karnesi iletilir. Mete'nin hiçbir verisi bu adrese <u>asla gönderilmez</u>.
+                </p>
+              </div>
             </div>
 
             {/* Notification Checkboxes / Toggles */}
@@ -2476,7 +2553,7 @@ function sendWeeklyFriday2100Report() {
                     <span>⚡ Günlük Test Tamamlandığında Anlık Bildirim</span>
                   </span>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Mete veya Ege testini bitirip kaydettiğinde; Doğru, Yanlış, Boş, Net skor, Süre ve yüklenen soru fotoğrafları anında tüm adreslere postalanır.
+                    Mete testi kaydettiğinde Mete'nin velilerine + Öğretmene gider. Ege testi kaydettiğinde Ege'nin annesine + Öğretmene gider. Doğru/Yanlış sayıları ve çözülemeyen sorular postalanır.
                   </p>
                 </div>
               </label>
@@ -2491,10 +2568,10 @@ function sendWeeklyFriday2100Report() {
                 />
                 <div className="space-y-1">
                   <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                    <span>📊 Her Cuma Saat 21:00'da Haftalık Performans Raporu</span>
+                    <span>📊 Her Cuma Saat 21:00'da Haftalık Karne Dağıtımı</span>
                   </span>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Cuma akşamı saat 21:00'da haftanın tüm testleri, soru sayıları, netleri, başarı yüzdeleri ve çözülemeyen sorular derlenerek detaylı karne halinde velilere gider.
+                    Her Cuma akşamı 21:00'da otomatik olarak; Müfit Hoca'ya genel karne, Mete'nin ailesine Mete'nin haftalık karnesi, Ege'nin annesine Ege'nin haftalık karnesi gider.
                   </p>
                 </div>
               </label>
@@ -2544,12 +2621,13 @@ function sendWeeklyFriday2100Report() {
 
               <button
                 type="button"
-                onClick={handleSendTestEmail}
+                onClick={() => handleSendTestEmail(null)}
                 disabled={isSendingTestEmail}
                 className="py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-xl text-xs font-bold transition flex items-center space-x-2 disabled:opacity-50"
+                title="Tüm tanımlı e-posta adreslerine rol bazlı test maili gönderir"
               >
                 {isSendingTestEmail ? <RefreshCw className="w-3.5 h-3.5 animate-spin text-indigo-400" /> : <Send className="w-3.5 h-3.5" />}
-                <span>{isSendingTestEmail ? 'Test Maili Gönderiliyor...' : 'Test E-postası Gönder'}</span>
+                <span>{isSendingTestEmail ? 'Test Maili Gönderiliyor...' : 'Tüm Adreslere Test Gönder'}</span>
               </button>
 
               <button
@@ -2557,18 +2635,19 @@ function sendWeeklyFriday2100Report() {
                 onClick={handleSendWeeklyReportEmail}
                 disabled={isSendingWeeklyEmail}
                 className="py-2.5 px-4 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow-lg shadow-emerald-700/20 disabled:opacity-50"
+                title="Cuma 21:00 dağıtımını test etmek için karneleri anında postalar"
               >
                 {isSendingWeeklyEmail ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <MailCheck className="w-3.5 h-3.5" />}
-                <span>{isSendingWeeklyEmail ? 'Rapor Gönderiliyor...' : 'Cuma Raporunu Şimdi Gönder (Test Et)'}</span>
+                <span>{isSendingWeeklyEmail ? 'Raporlar Gönderiliyor...' : 'Cuma Karnelerini Şimdi Dağıt (Test Et)'}</span>
               </button>
 
               <button
                 type="button"
-                onClick={handleOpenWeeklyPreview}
+                onClick={() => handleOpenWeeklyPreview('teacher')}
                 className="py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-indigo-500/30 rounded-xl text-xs font-bold transition flex items-center space-x-2 ml-auto"
               >
                 <Eye className="w-3.5 h-3.5 text-indigo-400" />
-                <span>Haftalık Rapor E-postasını Önizle</span>
+                <span>Haftalık Karne Şablonlarını Önizle</span>
               </button>
             </div>
           </div>
@@ -2667,10 +2746,12 @@ function sendWeeklyFriday2100Report() {
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
           <div className="bg-slate-900 border border-slate-700 rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
             <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/80">
-              <span className="text-sm font-bold text-white flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-indigo-400" />
-                Cuma 21:00 Haftalık Karne E-postası Canlı Önizlemesi
-              </span>
+                <span className="text-sm font-bold text-white">
+                  Cuma 21:00 Haftalık Karne Canlı Önizlemesi
+                </span>
+              </div>
               <button
                 type="button"
                 onClick={() => setShowWeeklyPreviewModal(false)}
@@ -2679,11 +2760,50 @@ function sendWeeklyFriday2100Report() {
                 <X className="w-5 h-5" />
               </button>
             </div>
+
+            {/* Preview Type Selector Tabs */}
+            <div className="px-4 py-2.5 bg-slate-950 border-b border-slate-800/80 flex items-center gap-2 overflow-x-auto">
+              <span className="text-xs text-slate-400 font-semibold mr-1 shrink-0">Karne Şablonu:</span>
+              <button
+                type="button"
+                onClick={() => handleOpenWeeklyPreview('teacher')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 border ${
+                  weeklyPreviewType === 'teacher'
+                    ? 'bg-indigo-600 border-indigo-400 text-white shadow'
+                    : 'bg-slate-900 border-slate-700 text-slate-300 hover:border-slate-500'
+                }`}
+              >
+                <span>👨‍🏫 Müfit Hoca (Genel Karne)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleOpenWeeklyPreview('mete')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 border ${
+                  weeklyPreviewType === 'mete'
+                    ? 'bg-blue-600 border-blue-400 text-white shadow'
+                    : 'bg-slate-900 border-slate-700 text-slate-300 hover:border-slate-500'
+                }`}
+              >
+                <span>👨‍🎓 Mete'nin Karnesi (Veli)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleOpenWeeklyPreview('ege')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 border ${
+                  weeklyPreviewType === 'ege'
+                    ? 'bg-emerald-600 border-emerald-400 text-white shadow'
+                    : 'bg-slate-900 border-slate-700 text-slate-300 hover:border-slate-500'
+                }`}
+              >
+                <span>🧑‍🎓 Ege'nin Karnesi (Veli)</span>
+              </button>
+            </div>
+
             <div className="p-4 flex-1 overflow-auto bg-slate-950/40">
               {isLoadingWeeklyPreview ? (
                 <div className="py-24 text-center text-slate-400 text-xs flex items-center justify-center gap-2">
                   <RefreshCw className="w-5 h-5 animate-spin text-indigo-400" />
-                  <span>Haftalık karne verileri derleniyor...</span>
+                  <span>Karne verileri derleniyor...</span>
                 </div>
               ) : (
                 <iframe
@@ -2695,7 +2815,7 @@ function sendWeeklyFriday2100Report() {
             </div>
             <div className="p-3.5 border-t border-slate-800 bg-slate-950/80 flex items-center justify-between">
               <span className="text-xs text-slate-400">
-                💡 Bu şablon, her Cuma 21:00'da veya "Cuma Raporunu Şimdi Gönder" butonuna tıklandığında tanımlı mail adreslerine gider.
+                💡 Cuma saat 21:00'da öğretmen ve velilere yukarıdaki şablonlar tam bu şekilde otomatik olarak gönderilir.
               </span>
               <button
                 type="button"

@@ -376,10 +376,39 @@ function buildDailySubmissionEmailHtml(submission, student, settings) {
 }
 
 /**
- * Dispatches instant submission email to all registered recipients
+ * Resolves email recipients for daily test submissions based on student:
+ * - Mete's submission -> Teacher(s) + Mete's Parent(s)
+ * - Ege's submission -> Teacher(s) + Ege's Parent(s)
+ */
+function getDailyRecipients(studentId, settings) {
+  const teacherList = (settings.teacherEmails || settings.notificationEmails || '')
+    .split(',')
+    .map(e => e.trim())
+    .filter(Boolean)
+
+  let parentList = []
+  if (studentId === 'mete') {
+    parentList = (settings.meteEmails || '')
+      .split(',')
+      .map(e => e.trim())
+      .filter(Boolean)
+  } else if (studentId === 'ege') {
+    parentList = (settings.egeEmails || '')
+      .split(',')
+      .map(e => e.trim())
+      .filter(Boolean)
+  }
+
+  // Combine unique recipients: teacher + that student's parent(s)
+  const combined = Array.from(new Set([...teacherList, ...parentList]))
+  return combined.join(', ')
+}
+
+/**
+ * Dispatches instant submission email to student's parents and teacher
  */
 async function dispatchDailySubmissionEmail(submission, student, settings) {
-  const recipients = settings?.notificationEmails?.trim()
+  const recipients = getDailyRecipients(submission.studentId, settings)
   if (!recipients) return { success: false, reason: 'Alıcı e-posta adresi kayıtlı değil' }
 
   const studentName = student?.name || (submission.studentId === 'mete' ? 'Mete' : 'Ege')
@@ -668,40 +697,147 @@ function buildWeeklyFridayEmailHtml(reportData, settings) {
 }
 
 /**
- * Dispatches weekly Friday email report
+ * Builds weekly Friday progress report email HTML for a SINGLE student (sent to that student's family)
  */
-async function dispatchWeeklyFridayEmailReport(customRecipients = null) {
-  const settings = getSettings()
-  const recipients = (customRecipients || settings?.notificationEmails || '').trim()
-  if (!recipients) {
-    return { success: false, error: 'Alıcı e-posta adresi belirtilmemiş.' }
-  }
+function buildSingleStudentWeeklyEmailHtml(studentStat, reportData, settings) {
+  const isMete = studentStat.studentId === 'mete'
+  const themeColor = isMete ? '#f97316' : '#2563eb'
+  const avatarEmoji = isMete ? '👨‍🎓' : '🧑‍🎓'
+  const studentCard = renderStudentCardHtml(studentStat, themeColor, avatarEmoji)
 
-  const reportData = generateWeeklyFridayReportData()
-  const htmlBody = buildWeeklyFridayEmailHtml(reportData, settings)
-  const subject = `📊 [Mete & Ege Matematik] Haftalık Performans Raporu (Cuma Özeti • ${reportData.weekRangeStr})`
-  const textBody = `Mete & Ege Matematik Haftalık Performans Raporu\n${reportData.weekRangeStr}\nMete: ${reportData.mete.totalTests} test, ${reportData.mete.totalNet} net, %${reportData.mete.avgScore} başarı\nEge: ${reportData.ege.totalTests} test, ${reportData.ege.totalNet} net, %${reportData.ege.avgScore} başarı\nDetaylar: https://mete-ege-matematik.onrender.com`
+  return `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${studentStat.studentName} - Haftalık Performans Karnesi</title>
+</head>
+<body style="margin: 0; padding: 20px; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 640px; margin: 0 auto; background-color: #f8fafc; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+    <tr>
+      <td style="background: linear-gradient(135deg, ${isMete ? '#c2410c' : '#1d4ed8'} 0%, ${isMete ? '#ea580c' : '#2563eb'} 50%, #4338ca 100%); padding: 30px 24px; text-align: center; color: #ffffff;">
+        <div style="display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 10px;">
+          📅 CUMA AKŞAMI HAFTALIK PERFORMANS KARNESİ
+        </div>
+        <h1 style="margin: 0; font-size: 24px; font-weight: 900; color: #ffffff; letter-spacing: -0.5px;">
+          ${avatarEmoji} ${studentStat.studentName} Haftalık İlerleme Raporu
+        </h1>
+        <p style="margin: 8px 0 0 0; font-size: 13px; color: #e0e7ff;">
+          Dönem: ${reportData.weekRangeStr} • Öğretmen: Müfit Hoca
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 24px;">
+        <div style="background-color: #ffffff; border-left: 4px solid #4f46e5; border-radius: 0 10px 10px 0; padding: 14px 18px; margin-bottom: 22px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-size: 11px; font-weight: 800; color: #4f46e5; text-transform: uppercase;">Öğretmen Değerlendirmesi</div>
+          <div style="font-size: 13px; color: #334155; margin-top: 4px; line-height: 1.5;">
+            "Değerli velimiz; ${studentStat.studentName}'nin bu haftaki matematik çalışma performansı aşağıda detaylı olarak yer almaktadır. Çözülen testler, net skorlar ve çözülemeyen sorular sisteme düzenli olarak işlenmiştir."
+          </div>
+        </div>
 
-  return await sendEmailViaAppsScript({
-    to: recipients,
-    subject,
-    htmlBody,
-    textBody
-  })
+        ${studentCard}
+
+        <div style="text-align: center; margin-top: 14px;">
+          <a href="https://mete-ege-matematik.onrender.com" target="_blank" style="display: inline-block; background-color: #4f46e5; color: #ffffff !important; text-decoration: none; padding: 14px 32px; border-radius: 12px; font-weight: 800; font-size: 14px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);">
+            🌐 Öğrenci Portalı & Çözülemeyen Soruları İncele
+          </a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 20px 24px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; background-color: #ffffff;">
+        Mete & Ege 9. Sınıf Matematik Takip Sistemi • Öğretmen: Müfit Hoca<br>
+        Bu rapor her Cuma saat 21:00'da velilerimize özel olarak gönderilmektedir.
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`
 }
 
 /**
- * Dispatches test email to verify mail connection
+ * Dispatches targeted weekly Friday email reports:
+ * - Full report (both students) -> Müfit Hoca (Teacher)
+ * - Mete's report -> Mete's Parents
+ * - Ege's report -> Ege's Mother
  */
-async function dispatchTestEmail(customRecipients = null) {
+async function dispatchWeeklyFridayEmailReport(customRecipients = null) {
   const settings = getSettings()
-  const recipients = (customRecipients || settings?.notificationEmails || '').trim()
-  if (!recipients) {
-    return { success: false, error: 'Lütfen test e-postası göndermek için en az bir e-posta adresi giriniz.' }
+  const reportData = generateWeeklyFridayReportData()
+
+  // If a custom recipient list is passed (e.g. from a test button), send full report to that list
+  if (customRecipients && customRecipients.trim()) {
+    const htmlBody = buildWeeklyFridayEmailHtml(reportData, settings)
+    const subject = `📊 [Mete & Ege Matematik] Haftalık Performans Raporu (Cuma Özeti • ${reportData.weekRangeStr})`
+    return await sendEmailViaAppsScript({
+      to: customRecipients.trim(),
+      subject,
+      htmlBody,
+      textBody: `Mete & Ege Matematik Haftalık Performans Raporu (${reportData.weekRangeStr})`
+    })
   }
 
-  const subject = `✅ [Mete & Ege Matematik] E-posta Bildirim Testi Başarılı!`
-  const htmlBody = `<!DOCTYPE html>
+  // Automated or standard dispatch: targeted delivery
+  const teacherRecipients = (settings.teacherEmails || settings.notificationEmails || '').trim()
+  const meteRecipients = (settings.meteEmails || '').trim()
+  const egeRecipients = (settings.egeEmails || '').trim()
+
+  const results = []
+
+  // 1. Müfit Hoca receives the full comparative report (Mete + Ege)
+  if (teacherRecipients) {
+    const fullHtml = buildWeeklyFridayEmailHtml(reportData, settings)
+    const subject = `📊 [Öğretmen Özeti] Mete & Ege Haftalık Performans Raporu (${reportData.weekRangeStr})`
+    const res = await sendEmailViaAppsScript({
+      to: teacherRecipients,
+      subject,
+      htmlBody: fullHtml,
+      textBody: `Mete & Ege Haftalık Rapor: Mete ${reportData.mete.totalNet} net (%${reportData.mete.avgScore}), Ege ${reportData.ege.totalNet} net (%${reportData.ege.avgScore})`
+    })
+    results.push({ target: 'Öğretmen (Müfit Hoca)', recipients: teacherRecipients, success: res?.status === 'success' || res?.success })
+  }
+
+  // 2. Mete's parents receive Mete's tailored weekly report
+  if (meteRecipients) {
+    const meteHtml = buildSingleStudentWeeklyEmailHtml(reportData.mete, reportData, settings)
+    const subject = `📊 [Haftalık Karne] Mete'nin Matematik Performans Raporu (${reportData.weekRangeStr})`
+    const res = await sendEmailViaAppsScript({
+      to: meteRecipients,
+      subject,
+      htmlBody: meteHtml,
+      textBody: `Mete Haftalık Rapor: ${reportData.mete.totalTests} test, ${reportData.mete.totalNet} net, %${reportData.mete.avgScore} başarı.`
+    })
+    results.push({ target: 'Mete\'nin Anne & Babası', recipients: meteRecipients, success: res?.status === 'success' || res?.success })
+  }
+
+  // 3. Ege's mother receives Ege's tailored weekly report
+  if (egeRecipients) {
+    const egeHtml = buildSingleStudentWeeklyEmailHtml(reportData.ege, reportData, settings)
+    const subject = `📊 [Haftalık Karne] Ege'nin Matematik Performans Raporu (${reportData.weekRangeStr})`
+    const res = await sendEmailViaAppsScript({
+      to: egeRecipients,
+      subject,
+      htmlBody: egeHtml,
+      textBody: `Ege Haftalık Rapor: ${reportData.ege.totalTests} test, ${reportData.ege.totalNet} net, %${reportData.ege.avgScore} başarı.`
+    })
+    results.push({ target: 'Ege\'nin Annesi', recipients: egeRecipients, success: res?.status === 'success' || res?.success })
+  }
+
+  if (results.length === 0) {
+    return { success: false, error: 'Henüz hiçbir e-posta adresi tanımlanmamış.' }
+  }
+
+  const allSucceeded = results.every(r => r.success)
+  return {
+    success: allSucceeded,
+    message: `Haftalık raporlar iletildi: ${results.map(r => r.target).join(', ')}.`,
+    details: results
+  }
+}
+
+function buildTestEmailHtml(recipients, roleName) {
+  return `<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="utf-8">
@@ -712,27 +848,28 @@ async function dispatchTestEmail(customRecipients = null) {
     <tr>
       <td style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 24px; text-align: center; color: #ffffff;">
         <div style="font-size: 32px; margin-bottom: 6px;">🎉</div>
-        <h1 style="margin: 0; font-size: 20px; font-weight: 800; color: #ffffff;">E-posta Bağlantısı Başarıyla Kuruldu!</h1>
-        <p style="margin: 4px 0 0 0; font-size: 13px; color: #d1fae5;">Mete & Ege Matematik Takip Sistemi</p>
+        <h1 style="margin: 0; font-size: 20px; font-weight: 800; color: #ffffff;">E-posta Bildirim Hattı Başarıyla Doğrulandı!</h1>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #d1fae5;">Alıcı Grubu: <strong>${roleName}</strong></p>
       </td>
     </tr>
     <tr>
       <td style="padding: 24px; font-size: 14px; line-height: 1.6; color: #334155;">
-        <p>Merhaba <strong>Müfit Hocam ve Değerli Veliler</strong>,</p>
-        <p>Bu e-posta, Mete & Ege Matematik Takip Sistemi'nin e-posta bildirim servisinin eksiksiz çalıştığını doğrulamak amacıyla gönderilmiştir.</p>
+        <p>Merhaba,</p>
+        <p>Mete & Ege 9. Sınıf Matematik Takip Sistemi e-posta bildirim bağlantınız başarıyla aktif edilmiştir.</p>
         <div style="background-color: #f8fafc; border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 16px 0;">
-          <div style="font-weight: 700; color: #0f172a; font-size: 13px;">⚡ Aktif Olan Otomatik Bildirimler:</div>
+          <div style="font-weight: 700; color: #0f172a; font-size: 13px;">🔒 Gizlilik ve Hedefli İletim Kuralı:</div>
           <ul style="margin: 8px 0 0 0; padding-left: 18px; font-size: 13px; color: #475569;">
-            <li><strong>Günlük Test Bildirimi:</strong> Mete veya Ege günlük ödev testini bitirip kaydettiğinde sonuçlar anında bu e-posta adreslerine gelir.</li>
-            <li><strong>Cuma 21:00 Haftalık Karne:</strong> Her Cuma saat 21:00'da haftanın tüm performansını gösteren kapsamlı haftalık rapor bu adreslere postalanır.</li>
+            <li><strong>Mete'nin Günlük ve Haftalık Sonuçları:</strong> Yalnızca Mete'nin anne ve babasına ve Müfit Hoca'ya ulaşır.</li>
+            <li><strong>Ege'nin Günlük ve Haftalık Sonuçları:</strong> Yalnızca Ege'nin annesine ve Müfit Hoca'ya ulaşır.</li>
+            <li><strong>Müfit Hoca (Öğretmen):</strong> Her iki öğrencinin tüm sonuçlarını ve Cuma 21:00 karşılaştırmalı karne raporunu alır.</li>
           </ul>
         </div>
         <p style="margin-top: 16px; font-size: 13px; color: #64748b;">
-          Tanımlanan Alıcılar: <code>${recipients}</code>
+          Tanımlanan Alıcı E-posta: <code>${recipients}</code>
         </p>
         <div style="text-align: center; margin-top: 24px;">
           <a href="https://mete-ege-matematik.onrender.com" target="_blank" style="display: inline-block; background-color: #4f46e5; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 10px; font-weight: 800; font-size: 13px;">
-            🌐 Web Portalına Git
+            🌐 Matematik Portalına Git
           </a>
         </div>
       </td>
@@ -745,14 +882,64 @@ async function dispatchTestEmail(customRecipients = null) {
   </table>
 </body>
 </html>`
-  const textBody = `Tebrikler! Mete & Ege Matematik Takip Sistemi e-posta bağlantısı başarıyla çalışıyor.\nTanımlanan alıcılar: ${recipients}`
+}
 
-  return await sendEmailViaAppsScript({
-    to: recipients,
-    subject,
-    htmlBody,
-    textBody
-  })
+/**
+ * Dispatches test email to verify mail connection
+ */
+async function dispatchTestEmail(customRecipients = null) {
+  const settings = getSettings()
+  
+  if (customRecipients && customRecipients.trim()) {
+    return await sendEmailViaAppsScript({
+      to: customRecipients.trim(),
+      subject: `✅ [Mete & Ege Matematik] E-posta Bildirim Testi Başarılı!`,
+      htmlBody: buildTestEmailHtml(customRecipients.trim(), 'Test Alıcısı'),
+      textBody: `Test e-postası başarıyla iletildi: ${customRecipients}`
+    })
+  }
+
+  const teacherRecipients = (settings.teacherEmails || settings.notificationEmails || '').trim()
+  const meteRecipients = (settings.meteEmails || '').trim()
+  const egeRecipients = (settings.egeEmails || '').trim()
+
+  const dispatched = []
+
+  if (teacherRecipients) {
+    await sendEmailViaAppsScript({
+      to: teacherRecipients,
+      subject: `✅ [Öğretmen Bildirim Testi] E-posta Bağlantısı Başarılı!`,
+      htmlBody: buildTestEmailHtml(teacherRecipients, 'Müfit Hoca (Öğretmen)'),
+      textBody: `Öğretmen bildirim adresi doğrulandı: ${teacherRecipients}`
+    })
+    dispatched.push('Öğretmen')
+  }
+
+  if (meteRecipients) {
+    await sendEmailViaAppsScript({
+      to: meteRecipients,
+      subject: `✅ [Mete & Velisi Bildirim Testi] E-posta Bağlantısı Başarılı!`,
+      htmlBody: buildTestEmailHtml(meteRecipients, 'Mete\'nin Anne & Babası'),
+      textBody: `Mete veli bildirim adresi doğrulandı: ${meteRecipients}`
+    })
+    dispatched.push('Mete\'nin Velisi')
+  }
+
+  if (egeRecipients) {
+    await sendEmailViaAppsScript({
+      to: egeRecipients,
+      subject: `✅ [Ege & Velisi Bildirim Testi] E-posta Bağlantısı Başarılı!`,
+      htmlBody: buildTestEmailHtml(egeRecipients, 'Ege\'nin Annesi'),
+      textBody: `Ege veli bildirim adresi doğrulandı: ${egeRecipients}`
+    })
+    dispatched.push('Ege\'nin Annesi')
+  }
+
+  if (dispatched.length === 0) {
+    return { success: false, error: 'Lütfen test etmek için en az bir e-posta adresi kaydediniz.' }
+  }
+
+  return { success: true, message: `Test e-postaları başarıyla gönderildi (${dispatched.join(', ')}).` }
 }
 
 // Health check
@@ -1295,6 +1482,9 @@ app.put('/api/settings', (req, res) => {
     whatsAppWebhookUrl,
     teacherPin,
     notificationEmails,
+    teacherEmails,
+    meteEmails,
+    egeEmails,
     emailDailyEnabled,
     emailWeeklyFridayEnabled,
     emailWeeklyFridayTime
@@ -1306,6 +1496,9 @@ app.put('/api/settings', (req, res) => {
   if (whatsAppWebhookUrl !== undefined) updates.whatsAppWebhookUrl = String(whatsAppWebhookUrl).trim()
   if (teacherPin !== undefined && String(teacherPin).trim().length >= 4) updates.teacherPin = String(teacherPin).trim()
   if (notificationEmails !== undefined) updates.notificationEmails = String(notificationEmails).trim()
+  if (teacherEmails !== undefined) updates.teacherEmails = String(teacherEmails).trim()
+  if (meteEmails !== undefined) updates.meteEmails = String(meteEmails).trim()
+  if (egeEmails !== undefined) updates.egeEmails = String(egeEmails).trim()
   if (emailDailyEnabled !== undefined) updates.emailDailyEnabled = Boolean(emailDailyEnabled)
   if (emailWeeklyFridayEnabled !== undefined) updates.emailWeeklyFridayEnabled = Boolean(emailWeeklyFridayEnabled)
   if (emailWeeklyFridayTime !== undefined) updates.emailWeeklyFridayTime = String(emailWeeklyFridayTime).trim()
@@ -1466,13 +1659,21 @@ app.post('/api/email/send-weekly', async (req, res) => {
   }
 })
 
-// Preview weekly Friday report HTML
+// Preview weekly Friday report HTML (supports ?type=teacher|mete|ege)
 app.get('/api/email/preview-weekly', (req, res) => {
   try {
+    const { type } = req.query
     const reportData = generateWeeklyFridayReportData()
     const settings = getSettings()
-    const html = buildWeeklyFridayEmailHtml(reportData, settings)
-    res.json({ success: true, reportData, html })
+    let html = ''
+    if (type === 'mete') {
+      html = buildSingleStudentWeeklyEmailHtml(reportData.mete, reportData, settings)
+    } else if (type === 'ege') {
+      html = buildSingleStudentWeeklyEmailHtml(reportData.ege, reportData, settings)
+    } else {
+      html = buildWeeklyFridayEmailHtml(reportData, settings)
+    }
+    res.json({ success: true, reportData, html, type: type || 'teacher' })
   } catch (err) {
     res.status(500).json({ success: false, error: err.message })
   }

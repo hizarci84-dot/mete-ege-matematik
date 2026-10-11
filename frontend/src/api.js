@@ -233,8 +233,8 @@ export async function sendWeeklyReportEmail(recipients = '') {
   return res.json()
 }
 
-export async function fetchWeeklyReportPreview() {
-  const res = await fetch(`${API_BASE}/email/preview-weekly`)
+export async function fetchWeeklyReportPreview(type = 'teacher') {
+  const res = await fetch(`${API_BASE}/email/preview-weekly?type=${type}`)
   return res.json()
 }
 
