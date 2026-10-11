@@ -532,14 +532,14 @@
       "note": "",
       "imageUrl": "/uploads/question_1791709207680_md02l9.jpg",
       "createdAt": "2026-10-11T09:00:13.341Z",
-      "status": "pending",
+      "status": "resolved",
       "teacherReply": "",
       "teacherReplyAt": null,
       "driveFileUrl": "https://drive.google.com/file/d/10wlMGFdS7g8jPZAkx281HNa0oTc4iZdw/view?usp=drivesdk",
       "driveDownloadUrl": "https://drive.google.com/uc?id=10wlMGFdS7g8jPZAkx281HNa0oTc4iZdw&export=download",
       "driveFolder": "mete-ege yapılamayan sorular/2026-10-11",
       "driveSyncedAt": "2026-10-11T09:00:29.097Z",
-      "updatedAt": "2026-10-11T09:00:29.097Z"
+      "updatedAt": "2026-10-11T18:37:43.556Z"
     },
     {
       "id": "qimg_1791709202951_0",
@@ -557,14 +557,14 @@
       "note": "",
       "imageUrl": "/uploads/question_1791709202580_dnmx0i.jpg",
       "createdAt": "2026-10-11T09:00:13.341Z",
-      "status": "pending",
+      "status": "resolved",
       "teacherReply": "",
       "teacherReplyAt": null,
       "driveFileUrl": "https://drive.google.com/file/d/1GL6Ce_3i8E1eyFeueoApDYl-zgW_-mXG/view?usp=drivesdk",
       "driveDownloadUrl": "https://drive.google.com/uc?id=1GL6Ce_3i8E1eyFeueoApDYl-zgW_-mXG&export=download",
       "driveFolder": "mete-ege yapılamayan sorular/2026-10-11",
       "driveSyncedAt": "2026-10-11T09:00:20.370Z",
-      "updatedAt": "2026-10-11T09:00:20.370Z"
+      "updatedAt": "2026-10-11T18:37:45.363Z"
     },
     {
       "id": "qimg_1791709170184_0",
@@ -582,14 +582,14 @@
       "note": "",
       "imageUrl": "/uploads/question_1791709169797_0kvf05.jpg",
       "createdAt": "2026-10-11T08:59:37.813Z",
-      "status": "pending",
+      "status": "resolved",
       "teacherReply": "",
       "teacherReplyAt": null,
       "driveFileUrl": "https://drive.google.com/file/d/14-xehDQjvToDtacp1RpiGPzq7SsIMIgn/view?usp=drivesdk",
       "driveDownloadUrl": "https://drive.google.com/uc?id=14-xehDQjvToDtacp1RpiGPzq7SsIMIgn&export=download",
       "driveFolder": "mete-ege yapılamayan sorular/2026-10-11",
       "driveSyncedAt": "2026-10-11T08:59:43.670Z",
-      "updatedAt": "2026-10-11T08:59:43.670Z"
+      "updatedAt": "2026-10-11T18:37:46.249Z"
     },
     {
       "id": "qimg_1791709130145_0",
@@ -732,5 +732,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-11T18:37:43.373Z"
+  "updated_at": "2026-10-11T18:37:47.456Z"
 }
