@@ -612,26 +612,6 @@
       "updatedAt": "2026-10-11T08:59:43.670Z"
     },
     {
-      "id": "qimg_1791709164558_0",
-      "submissionId": "sub_1791709177812",
-      "studentId": "mete",
-      "studentName": "Mete",
-      "testId": "cap-t1-ogr-3",
-      "assignmentId": "asgn_mete_5",
-      "themeName": "1. Tema: Sayılar",
-      "topicName": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
-      "testTitle": "Üslü Sayılarda Dört İşlem - 2",
-      "testNum": "Öğreniyorum 3",
-      "pages": "11-12",
-      "questionNo": "Soru 1",
-      "note": "",
-      "imageUrl": "/uploads/question_1791709164173_kzxgub.jpg",
-      "createdAt": "2026-10-11T08:59:37.813Z",
-      "status": "pending",
-      "teacherReply": "",
-      "teacherReplyAt": null
-    },
-    {
       "id": "qimg_1791709130145_0",
       "submissionId": "sub_1791709130465",
       "studentId": "mete",
@@ -772,5 +752,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-11T15:39:13.557Z"
+  "updated_at": "2026-10-11T17:56:24.902Z"
 }
