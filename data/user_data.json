@@ -249,6 +249,31 @@
       "questionPhotos": [],
       "net": 8.75,
       "scorePercent": 82
+    },
+    {
+      "id": "sub_1791708289538",
+      "submittedAt": "2026-10-11T08:44:49.538Z",
+      "studentId": "mete",
+      "assignmentId": "asgn_mete_1",
+      "testId": "cap-t1-ogr-1",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
+      "testTitle": "Üslü Sayılar",
+      "testNum": "Öğreniyorum 1",
+      "pages": "7-8",
+      "date": "2026-10-05",
+      "qCount": 14,
+      "correct": 13,
+      "wrong": 1,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 12.75,
+      "scorePercent": 93
     }
   ],
   "mockExams": [],
@@ -286,5 +311,5 @@
     "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbxdw_sKaymUjvHehDuCtLUvbwFa6uXfBniGVfnAakGBrr5x6AxDsMp2ax6s6mt3wao3/exec",
     "whatsAppDailyTime": "16:00"
   },
-  "updated_at": "2026-10-10T21:27:01.564Z"
+  "updated_at": "2026-10-11T08:44:50.750Z"
 }
