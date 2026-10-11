@@ -374,196 +374,6 @@
       "questionPhotos": [],
       "net": 12,
       "scorePercent": 100
-    },
-    {
-      "id": "sub_1791709101090",
-      "submittedAt": "2026-10-11T08:58:21.090Z",
-      "studentId": "mete",
-      "assignmentId": "asgn_mete_6",
-      "testId": "orig-t1-test-2",
-      "bookId": "orijinal-9",
-      "themeName": "1. Tema: Sayılar",
-      "topicName": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
-      "testTitle": "Üslü Gösterim Test 2",
-      "testNum": "Test 2",
-      "pages": "9-10",
-      "date": "2026-10-10",
-      "qCount": 12,
-      "correct": 10,
-      "wrong": 1,
-      "empty": 1,
-      "durationMinutes": 15,
-      "mode": "quick",
-      "answers": [],
-      "studentNote": "",
-      "questionPhotos": [
-        {
-          "id": "qimg_1791709087387_0",
-          "url": "/uploads/question_1791709087010_9qf07i.jpg",
-          "questionNo": "Soru 1",
-          "note": ""
-        },
-        {
-          "id": "qimg_1791709098584_0",
-          "url": "/uploads/question_1791709098207_4trc9q.jpg",
-          "questionNo": "Soru 2",
-          "note": ""
-        }
-      ],
-      "net": 9.75,
-      "scorePercent": 83
-    },
-    {
-      "id": "sub_1791709130465",
-      "submittedAt": "2026-10-11T08:58:50.465Z",
-      "studentId": "mete",
-      "assignmentId": "asgn_mete_7",
-      "testId": "orig-t1-test-3",
-      "bookId": "orijinal-9",
-      "themeName": "1. Tema: Sayılar",
-      "topicName": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
-      "testTitle": "Üslü Gösterim Test 3",
-      "testNum": "Test 3",
-      "pages": "10-11",
-      "date": "2026-10-10",
-      "qCount": 12,
-      "correct": 10,
-      "wrong": 1,
-      "empty": 1,
-      "durationMinutes": 15,
-      "mode": "quick",
-      "answers": [],
-      "studentNote": "",
-      "questionPhotos": [
-        {
-          "id": "qimg_1791709124550_0",
-          "url": "/uploads/question_1791709124174_4geh5p.jpg",
-          "questionNo": "Soru 1",
-          "note": ""
-        },
-        {
-          "id": "qimg_1791709130145_0",
-          "url": "/uploads/question_1791709129765_ws8dqu.jpg",
-          "questionNo": "Soru 2",
-          "note": ""
-        }
-      ],
-      "net": 9.75,
-      "scorePercent": 83
-    },
-    {
-      "id": "sub_1791709177812",
-      "submittedAt": "2026-10-11T08:59:37.812Z",
-      "studentId": "mete",
-      "assignmentId": "asgn_mete_5",
-      "testId": "cap-t1-ogr-3",
-      "bookId": "cap-9",
-      "themeName": "1. Tema: Sayılar",
-      "topicName": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
-      "testTitle": "Üslü Sayılarda Dört İşlem - 2",
-      "testNum": "Öğreniyorum 3",
-      "pages": "11-12",
-      "date": "2026-10-09",
-      "qCount": 12,
-      "correct": 9,
-      "wrong": 1,
-      "empty": 2,
-      "durationMinutes": 15,
-      "mode": "quick",
-      "answers": [],
-      "studentNote": "",
-      "questionPhotos": [
-        {
-          "id": "qimg_1791709164558_0",
-          "url": "/uploads/question_1791709164173_kzxgub.jpg",
-          "questionNo": "Soru 1",
-          "note": ""
-        },
-        {
-          "id": "qimg_1791709170184_0",
-          "url": "/uploads/question_1791709169797_0kvf05.jpg",
-          "questionNo": "Soru 2",
-          "note": ""
-        },
-        {
-          "id": "qimg_1791709176237_0",
-          "url": "/uploads/question_1791709175676_isdqi3.jpg",
-          "questionNo": "Soru 3",
-          "note": ""
-        }
-      ],
-      "net": 8.75,
-      "scorePercent": 75
-    },
-    {
-      "id": "sub_1791709213341",
-      "submittedAt": "2026-10-11T09:00:13.341Z",
-      "studentId": "mete",
-      "assignmentId": "asgn_mete_3",
-      "testId": "cap-t1-ogr-2",
-      "bookId": "cap-9",
-      "themeName": "1. Tema: Sayılar",
-      "topicName": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
-      "testTitle": "Üslü Sayılarda Dört İşlem - 1",
-      "testNum": "Öğreniyorum 2",
-      "pages": "9-10",
-      "date": "2026-10-07",
-      "qCount": 12,
-      "correct": 10,
-      "wrong": 1,
-      "empty": 1,
-      "durationMinutes": 15,
-      "mode": "quick",
-      "answers": [],
-      "studentNote": "",
-      "questionPhotos": [
-        {
-          "id": "qimg_1791709202951_0",
-          "url": "/uploads/question_1791709202580_dnmx0i.jpg",
-          "questionNo": "Soru 1",
-          "note": ""
-        },
-        {
-          "id": "qimg_1791709208057_0",
-          "url": "/uploads/question_1791709207680_md02l9.jpg",
-          "questionNo": "Soru 2",
-          "note": ""
-        }
-      ],
-      "net": 9.75,
-      "scorePercent": 83
-    },
-    {
-      "id": "sub_1791709240213",
-      "submittedAt": "2026-10-11T09:00:40.213Z",
-      "studentId": "mete",
-      "assignmentId": "asgn_mete_1",
-      "testId": "cap-t1-ogr-1",
-      "bookId": "cap-9",
-      "themeName": "1. Tema: Sayılar",
-      "topicName": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
-      "testTitle": "Üslü Sayılar",
-      "testNum": "Öğreniyorum 1",
-      "pages": "7-8",
-      "date": "2026-10-05",
-      "qCount": 14,
-      "correct": 13,
-      "wrong": 1,
-      "empty": 0,
-      "durationMinutes": 15,
-      "mode": "quick",
-      "answers": [],
-      "studentNote": "",
-      "questionPhotos": [
-        {
-          "id": "qimg_1791709238899_0",
-          "url": "/uploads/question_1791709238515_d4blqf.jpg",
-          "questionNo": "Soru 1",
-          "note": ""
-        }
-      ],
-      "net": 12.75,
-      "scorePercent": 93
     }
   ],
   "mockExams": [],
@@ -840,7 +650,14 @@
     "whatsAppGroupId": "120363414194493647@g.us",
     "whatsAppWebhookUrl": "https://7107.api.greenapi.com/waInstance7107639595/sendMessage/41919f0f1ff94b00a0daf0b5a20028811dba6ffbe274471bbd",
     "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbxdw_sKaymUjvHehDuCtLUvbwFa6uXfBniGVfnAakGBrr5x6AxDsMp2ax6s6mt3wao3/exec",
-    "whatsAppDailyTime": "16:00"
+    "whatsAppDailyTime": "16:00",
+    "notificationEmails": "hizarci84@gmail.com",
+    "teacherEmails": "hizarci84@gmail.com",
+    "meteEmails": "yusufdindar2045@gmail.com,gozdemiki@gmail.com",
+    "egeEmails": "",
+    "emailDailyEnabled": true,
+    "emailWeeklyFridayEnabled": true,
+    "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-11T09:00:45.753Z"
+  "updated_at": "2026-10-11T13:30:34.189Z"
 }
