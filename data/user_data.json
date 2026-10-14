@@ -559,36 +559,29 @@
       "scorePercent": 80
     },
     {
-      "id": "sub_1791916901064",
-      "submittedAt": "2026-10-13T18:41:41.064Z",
-      "studentId": "ege",
-      "assignmentId": "asgn_ege_11",
-      "testId": "orig-t1-test-7",
+      "id": "sub_1791987771283",
+      "submittedAt": "2026-10-14T14:22:51.283Z",
+      "studentId": "mete",
+      "assignmentId": "asgn_mete_12",
+      "testId": "orig-t1-test-8",
       "bookId": "orijinal-9",
       "themeName": "1. Tema: Sayılar",
       "topicName": "1.1 Gerçek Sayıların Üslü Gösterimi ve İşlemler",
-      "testTitle": "Üslü Gösterim Test 7",
-      "testNum": "Test 7",
-      "pages": "14-15",
-      "date": "2026-10-13",
-      "qCount": 15,
+      "testTitle": "Üslü Gösterim Test 8",
+      "testNum": "Test 8",
+      "pages": "15-16",
+      "date": "2026-10-14",
+      "qCount": 12,
       "correct": 12,
-      "wrong": 1,
-      "empty": 2,
+      "wrong": 0,
+      "empty": 0,
       "durationMinutes": 15,
       "mode": "quick",
       "answers": [],
       "studentNote": "",
-      "questionPhotos": [
-        {
-          "id": "qimg_1791916899304_0",
-          "url": "/uploads/question_1791916899072_329039.jpg",
-          "questionNo": "Soru 1",
-          "note": ""
-        }
-      ],
-      "net": 11.75,
-      "scorePercent": 80
+      "questionPhotos": [],
+      "net": 12,
+      "scorePercent": 100
     }
   ],
   "mockExams": [],
@@ -984,5 +977,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-13T18:41:46.672Z"
+  "updated_at": "2026-10-14T14:22:52.496Z"
 }
