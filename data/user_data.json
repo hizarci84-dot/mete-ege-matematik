@@ -756,7 +756,12 @@
       "createdAt": "2026-10-16T18:52:37.737Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1Hbw4TDEIS3-x_5hnYxDdC4kBFzg5aeMk/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1Hbw4TDEIS3-x_5hnYxDdC4kBFzg5aeMk&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-16",
+      "driveSyncedAt": "2026-10-16T18:52:42.926Z",
+      "updatedAt": "2026-10-16T18:52:42.927Z"
     },
     {
       "id": "qimg_1792162267431_0",
@@ -1244,5 +1249,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-16T18:52:38.981Z"
+  "updated_at": "2026-10-16T18:52:44.176Z"
 }
