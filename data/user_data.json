@@ -786,42 +786,29 @@
       "scorePercent": 87
     },
     {
-      "id": "sub_1792259975908",
-      "submittedAt": "2026-10-17T17:59:35.908Z",
+      "id": "sub_1792261422895",
+      "submittedAt": "2026-10-17T18:23:42.895Z",
       "studentId": "ege",
-      "assignmentId": "asgn_ege_15",
-      "testId": "cap-t1-ogr-4",
-      "bookId": "cap-9",
+      "assignmentId": "asgn_ege_16",
+      "testId": "orig-t1-test-11",
+      "bookId": "orijinal-9",
       "themeName": "1. Tema: Sayılar",
       "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
-      "testTitle": "Köklü Sayılar",
-      "testNum": "Öğreniyorum 4",
-      "pages": "13-14",
+      "testTitle": "Köklü Gösterim Test 11",
+      "testNum": "Test 11",
+      "pages": "21-22",
       "date": "2026-10-17",
-      "qCount": 15,
-      "correct": 13,
+      "qCount": 8,
+      "correct": 7,
       "wrong": 0,
-      "empty": 2,
+      "empty": 1,
       "durationMinutes": 15,
       "mode": "quick",
       "answers": [],
       "studentNote": "",
-      "questionPhotos": [
-        {
-          "id": "qimg_1792259967405_0",
-          "url": "/uploads/question_1792259967272_17r2w9.jpg",
-          "questionNo": "Soru 1",
-          "note": ""
-        },
-        {
-          "id": "qimg_1792259974878_0",
-          "url": "/uploads/question_1792259974653_wiwqq5.jpg",
-          "questionNo": "Soru 2",
-          "note": ""
-        }
-      ],
-      "net": 13,
-      "scorePercent": 87
+      "questionPhotos": [],
+      "net": 7,
+      "scorePercent": 88
     }
   ],
   "mockExams": [],
@@ -1387,5 +1374,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-17T17:59:42.395Z"
+  "updated_at": "2026-10-17T18:23:44.131Z"
 }
