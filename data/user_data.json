@@ -759,6 +759,31 @@
       "questionPhotos": [],
       "net": 10,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1792259953289",
+      "submittedAt": "2026-10-17T17:59:13.289Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_15",
+      "testId": "cap-t1-ogr-4",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "Köklü Sayılar",
+      "testNum": "Öğreniyorum 4",
+      "pages": "13-14",
+      "date": "2026-10-17",
+      "qCount": 15,
+      "correct": 13,
+      "wrong": 0,
+      "empty": 2,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 13,
+      "scorePercent": 87
     }
   ],
   "mockExams": [],
@@ -1274,5 +1299,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-17T16:23:10.806Z"
+  "updated_at": "2026-10-17T17:59:14.584Z"
 }
