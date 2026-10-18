@@ -932,7 +932,12 @@
       "createdAt": "2026-10-18T15:27:04.850Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/14oWHy5G-XXLINr6wg_IV13jWAhZ-LEOZ/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=14oWHy5G-XXLINr6wg_IV13jWAhZ-LEOZ&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-18",
+      "driveSyncedAt": "2026-10-18T15:27:09.194Z",
+      "updatedAt": "2026-10-18T15:27:09.194Z"
     },
     {
       "id": "qimg_1792337213879_0",
@@ -952,7 +957,12 @@
       "createdAt": "2026-10-18T15:27:04.850Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1FjLezI0i7CzSteBQ9ZvxOJsj734hBbRI/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1FjLezI0i7CzSteBQ9ZvxOJsj734hBbRI&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-18",
+      "driveSyncedAt": "2026-10-18T15:27:09.456Z",
+      "updatedAt": "2026-10-18T15:27:09.456Z"
     },
     {
       "id": "qimg_1792337200563_0",
@@ -972,7 +982,12 @@
       "createdAt": "2026-10-18T15:27:04.850Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1mqSRqMTD7MVJ9_MN92XjdL5tyvbZ2Feg/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1mqSRqMTD7MVJ9_MN92XjdL5tyvbZ2Feg&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-18",
+      "driveSyncedAt": "2026-10-18T15:27:09.045Z",
+      "updatedAt": "2026-10-18T15:27:09.045Z"
     },
     {
       "id": "qimg_1792337147307_0",
@@ -1560,5 +1575,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-18T15:27:06.066Z"
+  "updated_at": "2026-10-18T15:27:10.670Z"
 }
