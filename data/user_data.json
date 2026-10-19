@@ -1000,10 +1000,10 @@
       "scorePercent": 75
     },
     {
-      "id": "sub_1792417900926",
-      "submittedAt": "2026-10-19T13:51:40.926Z",
-      "studentId": "mete",
-      "assignmentId": "asgn_mete_19",
+      "id": "sub_1792426384884",
+      "submittedAt": "2026-10-19T16:13:04.884Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_19",
       "testId": "cap-t1-ogr-6",
       "bookId": "cap-9",
       "themeName": "1. Tema: Sayılar",
@@ -1013,39 +1013,47 @@
       "pages": "17-18",
       "date": "2026-10-19",
       "qCount": 12,
-      "correct": 9,
+      "correct": 11,
       "wrong": 0,
-      "empty": 3,
+      "empty": 1,
       "durationMinutes": 15,
       "mode": "quick",
       "answers": [],
       "studentNote": "",
       "questionPhotos": [
         {
-          "id": "qimg_1792417855816_0",
-          "url": "/uploads/question_1792417855574_2mxxzw.jpg",
+          "id": "qimg_1792426384204_0",
+          "url": "/uploads/question_1792426383965_nsln5f.jpg",
           "questionNo": "Soru 1",
-          "note": ""
-        },
-        {
-          "id": "qimg_1792417882737_0",
-          "url": "/uploads/question_1792417882356_jawn0c.jpg",
-          "questionNo": "Soru 2",
-          "note": ""
-        },
-        {
-          "id": "qimg_1792417899624_0",
-          "url": "/uploads/question_1792417899276_13a2ql.jpg",
-          "questionNo": "Soru 3",
           "note": ""
         }
       ],
-      "net": 9,
-      "scorePercent": 75
+      "net": 11,
+      "scorePercent": 92
     }
   ],
   "mockExams": [],
   "unsolvedQuestions": [
+    {
+      "id": "qimg_1792426384204_0",
+      "submissionId": "sub_1792426384884",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "testId": "cap-t1-ogr-6",
+      "assignmentId": "asgn_ege_19",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "Köklü Sayılarda İşlemler - 2",
+      "testNum": "Öğreniyorum 6",
+      "pages": "17-18",
+      "questionNo": "Soru 1",
+      "note": "",
+      "imageUrl": "/uploads/question_1792426383965_nsln5f.jpg",
+      "createdAt": "2026-10-19T16:13:04.884Z",
+      "status": "pending",
+      "teacherReply": "",
+      "teacherReplyAt": null
+    },
     {
       "id": "qimg_1792417899624_0",
       "submissionId": "sub_1792417900926",
@@ -1782,5 +1790,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-19T13:51:49.115Z"
+  "updated_at": "2026-10-19T16:13:06.095Z"
 }
