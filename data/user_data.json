@@ -1121,7 +1121,12 @@
       "createdAt": "2026-10-20T17:21:46.236Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1SCAs9Jq8CxEjTyNOLkOcLj3JYVJFr6kd/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1SCAs9Jq8CxEjTyNOLkOcLj3JYVJFr6kd&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-20",
+      "driveSyncedAt": "2026-10-20T17:21:52.055Z",
+      "updatedAt": "2026-10-20T17:21:52.055Z"
     },
     {
       "id": "qimg_1792516885217_0",
@@ -1141,7 +1146,12 @@
       "createdAt": "2026-10-20T17:21:46.236Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1cmDv7yhOQ2i8oHTmW2u39WXkHzRXVTq_/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1cmDv7yhOQ2i8oHTmW2u39WXkHzRXVTq_&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-20",
+      "driveSyncedAt": "2026-10-20T17:21:52.303Z",
+      "updatedAt": "2026-10-20T17:21:52.303Z"
     },
     {
       "id": "qimg_1792516870576_0",
@@ -1161,7 +1171,12 @@
       "createdAt": "2026-10-20T17:21:46.236Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1noRT3el52gQLd8uENIkGu10IzA61r7XR/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1noRT3el52gQLd8uENIkGu10IzA61r7XR&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-20",
+      "driveSyncedAt": "2026-10-20T17:21:52.010Z",
+      "updatedAt": "2026-10-20T17:21:52.010Z"
     },
     {
       "id": "qimg_1792504598770_0",
@@ -1949,5 +1964,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-20T17:21:47.451Z"
+  "updated_at": "2026-10-20T17:21:53.548Z"
 }
