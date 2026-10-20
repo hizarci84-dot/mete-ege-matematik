@@ -1030,6 +1030,31 @@
       ],
       "net": 11,
       "scorePercent": 92
+    },
+    {
+      "id": "sub_1792503939212",
+      "submittedAt": "2026-10-20T13:45:39.212Z",
+      "studentId": "mete",
+      "assignmentId": "asgn_mete_20",
+      "testId": "orig-t1-test-13",
+      "bookId": "orijinal-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "Köklü Gösterim Test 13",
+      "testNum": "Test 13",
+      "pages": "23-24",
+      "date": "2026-10-20",
+      "qCount": 3,
+      "correct": 2,
+      "wrong": 0,
+      "empty": 1,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 2,
+      "scorePercent": 67
     }
   ],
   "mockExams": [],
@@ -1795,5 +1820,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-19T16:13:12.104Z"
+  "updated_at": "2026-10-20T13:45:40.427Z"
 }
