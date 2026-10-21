@@ -1143,10 +1143,88 @@
       ],
       "net": 9,
       "scorePercent": 75
+    },
+    {
+      "id": "sub_1792609341321",
+      "submittedAt": "2026-10-21T19:02:21.321Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_21",
+      "testId": "cap-t1-ogr-7",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "İç İçe Kökler ve Köklü Sayılarda Sıralama",
+      "testNum": "Öğreniyorum 7",
+      "pages": "19-20",
+      "date": "2026-10-21",
+      "qCount": 12,
+      "correct": 10,
+      "wrong": 0,
+      "empty": 2,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [
+        {
+          "id": "qimg_1792609333086_0",
+          "url": "/uploads/question_1792609332884_044sk2.jpg",
+          "questionNo": "Soru 1",
+          "note": ""
+        },
+        {
+          "id": "qimg_1792609340662_0",
+          "url": "/uploads/question_1792609340444_t5qaqh.jpg",
+          "questionNo": "Soru 2",
+          "note": ""
+        }
+      ],
+      "net": 10,
+      "scorePercent": 83
     }
   ],
   "mockExams": [],
   "unsolvedQuestions": [
+    {
+      "id": "qimg_1792609340662_0",
+      "submissionId": "sub_1792609341321",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "testId": "cap-t1-ogr-7",
+      "assignmentId": "asgn_ege_21",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "İç İçe Kökler ve Köklü Sayılarda Sıralama",
+      "testNum": "Öğreniyorum 7",
+      "pages": "19-20",
+      "questionNo": "Soru 2",
+      "note": "",
+      "imageUrl": "/uploads/question_1792609340444_t5qaqh.jpg",
+      "createdAt": "2026-10-21T19:02:21.321Z",
+      "status": "pending",
+      "teacherReply": "",
+      "teacherReplyAt": null
+    },
+    {
+      "id": "qimg_1792609333086_0",
+      "submissionId": "sub_1792609341321",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "testId": "cap-t1-ogr-7",
+      "assignmentId": "asgn_ege_21",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "İç İçe Kökler ve Köklü Sayılarda Sıralama",
+      "testNum": "Öğreniyorum 7",
+      "pages": "19-20",
+      "questionNo": "Soru 1",
+      "note": "",
+      "imageUrl": "/uploads/question_1792609332884_044sk2.jpg",
+      "createdAt": "2026-10-21T19:02:21.321Z",
+      "status": "pending",
+      "teacherReply": "",
+      "teacherReplyAt": null
+    },
     {
       "id": "qimg_1792599051793_0",
       "submissionId": "sub_1792599052137",
@@ -2083,5 +2161,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-21T16:11:12.835Z"
+  "updated_at": "2026-10-21T19:02:22.621Z"
 }
