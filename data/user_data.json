@@ -1213,6 +1213,31 @@
       ],
       "net": 10.75,
       "scorePercent": 92
+    },
+    {
+      "id": "sub_1792767962558",
+      "submittedAt": "2026-10-23T15:06:02.558Z",
+      "studentId": "mete",
+      "assignmentId": "asgn_mete_23",
+      "testId": "cap-t1-pek-1",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "Üslü ve Köklü Sayılar - Test 1",
+      "testNum": "Pekiştiriyorum 1",
+      "pages": "21-22",
+      "date": "2026-10-23",
+      "qCount": 12,
+      "correct": 12,
+      "wrong": 0,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 12,
+      "scorePercent": 100
     }
   ],
   "mockExams": [],
@@ -2228,5 +2253,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-22T14:26:42.266Z"
+  "updated_at": "2026-10-23T15:06:03.771Z"
 }
