@@ -1238,6 +1238,31 @@
       "questionPhotos": [],
       "net": 12,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1792781507783",
+      "submittedAt": "2026-10-23T18:51:47.783Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_22",
+      "testId": "orig-t1-test-14",
+      "bookId": "orijinal-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "Köklü Gösterim Test 14",
+      "testNum": "Test 14",
+      "pages": "24-25",
+      "date": "2026-10-22",
+      "qCount": 7,
+      "correct": 6,
+      "wrong": 0,
+      "empty": 1,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 6,
+      "scorePercent": 86
     }
   ],
   "mockExams": [],
@@ -2253,5 +2278,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-23T15:06:03.771Z"
+  "updated_at": "2026-10-23T18:51:49.049Z"
 }
