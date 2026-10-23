@@ -1329,7 +1329,12 @@
       "createdAt": "2026-10-23T19:03:06.614Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1MJEwC_DeIokePCyhQ_E9gxrHop7FB5yK/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1MJEwC_DeIokePCyhQ_E9gxrHop7FB5yK&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-23",
+      "driveSyncedAt": "2026-10-23T19:03:13.714Z",
+      "updatedAt": "2026-10-23T19:03:13.714Z"
     },
     {
       "id": "qimg_1792782177746_0",
@@ -1349,7 +1354,12 @@
       "createdAt": "2026-10-23T19:03:06.614Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1eh6e0WNFeCUt4x7HLHqM1STQwhY7hdRW/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1eh6e0WNFeCUt4x7HLHqM1STQwhY7hdRW&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-23",
+      "driveSyncedAt": "2026-10-23T19:03:13.744Z",
+      "updatedAt": "2026-10-23T19:03:13.744Z"
     },
     {
       "id": "qimg_1792782162018_0",
@@ -1369,7 +1379,12 @@
       "createdAt": "2026-10-23T19:03:06.614Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1GMxjz5SrZCw7RqPc1K8J1WyVgo1KDB8n/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1GMxjz5SrZCw7RqPc1K8J1WyVgo1KDB8n&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-23",
+      "driveSyncedAt": "2026-10-23T19:03:13.045Z",
+      "updatedAt": "2026-10-23T19:03:13.045Z"
     },
     {
       "id": "qimg_1792679195250_0",
@@ -2382,5 +2397,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-23T19:03:07.845Z"
+  "updated_at": "2026-10-23T19:03:14.955Z"
 }
