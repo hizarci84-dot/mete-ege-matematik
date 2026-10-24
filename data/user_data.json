@@ -1345,10 +1345,88 @@
       ],
       "net": 3,
       "scorePercent": 60
+    },
+    {
+      "id": "sub_1792865320453",
+      "submittedAt": "2026-10-24T18:08:40.453Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_25",
+      "testId": "cap-t1-pek-2",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "Üslü ve Köklü Sayılar - Test 2",
+      "testNum": "Pekiştiriyorum 2",
+      "pages": "23-24",
+      "date": "2026-10-24",
+      "qCount": 11,
+      "correct": 9,
+      "wrong": 0,
+      "empty": 2,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [
+        {
+          "id": "qimg_1792865308438_0",
+          "url": "/uploads/question_1792865308183_klgcrm.jpg",
+          "questionNo": "Soru 1",
+          "note": ""
+        },
+        {
+          "id": "qimg_1792865317425_0",
+          "url": "/uploads/question_1792865317227_2fgp7q.jpg",
+          "questionNo": "Soru 2",
+          "note": ""
+        }
+      ],
+      "net": 9,
+      "scorePercent": 82
     }
   ],
   "mockExams": [],
   "unsolvedQuestions": [
+    {
+      "id": "qimg_1792865317425_0",
+      "submissionId": "sub_1792865320453",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "testId": "cap-t1-pek-2",
+      "assignmentId": "asgn_ege_25",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "Üslü ve Köklü Sayılar - Test 2",
+      "testNum": "Pekiştiriyorum 2",
+      "pages": "23-24",
+      "questionNo": "Soru 2",
+      "note": "",
+      "imageUrl": "/uploads/question_1792865317227_2fgp7q.jpg",
+      "createdAt": "2026-10-24T18:08:40.453Z",
+      "status": "pending",
+      "teacherReply": "",
+      "teacherReplyAt": null
+    },
+    {
+      "id": "qimg_1792865308438_0",
+      "submissionId": "sub_1792865320453",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "testId": "cap-t1-pek-2",
+      "assignmentId": "asgn_ege_25",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "Üslü ve Köklü Sayılar - Test 2",
+      "testNum": "Pekiştiriyorum 2",
+      "pages": "23-24",
+      "questionNo": "Soru 1",
+      "note": "",
+      "imageUrl": "/uploads/question_1792865308183_klgcrm.jpg",
+      "createdAt": "2026-10-24T18:08:40.453Z",
+      "status": "pending",
+      "teacherReply": "",
+      "teacherReplyAt": null
+    },
     {
       "id": "qimg_1792863554994_0",
       "submissionId": "sub_1792863555420",
@@ -2485,5 +2563,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-24T17:39:26.187Z"
+  "updated_at": "2026-10-24T18:08:41.796Z"
 }
