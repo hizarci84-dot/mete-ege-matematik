@@ -1481,7 +1481,12 @@
       "createdAt": "2026-10-25T14:18:11.487Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1tG9xNn2iSq_KHJjCmFqLnMDT32I5j8fg/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1tG9xNn2iSq_KHJjCmFqLnMDT32I5j8fg&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-25",
+      "driveSyncedAt": "2026-10-25T14:18:17.137Z",
+      "updatedAt": "2026-10-25T14:18:17.137Z"
     },
     {
       "id": "qimg_1792937884744_0",
@@ -1501,7 +1506,12 @@
       "createdAt": "2026-10-25T14:18:11.487Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1OtMBPaQGeYXPzRlN-6HGjE6s_RO4OkIX/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1OtMBPaQGeYXPzRlN-6HGjE6s_RO4OkIX&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-25",
+      "driveSyncedAt": "2026-10-25T14:18:17.030Z",
+      "updatedAt": "2026-10-25T14:18:17.030Z"
     },
     {
       "id": "qimg_1792937875540_0",
@@ -1521,7 +1531,12 @@
       "createdAt": "2026-10-25T14:18:11.487Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1VBG81BRV2ulcy1quElStmiX7yRgx2C74/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1VBG81BRV2ulcy1quElStmiX7yRgx2C74&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-10-25",
+      "driveSyncedAt": "2026-10-25T14:18:17.421Z",
+      "updatedAt": "2026-10-25T14:18:17.421Z"
     },
     {
       "id": "qimg_1792866361828_0",
@@ -2729,5 +2744,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-25T14:18:12.775Z"
+  "updated_at": "2026-10-25T14:18:18.634Z"
 }
