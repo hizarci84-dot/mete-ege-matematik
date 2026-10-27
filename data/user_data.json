@@ -1623,6 +1623,31 @@
       ],
       "net": 5,
       "scorePercent": 83
+    },
+    {
+      "id": "sub_1793128812011",
+      "submittedAt": "2026-10-27T19:20:12.011Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_29",
+      "testId": "orig-t1-test-19",
+      "bookId": "orijinal-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
+      "testTitle": "Köklü Gösterim Test 19",
+      "testNum": "Test 19",
+      "pages": "29-30",
+      "date": "2026-10-27",
+      "qCount": 14,
+      "correct": 13,
+      "wrong": 0,
+      "empty": 1,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 13,
+      "scorePercent": 93
     }
   ],
   "mockExams": [],
@@ -2958,5 +2983,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-27T13:57:36.053Z"
+  "updated_at": "2026-10-27T19:20:13.264Z"
 }
