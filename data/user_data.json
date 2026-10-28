@@ -1650,40 +1650,60 @@
       "scorePercent": 93
     },
     {
-      "id": "sub_1793128820706",
-      "submittedAt": "2026-10-27T19:20:20.706Z",
-      "studentId": "ege",
-      "assignmentId": "asgn_ege_29",
-      "testId": "orig-t1-test-19",
-      "bookId": "orijinal-9",
+      "id": "sub_1793194576601",
+      "submittedAt": "2026-10-28T13:36:16.601Z",
+      "studentId": "mete",
+      "assignmentId": "asgn_mete_30",
+      "testId": "cap-t1-ogr-8",
+      "bookId": "cap-9",
       "themeName": "1. Tema: Sayılar",
-      "topicName": "1.2 Gerçek Sayıların Köklü Gösterimi ve İşlemler",
-      "testTitle": "Köklü Gösterim Test 19",
-      "testNum": "Test 19",
-      "pages": "29-30",
-      "date": "2026-10-27",
-      "qCount": 14,
-      "correct": 13,
-      "wrong": 0,
-      "empty": 1,
+      "topicName": "1.3 Gerçek Sayı Aralıkları ve Kümeler",
+      "testTitle": "Kümelerde Temel Kavramlar",
+      "testNum": "Öğreniyorum 8",
+      "pages": "26-27",
+      "date": "2026-10-28",
+      "qCount": 10,
+      "correct": 9,
+      "wrong": 1,
+      "empty": 0,
       "durationMinutes": 15,
       "mode": "quick",
       "answers": [],
       "studentNote": "",
       "questionPhotos": [
         {
-          "id": "qimg_1793128820317_0",
-          "url": "/uploads/question_1793128820144_w2zdcr.jpg",
+          "id": "qimg_1793194576734_0",
+          "url": "/uploads/question_1793194575768_b689aa.jpg",
           "questionNo": "Soru 1",
           "note": ""
         }
       ],
-      "net": 13,
-      "scorePercent": 93
+      "net": 8.75,
+      "scorePercent": 90
     }
   ],
   "mockExams": [],
   "unsolvedQuestions": [
+    {
+      "id": "qimg_1793194576734_0",
+      "submissionId": "sub_1793194576601",
+      "studentId": "mete",
+      "studentName": "Mete",
+      "testId": "cap-t1-ogr-8",
+      "assignmentId": "asgn_mete_30",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.3 Gerçek Sayı Aralıkları ve Kümeler",
+      "testTitle": "Kümelerde Temel Kavramlar",
+      "testNum": "Öğreniyorum 8",
+      "pages": "26-27",
+      "questionNo": "Soru 1",
+      "note": "",
+      "imageUrl": "/uploads/question_1793194575768_b689aa.jpg",
+      "createdAt": "2026-10-28T13:36:16.601Z",
+      "status": "pending",
+      "teacherReply": "",
+      "teacherReplyAt": null
+    },
     {
       "id": "qimg_1793128820317_0",
       "submissionId": "sub_1793128820706",
@@ -3040,5 +3060,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-10-27T19:20:27.465Z"
+  "updated_at": "2026-10-28T13:36:17.816Z"
 }
