@@ -2073,7 +2073,12 @@
       "createdAt": "2026-11-01T11:29:03.251Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1AP1KqKyr6cYcpUct9ZPpfaNPXNnGWhhw/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1AP1KqKyr6cYcpUct9ZPpfaNPXNnGWhhw&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-11-01",
+      "driveSyncedAt": "2026-11-01T11:29:10.562Z",
+      "updatedAt": "2026-11-01T11:29:10.562Z"
     },
     {
       "id": "qimg_1793532537518_0",
@@ -2093,7 +2098,12 @@
       "createdAt": "2026-11-01T11:29:03.251Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1hA3l77-cj8iAZZ47Ng7k0e5fAD6xmHVu/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1hA3l77-cj8iAZZ47Ng7k0e5fAD6xmHVu&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-11-01",
+      "driveSyncedAt": "2026-11-01T11:29:09.389Z",
+      "updatedAt": "2026-11-01T11:29:09.389Z"
     },
     {
       "id": "qimg_1793532484583_0",
@@ -3601,5 +3611,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-11-01T11:29:04.543Z"
+  "updated_at": "2026-11-01T11:29:11.775Z"
 }
