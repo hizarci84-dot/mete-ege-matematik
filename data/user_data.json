@@ -2013,10 +2013,88 @@
       ],
       "net": 9.5,
       "scorePercent": 83
+    },
+    {
+      "id": "sub_1793532543251",
+      "submittedAt": "2026-11-01T11:29:03.251Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_36",
+      "testId": "cap-t1-ogr-11",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.3 Gerçek Sayı Aralıkları ve Kümeler",
+      "testTitle": "Aralıkların Mutlak Değer Gösterimi",
+      "testNum": "Öğreniyorum 11",
+      "pages": "32-33",
+      "date": "2026-11-01",
+      "qCount": 8,
+      "correct": 6,
+      "wrong": 0,
+      "empty": 2,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [
+        {
+          "id": "qimg_1793532537518_0",
+          "url": "/uploads/question_1793532537377_122bmc.jpg",
+          "questionNo": "Soru 1",
+          "note": ""
+        },
+        {
+          "id": "qimg_1793532542871_0",
+          "url": "/uploads/question_1793532542747_h3bkih.jpg",
+          "questionNo": "Soru 2",
+          "note": ""
+        }
+      ],
+      "net": 6,
+      "scorePercent": 75
     }
   ],
   "mockExams": [],
   "unsolvedQuestions": [
+    {
+      "id": "qimg_1793532542871_0",
+      "submissionId": "sub_1793532543251",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "testId": "cap-t1-ogr-11",
+      "assignmentId": "asgn_ege_36",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.3 Gerçek Sayı Aralıkları ve Kümeler",
+      "testTitle": "Aralıkların Mutlak Değer Gösterimi",
+      "testNum": "Öğreniyorum 11",
+      "pages": "32-33",
+      "questionNo": "Soru 2",
+      "note": "",
+      "imageUrl": "/uploads/question_1793532542747_h3bkih.jpg",
+      "createdAt": "2026-11-01T11:29:03.251Z",
+      "status": "pending",
+      "teacherReply": "",
+      "teacherReplyAt": null
+    },
+    {
+      "id": "qimg_1793532537518_0",
+      "submissionId": "sub_1793532543251",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "testId": "cap-t1-ogr-11",
+      "assignmentId": "asgn_ege_36",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.3 Gerçek Sayı Aralıkları ve Kümeler",
+      "testTitle": "Aralıkların Mutlak Değer Gösterimi",
+      "testNum": "Öğreniyorum 11",
+      "pages": "32-33",
+      "questionNo": "Soru 1",
+      "note": "",
+      "imageUrl": "/uploads/question_1793532537377_122bmc.jpg",
+      "createdAt": "2026-11-01T11:29:03.251Z",
+      "status": "pending",
+      "teacherReply": "",
+      "teacherReplyAt": null
+    },
     {
       "id": "qimg_1793532484583_0",
       "submissionId": "sub_1793532500046",
@@ -2060,7 +2138,12 @@
       "createdAt": "2026-11-01T11:28:20.046Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/11vB05OtqcVRZN4OR7dOigUAHaoE4qqLJ/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=11vB05OtqcVRZN4OR7dOigUAHaoE4qqLJ&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-11-01",
+      "driveSyncedAt": "2026-11-01T11:28:26.365Z",
+      "updatedAt": "2026-11-01T11:28:26.365Z"
     },
     {
       "id": "qimg_1793532434297_0",
@@ -3518,5 +3601,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-11-01T11:28:25.797Z"
+  "updated_at": "2026-11-01T11:29:04.543Z"
 }
