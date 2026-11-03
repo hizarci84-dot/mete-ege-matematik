@@ -2216,7 +2216,8 @@
       "net": 84.75,
       "scorePercent": 71,
       "mathNet": 18.5,
-      "mathQCount": 30
+      "mathQCount": 30,
+      "updatedAt": "2026-11-03T14:04:08.087Z"
     }
   ],
   "unsolvedQuestions": [
@@ -2345,7 +2346,12 @@
       "testNum": "Deneme",
       "questionNo": "Soru 3",
       "note": "",
-      "imageUrl": "/uploads/question_1793714522465_xa6re5.jpg"
+      "imageUrl": "/uploads/question_1793714522465_xa6re5.jpg",
+      "driveFileUrl": "https://drive.google.com/file/d/1Pq8u49oAfo8T2a1caVA5G-bwCKJgKcoN/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1Pq8u49oAfo8T2a1caVA5G-bwCKJgKcoN&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-11-03",
+      "driveSyncedAt": "2026-11-03T14:02:57.287Z",
+      "updatedAt": "2026-11-03T14:02:57.287Z"
     },
     {
       "id": "q_1793714567077_g0hslk",
@@ -4132,5 +4138,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-11-03T14:02:57.129Z"
+  "updated_at": "2026-11-03T14:04:09.376Z"
 }
