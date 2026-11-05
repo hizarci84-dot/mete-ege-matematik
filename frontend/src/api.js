@@ -238,3 +238,10 @@ export async function fetchWeeklyReportPreview(type = 'teacher') {
   return res.json()
 }
 
+export async function fetchMockExamEmailPreview(studentId = 'mete', examId = '') {
+  let url = `${API_BASE}/email/preview-mock-exam?studentId=${studentId}`
+  if (examId) url += `&examId=${examId}`
+  const res = await fetch(url)
+  return res.json()
+}
+

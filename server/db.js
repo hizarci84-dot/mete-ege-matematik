@@ -343,6 +343,7 @@ export function getInitialData() {
       meteEmails: '',
       egeEmails: '',
       emailDailyEnabled: true,
+      emailMockExamEnabled: true,
       emailWeeklyFridayEnabled: true,
       emailWeeklyFridayTime: '21:00'
     }
@@ -404,6 +405,9 @@ export function readDB() {
     }
     if (parsed.settings.emailDailyEnabled === undefined) {
       parsed.settings.emailDailyEnabled = true
+    }
+    if (parsed.settings.emailMockExamEnabled === undefined) {
+      parsed.settings.emailMockExamEnabled = true
     }
     if (parsed.settings.emailWeeklyFridayEnabled === undefined) {
       parsed.settings.emailWeeklyFridayEnabled = true

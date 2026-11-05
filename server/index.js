@@ -483,6 +483,246 @@ async function dispatchDailySubmissionEmail(submission, student, settings) {
   })
 }
 
+/**
+ * Generates responsive HTML for instant mock exam submission notification
+ */
+function buildMockExamEmailHtml(exam, student, settings) {
+  const studentName = student?.name || (exam.studentId === 'mete' ? 'Mete' : 'Ege')
+  const dateFormatted = formatTrDate(exam.date) || exam.date
+  const net = exam.net !== undefined ? exam.net : parseFloat((Number(exam.correct || 0) - Number(exam.wrong || 0) * 0.25).toFixed(2))
+  const questionCount = exam.qCount || (Number(exam.correct || 0) + Number(exam.wrong || 0) + Number(exam.empty || 0)) || 0
+  const scorePercent = exam.scorePercent !== undefined ? exam.scorePercent : (questionCount > 0 ? Math.round((net / questionCount) * 100) : 0)
+  const isGeneral = exam.examType === 'general' || (exam.subjects && exam.subjects.length > 1)
+  const examKindTitle = isGeneral ? 'Genel Deneme Sınavı' : 'Branş Denemesi'
+  const photoCount = Array.isArray(exam.questionPhotos) ? exam.questionPhotos.length : 0
+
+  // Subjects breakdown table for general mock exams
+  let subjectsTableHtml = ''
+  if (Array.isArray(exam.subjects) && exam.subjects.length > 0) {
+    const rows = exam.subjects.map(s => {
+      const snet = s.net !== undefined ? s.net : parseFloat((Number(s.correct || 0) - (Number(s.wrong || 0) / 4)).toFixed(2))
+      const sq = Number(s.qCount) || (Number(s.correct || 0) + Number(s.wrong || 0) + Number(s.empty || 0)) || 0
+      const spct = s.scorePercent !== undefined ? s.scorePercent : (sq > 0 ? Math.round((snet / sq) * 100) : 0)
+      const color = spct >= 75 ? '#16a34a' : spct >= 50 ? '#d97706' : '#dc2626'
+      const isMath = s.name?.toLowerCase().includes('mat') || s.key === 'matematik' || s.key === 'mat'
+      return `
+      <tr style="border-bottom: 1px solid #f1f5f9; ${isMath ? 'background-color: #faf5ff;' : ''}">
+        <td style="padding: 10px 8px; font-size: 13px; font-weight: ${isMath ? '800' : '600'}; color: ${isMath ? '#7e22ce' : '#1e293b'};">
+          ${isMath ? '📐 ' : '📚 '} ${s.name}
+        </td>
+        <td style="padding: 10px 8px; font-size: 12px; text-align: center; color: #475569;">${sq}</td>
+        <td style="padding: 10px 8px; font-size: 12px; text-align: center; color: #16a34a; font-weight: 700;">${s.correct || 0}</td>
+        <td style="padding: 10px 8px; font-size: 12px; text-align: center; color: #dc2626; font-weight: 700;">${s.wrong || 0}</td>
+        <td style="padding: 10px 8px; font-size: 12px; text-align: center; color: #64748b;">${s.empty || 0}</td>
+        <td style="padding: 10px 8px; font-size: 13px; text-align: center; font-weight: 800; color: #4f46e5;">${snet}</td>
+        <td style="padding: 10px 8px; font-size: 12px; text-align: right; font-weight: 800; color: ${color};">%${spct}</td>
+      </tr>`
+    }).join('')
+
+    subjectsTableHtml = `
+    <div style="margin-bottom: 22px;">
+      <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">
+        📊 Ders Bazlı Net ve Başarı Dağılımı
+      </div>
+      <div style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="font-size: 12px; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: #f8fafc; border-bottom: 2px solid #e2e8f0; text-align: left; font-size: 11px; color: #64748b; text-transform: uppercase;">
+              <th style="padding: 10px 8px;">Ders Adı</th>
+              <th style="padding: 10px 8px; text-align: center;">Soru</th>
+              <th style="padding: 10px 8px; text-align: center;">D</th>
+              <th style="padding: 10px 8px; text-align: center;">Y</th>
+              <th style="padding: 10px 8px; text-align: center;">B</th>
+              <th style="padding: 10px 8px; text-align: center;">Net</th>
+              <th style="padding: 10px 8px; text-align: right;">Başarı</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows}
+          </tbody>
+        </table>
+      </div>
+    </div>`
+  }
+
+  return `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deneme Sınavı Bildirimi - ${studentName}</title>
+</head>
+<body style="margin: 0; padding: 20px; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 620px; margin: 0 auto; background-color: #ffffff; border-radius: 18px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 6px 16px rgba(0,0,0,0.08);">
+    <!-- Gradient Header -->
+    <tr>
+      <td style="background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #2563eb 100%); padding: 28px 24px; text-align: center; color: #ffffff;">
+        <div style="display: inline-block; background: rgba(255,255,255,0.22); padding: 5px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.3);">
+          🎯 YENİ ${examKindTitle.toUpperCase()} BİLDİRİMİ
+        </div>
+        <h1 style="margin: 0; font-size: 23px; font-weight: 900; color: #ffffff; letter-spacing: -0.3px;">
+          ${studentName} Deneme Sınavını Kaydetti! 🏆
+        </h1>
+        <p style="margin: 8px 0 0 0; font-size: 13px; color: #e0e7ff;">
+          Öğretmen: Müfit Hoca • ${dateFormatted}
+        </p>
+      </td>
+    </tr>
+
+    <!-- Body Content -->
+    <tr>
+      <td style="padding: 24px;">
+        <!-- Exam Meta Banner -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; border-left: 4px solid #7c3aed; border-radius: 0 10px 10px 0; margin-bottom: 22px; padding: 14px 16px;">
+          <tr>
+            <td>
+              <div style="font-size: 11px; text-transform: uppercase; font-weight: 800; color: #7c3aed; letter-spacing: 0.5px;">${examKindTitle}</div>
+              <div style="font-size: 18px; font-weight: 900; color: #0f172a; margin-top: 4px;">${exam.examTitle}</div>
+              <div style="font-size: 13px; color: #475569; margin-top: 4px;">
+                📚 <strong>Yayın / Kurum:</strong> ${exam.publisher || 'Kurumsal Deneme'} &nbsp;•&nbsp; ⏱️ <strong>Süre:</strong> ${exam.durationMinutes || 120} Dakika
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Summary Metric Cards -->
+        <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">
+          📈 Genel Sonuç Özeti
+        </div>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 18px;">
+          <tr>
+            <td width="23%" align="center" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 6px;">
+              <div style="font-size: 22px; font-weight: 900; color: #0f172a;">${questionCount}</div>
+              <div style="font-size: 10px; font-weight: 800; color: #64748b; text-transform: uppercase; margin-top: 2px;">Toplam Soru</div>
+            </td>
+            <td width="2%">&nbsp;</td>
+            <td width="23%" align="center" style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 12px 6px;">
+              <div style="font-size: 22px; font-weight: 900; color: #16a34a;">${exam.correct || 0}</div>
+              <div style="font-size: 10px; font-weight: 800; color: #15803d; text-transform: uppercase; margin-top: 2px;">Doğru</div>
+            </td>
+            <td width="2%">&nbsp;</td>
+            <td width="23%" align="center" style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 12px 6px;">
+              <div style="font-size: 22px; font-weight: 900; color: #dc2626;">${exam.wrong || 0}</div>
+              <div style="font-size: 10px; font-weight: 800; color: #b91c1c; text-transform: uppercase; margin-top: 2px;">Yanlış</div>
+            </td>
+            <td width="2%">&nbsp;</td>
+            <td width="23%" align="center" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 6px;">
+              <div style="font-size: 22px; font-weight: 900; color: #64748b;">${exam.empty || 0}</div>
+              <div style="font-size: 10px; font-weight: 800; color: #475569; text-transform: uppercase; margin-top: 2px;">Boş</div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Big Net & Success Banner -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 22px;">
+          <tr>
+            <td width="49%" style="background-color: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 14px; padding: 16px; text-align: center;">
+              <div style="font-size: 11px; font-weight: 800; color: #1d4ed8; text-transform: uppercase; letter-spacing: 0.5px;">TOPLAM NET</div>
+              <div style="font-size: 32px; font-weight: 900; color: #1e40af; margin-top: 4px;">${net}</div>
+              <div style="font-size: 11px; color: #3b82f6; margin-top: 2px;">${questionCount} soruda elde edilen net</div>
+            </td>
+            <td width="2%">&nbsp;</td>
+            <td width="49%" style="background-color: ${scorePercent >= 75 ? '#f0fdf4' : scorePercent >= 50 ? '#fffbeb' : '#fef2f2'}; border: 1.5px solid ${scorePercent >= 75 ? '#bbf7d0' : scorePercent >= 50 ? '#fde68a' : '#fecaca'}; border-radius: 14px; padding: 16px; text-align: center;">
+              <div style="font-size: 11px; font-weight: 800; color: ${scorePercent >= 75 ? '#15803d' : scorePercent >= 50 ? '#b45309' : '#b91c1c'}; text-transform: uppercase; letter-spacing: 0.5px;">GENEL BAŞARI</div>
+              <div style="font-size: 32px; font-weight: 900; color: ${scorePercent >= 75 ? '#16a34a' : scorePercent >= 50 ? '#d97706' : '#dc2626'}; margin-top: 4px;">%${scorePercent}</div>
+              <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Net başarı yüzdesi</div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Math Highlight (if available) -->
+        ${exam.mathNet !== undefined && exam.mathNet !== null ? `
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border: 1.5px solid #d8b4fe; border-radius: 14px; padding: 14px 18px; margin-bottom: 22px;">
+          <tr>
+            <td width="40" valign="middle">
+              <div style="font-size: 26px;">📐</div>
+            </td>
+            <td valign="middle">
+              <div style="font-size: 11px; font-weight: 800; color: #7e22ce; text-transform: uppercase; letter-spacing: 0.5px;">Müfit Hoca ile Matematik Özel Alanı</div>
+              <div style="font-size: 15px; font-weight: 900; color: #581c87; margin-top: 2px;">
+                Matematik Neti: <strong>${exam.mathNet} Net</strong> ${exam.mathQCount ? `(${exam.mathQCount} Soru Üzerinden)` : ''}
+              </div>
+            </td>
+          </tr>
+        </table>` : ''}
+
+        <!-- Course Breakdown Table -->
+        ${subjectsTableHtml}
+
+        <!-- Student Note -->
+        ${exam.studentNote ? `
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 10px 10px 0; margin-bottom: 22px; padding: 14px;">
+          <tr>
+            <td>
+              <div style="font-size: 11px; font-weight: 800; color: #b45309; text-transform: uppercase;">💬 Öğrencinin Deneme Notu:</div>
+              <div style="font-size: 13px; color: #78350f; margin-top: 4px; font-style: italic; line-height: 1.5;">"${exam.studentNote}"</div>
+            </td>
+          </tr>
+        </table>` : ''}
+
+        <!-- Question Photos notice -->
+        ${photoCount > 0 ? `
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f0fdf4; border: 1px dashed #86efac; border-radius: 12px; padding: 12px 14px; margin-bottom: 22px; font-size: 12px; color: #166534;">
+          <tr>
+            <td>
+              📸 <strong>Yapılamayan ${photoCount} Adet Soru Fotoğrafı</strong> sisteme yüklendi ve Google Drive arşivine aktarıldı. Derste incelenmek üzere soru havuzuna eklendi.
+            </td>
+          </tr>
+        </table>` : ''}
+
+        <!-- CTA Button -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="text-align: center; margin: 26px 0 10px 0;">
+          <tr>
+            <td align="center">
+              <a href="https://mete-ege-matematik.onrender.com" target="_blank" style="display: inline-block; background-color: #4f46e5; color: #ffffff !important; text-decoration: none; padding: 14px 32px; border-radius: 12px; font-weight: 800; font-size: 13px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);">
+                🌐 Deneme Analizini ve Paneli İncele
+              </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td style="padding: 20px 24px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; background-color: #f8fafc; line-height: 1.6;">
+        <strong>Mete & Ege 9. Sınıf Matematik Takip Sistemi</strong> • Öğretmen: Müfit Hoca<br>
+        Bu bilgilendirme e-postası deneme sınavı kaydı sonrası otomatik olarak iletilmiştir.
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`
+}
+
+/**
+ * Dispatches instant mock exam notification email to student's parents and teacher
+ */
+async function dispatchMockExamEmail(exam, student, settings) {
+  const recipients = getDailyRecipients(exam.studentId, settings)
+  if (!recipients) return { success: false, reason: 'Alıcı e-posta adresi kayıtlı değil' }
+
+  const studentName = student?.name || (exam.studentId === 'mete' ? 'Mete' : 'Ege')
+  const dateFormatted = formatTrDate(exam.date) || exam.date
+  const net = exam.net !== undefined ? exam.net : parseFloat((Number(exam.correct || 0) - Number(exam.wrong || 0) * 0.25).toFixed(2))
+  const questionCount = exam.qCount || (Number(exam.correct || 0) + Number(exam.wrong || 0) + Number(exam.empty || 0)) || 0
+  const scorePercent = exam.scorePercent !== undefined ? exam.scorePercent : (questionCount > 0 ? Math.round((net / questionCount) * 100) : 0)
+  const isGeneral = exam.examType === 'general' || (exam.subjects && exam.subjects.length > 1)
+  const examKind = isGeneral ? 'Genel Deneme Sınavı' : 'Branş Denemesi'
+
+  const subject = `🏆 [${examKind}] ${studentName} Deneme Sonucunu Kaydetti: ${exam.examTitle} (Net: ${net}, Başarı: %${scorePercent})`
+
+  const htmlBody = buildMockExamEmailHtml(exam, student, settings)
+  const textBody = `${studentName} yeni bir ${examKind} sonucu kaydetti!\nDeneme: ${exam.examTitle} (${exam.publisher || ''})\nTarih: ${dateFormatted}\nToplam Soru: ${questionCount} | Doğru: ${exam.correct || 0} | Yanlış: ${exam.wrong || 0} | Boş: ${exam.empty || 0}\nToplam Net: ${net} | Başarı: %${scorePercent}\nSüre: ${exam.durationMinutes || 120} dk.\nDetaylar: https://mete-ege-matematik.onrender.com`
+
+  return await sendEmailViaAppsScript({
+    to: recipients,
+    subject,
+    htmlBody,
+    textBody
+  })
+}
+
 function renderTestsTableHtml(subs) {
   if (!subs || subs.length === 0) {
     return `<div style="padding: 14px; text-align: center; color: #94a3b8; font-size: 12px; background: #f8fafc; border-radius: 8px;">Bu hafta henüz tamamlanan test kaydı bulunmuyor.</div>`
@@ -1304,6 +1544,15 @@ app.post('/api/mock-exams', (req, res) => {
     })
   }
 
+  // Asynchronously dispatch mock exam notification email to student's parents and teacher
+  const settings = getSettings()
+  if (settings.emailMockExamEnabled !== false && (settings.teacherEmails || settings.notificationEmails) && settings.googleAppsScriptUrl) {
+    const student = (readDB().students || []).find(s => s.id === newExam.studentId)
+    dispatchMockExamEmail(newExam, student, settings).catch(err => {
+      console.error('[Mock Exam Email Error]:', err.message)
+    })
+  }
+
   res.status(201).json({ success: true, exam: newExam })
 })
 
@@ -1546,6 +1795,7 @@ app.put('/api/settings', (req, res) => {
     meteEmails,
     egeEmails,
     emailDailyEnabled,
+    emailMockExamEnabled,
     emailWeeklyFridayEnabled,
     emailWeeklyFridayTime
   } = req.body
@@ -1560,6 +1810,7 @@ app.put('/api/settings', (req, res) => {
   if (meteEmails !== undefined) updates.meteEmails = String(meteEmails).trim()
   if (egeEmails !== undefined) updates.egeEmails = String(egeEmails).trim()
   if (emailDailyEnabled !== undefined) updates.emailDailyEnabled = Boolean(emailDailyEnabled)
+  if (emailMockExamEnabled !== undefined) updates.emailMockExamEnabled = Boolean(emailMockExamEnabled)
   if (emailWeeklyFridayEnabled !== undefined) updates.emailWeeklyFridayEnabled = Boolean(emailWeeklyFridayEnabled)
   if (emailWeeklyFridayTime !== undefined) updates.emailWeeklyFridayTime = String(emailWeeklyFridayTime).trim()
 
@@ -1734,6 +1985,58 @@ app.get('/api/email/preview-weekly', (req, res) => {
       html = buildWeeklyFridayEmailHtml(reportData, settings)
     }
     res.json({ success: true, reportData, html, type: type || 'teacher' })
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message })
+  }
+})
+
+// Preview mock exam email HTML (supports ?studentId=mete|ege&examId=...)
+app.get('/api/email/preview-mock-exam', (req, res) => {
+  try {
+    const { examId, studentId } = req.query
+    const db = readDB()
+    const targetStudentId = studentId || 'mete'
+    const student = (db.students || []).find(s => s.id === targetStudentId) || { id: targetStudentId, name: targetStudentId === 'mete' ? 'Mete' : 'Ege' }
+
+    let exam = null
+    if (examId) {
+      exam = (db.mockExams || []).find(e => e.id === examId)
+    }
+    if (!exam) {
+      exam = (db.mockExams || []).filter(e => e.studentId === targetStudentId)[0]
+    }
+    if (!exam) {
+      // High-quality mock preview sample with full subject distribution
+      exam = {
+        id: 'sample_mock_exam',
+        studentId: targetStudentId,
+        studentName: student.name,
+        examTitle: 'Özdebir Türkiye Geneli 1. Deneme Sınavı',
+        publisher: 'Özdebir Yayınları',
+        date: new Date().toISOString().split('T')[0],
+        examType: 'general',
+        qCount: 120,
+        correct: 96,
+        wrong: 12,
+        empty: 12,
+        net: 93.0,
+        scorePercent: 78,
+        mathNet: 28.5,
+        mathQCount: 30,
+        durationMinutes: 135,
+        studentNote: 'Matematik ve Fen soruları çok kaliteliydi, zaman yönetimini iyi yaptım.',
+        subjects: [
+          { key: 'turkce', name: 'Türkçe', qCount: 30, correct: 26, wrong: 3, empty: 1, net: 25.25, scorePercent: 84 },
+          { key: 'matematik', name: 'Matematik', qCount: 30, correct: 29, wrong: 2, empty: 0, net: 28.5, scorePercent: 95 },
+          { key: 'fen', name: 'Fen Bilimleri', qCount: 30, correct: 22, wrong: 4, empty: 4, net: 21.0, scorePercent: 70 },
+          { key: 'sosyal', name: 'Sosyal Bilgiler', qCount: 30, correct: 19, wrong: 3, empty: 8, net: 18.25, scorePercent: 61 }
+        ],
+        questionPhotos: []
+      }
+    }
+    const settings = getSettings()
+    const html = buildMockExamEmailHtml(exam, student, settings)
+    res.json({ success: true, exam, html, studentId: targetStudentId })
   } catch (err) {
     res.status(500).json({ success: false, error: err.message })
   }

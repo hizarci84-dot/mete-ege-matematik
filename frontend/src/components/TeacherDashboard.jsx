@@ -56,7 +56,8 @@ import {
   sendWhatsAppWebhook,
   sendTestEmail,
   sendWeeklyReportEmail,
-  fetchWeeklyReportPreview
+  fetchWeeklyReportPreview,
+  fetchMockExamEmailPreview
 } from '../api'
 
 export default function TeacherDashboard({
@@ -139,6 +140,7 @@ export default function TeacherDashboard({
   const [meteEmailsInput, setMeteEmailsInput] = useState('')
   const [egeEmailsInput, setEgeEmailsInput] = useState('')
   const [emailDailyEnabled, setEmailDailyEnabled] = useState(true)
+  const [emailMockExamEnabled, setEmailMockExamEnabled] = useState(true)
   const [emailWeeklyFridayEnabled, setEmailWeeklyFridayEnabled] = useState(true)
   const [isSavingEmailSettings, setIsSavingEmailSettings] = useState(false)
   const [emailSettingsSaveMsg, setEmailSettingsSaveMsg] = useState(null)
@@ -165,6 +167,7 @@ export default function TeacherDashboard({
           if (st.meteEmails !== undefined) setMeteEmailsInput(st.meteEmails)
           if (st.egeEmails !== undefined) setEgeEmailsInput(st.egeEmails)
           if (st.emailDailyEnabled !== undefined) setEmailDailyEnabled(st.emailDailyEnabled)
+          if (st.emailMockExamEnabled !== undefined) setEmailMockExamEnabled(st.emailMockExamEnabled)
           if (st.emailWeeklyFridayEnabled !== undefined) setEmailWeeklyFridayEnabled(st.emailWeeklyFridayEnabled)
         }
       })
@@ -297,6 +300,7 @@ export default function TeacherDashboard({
         egeEmails: egeEmailsInput.trim(),
         notificationEmails: teacherEmailsInput.trim(),
         emailDailyEnabled,
+        emailMockExamEnabled,
         emailWeeklyFridayEnabled
       })
       if (updated && updated.settings) {
@@ -325,6 +329,7 @@ export default function TeacherDashboard({
         egeEmails: egeEmailsInput.trim(),
         notificationEmails: teacherEmailsInput.trim(),
         emailDailyEnabled,
+        emailMockExamEnabled,
         emailWeeklyFridayEnabled
       })
       let recipientsToSend = ''
@@ -363,6 +368,7 @@ export default function TeacherDashboard({
         egeEmails: egeEmailsInput.trim(),
         notificationEmails: teacherEmailsInput.trim(),
         emailDailyEnabled,
+        emailMockExamEnabled,
         emailWeeklyFridayEnabled
       })
       const res = await sendWeeklyReportEmail('')
@@ -384,9 +390,17 @@ export default function TeacherDashboard({
     setWeeklyPreviewType(type)
     setIsLoadingWeeklyPreview(true)
     try {
-      const res = await fetchWeeklyReportPreview(type)
-      if (res && res.success && res.html) {
-        setWeeklyPreviewHtml(res.html)
+      if (type === 'mock_mete' || type === 'mock_ege') {
+        const studentId = type === 'mock_mete' ? 'mete' : 'ege'
+        const res = await fetchMockExamEmailPreview(studentId)
+        if (res && res.success && res.html) {
+          setWeeklyPreviewHtml(res.html)
+        }
+      } else {
+        const res = await fetchWeeklyReportPreview(type)
+        if (res && res.success && res.html) {
+          setWeeklyPreviewHtml(res.html)
+        }
       }
     } catch (err) {
       console.error(err)
@@ -2628,7 +2642,7 @@ function sendWeeklyFriday2100Report() {
             </div>
 
             {/* Notification Checkboxes / Toggles */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
               {/* Option 1: Daily Instant Email */}
               <label className="bg-slate-950/70 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 flex items-start gap-3 cursor-pointer transition">
                 <input
@@ -2639,15 +2653,33 @@ function sendWeeklyFriday2100Report() {
                 />
                 <div className="space-y-1">
                   <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                    <span>⚡ Günlük Test Tamamlandığında Anlık Bildirim</span>
+                    <span>⚡ Günlük Test Anlık Bildirimi</span>
                   </span>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Mete testi kaydettiğinde Mete'nin velilerine + Öğretmene gider. Ege testi kaydettiğinde Ege'nin annesine + Öğretmene gider. Doğru/Yanlış sayıları ve çözülemeyen sorular postalanır.
+                    Mete testi kaydettiğinde Mete'nin velilerine + Öğretmene gider. Ege kaydettiğinde Ege'nin annesine + Öğretmene gider. Doğru/Yanlış ve soru fotoğrafları postalanır.
                   </p>
                 </div>
               </label>
 
-              {/* Option 2: Friday 21:00 Weekly Report */}
+              {/* Option 2: Mock Exam Instant Email */}
+              <label className="bg-slate-950/70 border border-indigo-500/30 hover:border-indigo-500/60 rounded-2xl p-4 flex items-start gap-3 cursor-pointer transition">
+                <input
+                  type="checkbox"
+                  checked={emailMockExamEnabled}
+                  onChange={(e) => setEmailMockExamEnabled(e.target.checked)}
+                  className="mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500 bg-slate-900 border-slate-700 cursor-pointer"
+                />
+                <div className="space-y-1">
+                  <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                    <span>🏆 Genel Deneme Sınavı Bildirimi</span>
+                  </span>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                    Mete veya Ege yeni bir Genel Deneme Sınavı kaydettiğinde; toplam net, ders bazlı net tablosu (Türkçe, Mat, Fen vb.) öğrencinin velisine ve öğretmene anında iletilir.
+                  </p>
+                </div>
+              </label>
+
+              {/* Option 3: Friday 21:00 Weekly Report */}
               <label className="bg-slate-950/70 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 flex items-start gap-3 cursor-pointer transition">
                 <input
                   type="checkbox"
@@ -2657,10 +2689,10 @@ function sendWeeklyFriday2100Report() {
                 />
                 <div className="space-y-1">
                   <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                    <span>📊 Her Cuma Saat 21:00'da Haftalık Karne Dağıtımı</span>
+                    <span>📊 Cuma 21:00 Haftalık Karne</span>
                   </span>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Her Cuma akşamı 21:00'da otomatik olarak; Müfit Hoca'ya genel karne, Mete'nin ailesine Mete'nin haftalık karnesi, Ege'nin annesine Ege'nin haftalık karnesi gider.
+                    Her Cuma 21:00'da otomatik olarak; Müfit Hoca'ya genel karne, Mete'nin ailesine Mete'nin haftalık karnesi, Ege'nin annesine Ege'nin karnesi postalanır.
                   </p>
                 </div>
               </label>
@@ -2838,7 +2870,7 @@ function sendWeeklyFriday2100Report() {
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-indigo-400" />
                 <span className="text-sm font-bold text-white">
-                  Cuma 21:00 Haftalık Karne Canlı Önizlemesi
+                  E-posta & Karne Bildirimleri Canlı Önizlemesi
                 </span>
               </div>
               <button
@@ -2852,7 +2884,7 @@ function sendWeeklyFriday2100Report() {
 
             {/* Preview Type Selector Tabs */}
             <div className="px-4 py-2.5 bg-slate-950 border-b border-slate-800/80 flex items-center gap-2 overflow-x-auto">
-              <span className="text-xs text-slate-400 font-semibold mr-1 shrink-0">Karne Şablonu:</span>
+              <span className="text-xs text-slate-400 font-semibold mr-1 shrink-0">E-posta Şablonu:</span>
               <button
                 type="button"
                 onClick={() => handleOpenWeeklyPreview('teacher')}
@@ -2886,25 +2918,47 @@ function sendWeeklyFriday2100Report() {
               >
                 <span>🧑‍🎓 Ege'nin Karnesi (Veli)</span>
               </button>
+              <button
+                type="button"
+                onClick={() => handleOpenWeeklyPreview('mock_mete')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 border ${
+                  weeklyPreviewType === 'mock_mete'
+                    ? 'bg-purple-600 border-purple-400 text-white shadow'
+                    : 'bg-slate-900 border-slate-700 text-purple-300 hover:border-purple-500'
+                }`}
+              >
+                <span>🎯 Mete Deneme Sınavı Maili</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleOpenWeeklyPreview('mock_ege')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 border ${
+                  weeklyPreviewType === 'mock_ege'
+                    ? 'bg-teal-600 border-teal-400 text-white shadow'
+                    : 'bg-slate-900 border-slate-700 text-teal-300 hover:border-teal-500'
+                }`}
+              >
+                <span>🎯 Ege Deneme Sınavı Maili</span>
+              </button>
             </div>
 
             <div className="p-4 flex-1 overflow-auto bg-slate-950/40">
               {isLoadingWeeklyPreview ? (
                 <div className="py-24 text-center text-slate-400 text-xs flex items-center justify-center gap-2">
                   <RefreshCw className="w-5 h-5 animate-spin text-indigo-400" />
-                  <span>Karne verileri derleniyor...</span>
+                  <span>Şablon ve veriler yükleniyor...</span>
                 </div>
               ) : (
                 <iframe
                   srcDoc={weeklyPreviewHtml}
-                  title="Weekly Report Preview"
+                  title="Email Preview"
                   className="w-full h-[65vh] border-0 rounded-2xl bg-white shadow-xl"
                 />
               )}
             </div>
             <div className="p-3.5 border-t border-slate-800 bg-slate-950/80 flex items-center justify-between">
               <span className="text-xs text-slate-400">
-                💡 Cuma saat 21:00'da öğretmen ve velilere yukarıdaki şablonlar tam bu şekilde otomatik olarak gönderilir.
+                💡 Öğrenciler günlük test veya deneme sınavı girdiğinde ve Cuma 21:00'da öğretmen ve velilere yukarıdaki şablonlar otomatik olarak gönderilir.
               </span>
               <button
                 type="button"
