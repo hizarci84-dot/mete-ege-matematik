@@ -2138,6 +2138,31 @@
       "questionPhotos": [],
       "net": 12,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1793980627141",
+      "submittedAt": "2026-11-06T15:57:07.141Z",
+      "studentId": "mete",
+      "assignmentId": "asgn_mete_41",
+      "testId": "cap-t1-ogr-12",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+      "testTitle": "Sıralı Olma ve Sayı Belirleme",
+      "testNum": "Öğreniyorum 12",
+      "pages": "39-40",
+      "date": "2026-11-06",
+      "qCount": 34,
+      "correct": 34,
+      "wrong": 0,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 34,
+      "scorePercent": 100
     }
   ],
   "mockExams": [
@@ -4182,5 +4207,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-11-05T13:35:33.049Z"
+  "updated_at": "2026-11-06T15:57:08.402Z"
 }
