@@ -2238,6 +2238,31 @@
       "questionPhotos": [],
       "net": 4,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1794045002172",
+      "submittedAt": "2026-11-07T09:50:02.172Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_43",
+      "testId": "cap-t1-ogr-13",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+      "testTitle": "Kapalılık Özelliği ve İspat Yöntemleri",
+      "testNum": "Öğreniyorum 13",
+      "pages": "41-42",
+      "date": "2026-11-07",
+      "qCount": 2,
+      "correct": 2,
+      "wrong": 0,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 2,
+      "scorePercent": 100
     }
   ],
   "mockExams": [
@@ -4282,5 +4307,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-11-07T09:49:44.864Z"
+  "updated_at": "2026-11-07T09:50:03.423Z"
 }
