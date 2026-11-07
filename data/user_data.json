@@ -2313,6 +2313,31 @@
       "questionPhotos": [],
       "net": 7.75,
       "scorePercent": 89
+    },
+    {
+      "id": "sub_1794045067102",
+      "submittedAt": "2026-11-07T09:51:07.102Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_45",
+      "testId": "cap-t1-ogr-14",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+      "testTitle": "Sayılarda Sıralama Özellikleri - 1",
+      "testNum": "Öğreniyorum 14",
+      "pages": "43-44",
+      "date": "2026-11-08",
+      "qCount": 12,
+      "correct": 11,
+      "wrong": 0,
+      "empty": 1,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 11,
+      "scorePercent": 92
     }
   ],
   "mockExams": [
@@ -4357,5 +4382,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-11-07T09:50:47.854Z"
+  "updated_at": "2026-11-07T09:51:08.323Z"
 }
