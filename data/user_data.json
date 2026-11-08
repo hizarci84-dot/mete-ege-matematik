@@ -2367,6 +2367,69 @@
   ],
   "mockExams": [
     {
+      "id": "mock_1794144519176_74l59r",
+      "createdAt": "2026-11-08T13:28:39.177Z",
+      "examType": "general",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "examTitle": "Ege",
+      "publisher": "Bilgi Sarmal",
+      "date": "2026-10-23",
+      "subjects": [
+        {
+          "key": "turkce",
+          "name": "Türk Dili ve Edebiyatı",
+          "qCount": 30,
+          "correct": 23,
+          "wrong": 4,
+          "empty": 3,
+          "net": 22,
+          "scorePercent": 73
+        },
+        {
+          "key": "matematik",
+          "name": "Matematik",
+          "qCount": 30,
+          "correct": 18,
+          "wrong": 7,
+          "empty": 5,
+          "net": 16.25,
+          "scorePercent": 54
+        },
+        {
+          "key": "fen",
+          "name": "Fen Bilimleri (Fizik-Kimya-Biyo)",
+          "qCount": 30,
+          "correct": 25,
+          "wrong": 3,
+          "empty": 2,
+          "net": 24.25,
+          "scorePercent": 81
+        },
+        {
+          "key": "sosyal",
+          "name": "Sosyal Bilimler (Tar-Coğ-Din-Fel)",
+          "qCount": 30,
+          "correct": 26,
+          "wrong": 1,
+          "empty": 3,
+          "net": 25.75,
+          "scorePercent": 86
+        }
+      ],
+      "qCount": 120,
+      "correct": 92,
+      "wrong": 15,
+      "empty": 13,
+      "durationMinutes": 135,
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 88.25,
+      "scorePercent": 74,
+      "mathNet": 16.25,
+      "mathQCount": 30
+    },
+    {
       "id": "mock_1793714566876_15afqf",
       "createdAt": "2026-11-03T14:02:46.878Z",
       "examType": "general",
@@ -4432,5 +4495,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-11-07T14:26:13.090Z"
+  "updated_at": "2026-11-08T13:28:40.391Z"
 }
