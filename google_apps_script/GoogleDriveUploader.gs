@@ -441,6 +441,26 @@ function doPost(e) {
       }
     }
 
+    if (data.action === "setup_all_triggers") {
+      tumOtomatikTetikleyicileriKur();
+      var triggers = ScriptApp.getProjectTriggers();
+      var trigInfo = triggers.map(function(t) { return t.getHandlerFunction(); });
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        message: "Tüm otomatik zamanlayıcılar başarıyla kuruldu!",
+        installedTriggers: trigInfo
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    if (data.action === "list_triggers") {
+      var triggers = ScriptApp.getProjectTriggers();
+      var trigInfo = triggers.map(function(t) { return t.getHandlerFunction(); });
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        installedTriggers: trigInfo
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
     return ContentService.createTextOutput(JSON.stringify({ status: "error", message: "Bilinmeyen eylem" })).setMimeType(ContentService.MimeType.JSON);
 
   } catch (err) {
