@@ -25,6 +25,7 @@ import {
   CheckCircle,
   HelpCircle,
   AlertCircle,
+  AlertTriangle,
   BarChart2,
   Layers,
   TrendingUp,
@@ -57,7 +58,9 @@ import {
   sendTestEmail,
   sendWeeklyReportEmail,
   fetchWeeklyReportPreview,
-  fetchMockExamEmailPreview
+  fetchMockExamEmailPreview,
+  checkMissingAssignments,
+  fetchMissingAssignmentEmailPreview
 } from '../api'
 
 export default function TeacherDashboard({
@@ -141,6 +144,7 @@ export default function TeacherDashboard({
   const [egeEmailsInput, setEgeEmailsInput] = useState('')
   const [emailDailyEnabled, setEmailDailyEnabled] = useState(true)
   const [emailMockExamEnabled, setEmailMockExamEnabled] = useState(true)
+  const [emailMissingAssignmentEnabled, setEmailMissingAssignmentEnabled] = useState(true)
   const [emailWeeklyFridayEnabled, setEmailWeeklyFridayEnabled] = useState(true)
   const [isSavingEmailSettings, setIsSavingEmailSettings] = useState(false)
   const [emailSettingsSaveMsg, setEmailSettingsSaveMsg] = useState(null)
@@ -148,6 +152,8 @@ export default function TeacherDashboard({
   const [testEmailResult, setTestEmailResult] = useState(null)
   const [isSendingWeeklyEmail, setIsSendingWeeklyEmail] = useState(false)
   const [weeklyEmailResult, setWeeklyEmailResult] = useState(null)
+  const [isCheckingMissingHomework, setIsCheckingMissingHomework] = useState(false)
+  const [missingHomeworkCheckResult, setMissingHomeworkCheckResult] = useState(null)
   const [showWeeklyPreviewModal, setShowWeeklyPreviewModal] = useState(false)
   const [weeklyPreviewHtml, setWeeklyPreviewHtml] = useState('')
   const [weeklyPreviewType, setWeeklyPreviewType] = useState('teacher')
@@ -168,6 +174,7 @@ export default function TeacherDashboard({
           if (st.egeEmails !== undefined) setEgeEmailsInput(st.egeEmails)
           if (st.emailDailyEnabled !== undefined) setEmailDailyEnabled(st.emailDailyEnabled)
           if (st.emailMockExamEnabled !== undefined) setEmailMockExamEnabled(st.emailMockExamEnabled)
+          if (st.emailMissingAssignmentEnabled !== undefined) setEmailMissingAssignmentEnabled(st.emailMissingAssignmentEnabled)
           if (st.emailWeeklyFridayEnabled !== undefined) setEmailWeeklyFridayEnabled(st.emailWeeklyFridayEnabled)
         }
       })
@@ -301,6 +308,7 @@ export default function TeacherDashboard({
         notificationEmails: teacherEmailsInput.trim(),
         emailDailyEnabled,
         emailMockExamEnabled,
+        emailMissingAssignmentEnabled,
         emailWeeklyFridayEnabled
       })
       if (updated && updated.settings) {
@@ -330,6 +338,7 @@ export default function TeacherDashboard({
         notificationEmails: teacherEmailsInput.trim(),
         emailDailyEnabled,
         emailMockExamEnabled,
+        emailMissingAssignmentEnabled,
         emailWeeklyFridayEnabled
       })
       let recipientsToSend = ''
@@ -369,6 +378,7 @@ export default function TeacherDashboard({
         notificationEmails: teacherEmailsInput.trim(),
         emailDailyEnabled,
         emailMockExamEnabled,
+        emailMissingAssignmentEnabled,
         emailWeeklyFridayEnabled
       })
       const res = await sendWeeklyReportEmail('')
@@ -385,6 +395,47 @@ export default function TeacherDashboard({
     }
   }
 
+  const handleTriggerMissingHomeworkCheck = async () => {
+    if (!teacherEmailsInput.trim() && !meteEmailsInput.trim() && !egeEmailsInput.trim()) {
+      alert('Lütfen en az bir alıcı e-posta adresi giriniz.')
+      return
+    }
+    if (!window.confirm('Dünkü ödevlerin durumu taranarak, veri girişi yapmamış öğrencilerin velilerine ve öğretmene anında saat 15:00 hatırlatma e-postası gönderilsin mi?')) {
+      return
+    }
+    setIsCheckingMissingHomework(true)
+    setMissingHomeworkCheckResult(null)
+    try {
+      await updateSettings({
+        teacherEmails: teacherEmailsInput.trim(),
+        meteEmails: meteEmailsInput.trim(),
+        egeEmails: egeEmailsInput.trim(),
+        notificationEmails: teacherEmailsInput.trim(),
+        emailDailyEnabled,
+        emailMockExamEnabled,
+        emailMissingAssignmentEnabled,
+        emailWeeklyFridayEnabled
+      })
+      const res = await checkMissingAssignments('', true)
+      if (res && res.success) {
+        const alerts = res.results?.filter(r => r.missingCount > 0) || []
+        if (alerts.length > 0) {
+          const names = alerts.map(a => `${a.studentName} (${a.missingCount} eksik test)`).join(', ')
+          setMissingHomeworkCheckResult({ success: true, message: `Hatırlatma postalandı: ${names}` })
+        } else {
+          setMissingHomeworkCheckResult({ success: true, message: 'Dün için atanmış tüm ödevlerin veri girişi yapılmış, eksik ödev bulunmuyor! 👏' })
+        }
+      } else {
+        setMissingHomeworkCheckResult({ success: false, message: res?.error || res?.reason || 'Ödev kontrolü tamamlanamadı.' })
+      }
+    } catch (err) {
+      setMissingHomeworkCheckResult({ success: false, message: 'Hata: ' + err.message })
+    } finally {
+      setIsCheckingMissingHomework(false)
+      setTimeout(() => setMissingHomeworkCheckResult(null), 8000)
+    }
+  }
+
   const handleOpenWeeklyPreview = async (type = 'teacher') => {
     setShowWeeklyPreviewModal(true)
     setWeeklyPreviewType(type)
@@ -393,6 +444,12 @@ export default function TeacherDashboard({
       if (type === 'mock_mete' || type === 'mock_ege') {
         const studentId = type === 'mock_mete' ? 'mete' : 'ege'
         const res = await fetchMockExamEmailPreview(studentId)
+        if (res && res.success && res.html) {
+          setWeeklyPreviewHtml(res.html)
+        }
+      } else if (type === 'missing_mete' || type === 'missing_ege') {
+        const studentId = type === 'missing_mete' ? 'mete' : 'ege'
+        const res = await fetchMissingAssignmentEmailPreview(studentId)
         if (res && res.success && res.html) {
           setWeeklyPreviewHtml(res.html)
         }
@@ -557,6 +614,15 @@ function otomatik1600TetikleyiciKur() {
   Logger.log("Saat 16:00 WhatsApp tetikleyicisi kuruldu!");
 }
 
+function otomatik1500OdevHatirlaticiKur() {
+  var triggers = ScriptApp.getProjectTriggers();
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === "sendDaily1500MissingHomeworkCheck") ScriptApp.deleteTrigger(triggers[i]);
+  }
+  ScriptApp.newTrigger("sendDaily1500MissingHomeworkCheck").timeBased().everyDays(1).atHour(15).create();
+  Logger.log("Saat 15:00 Ödev Hatırlatıcı tetikleyicisi kuruldu!");
+}
+
 function otomatikCuma2100TetikleyiciKur() {
   var triggers = ScriptApp.getProjectTriggers();
   for (var i = 0; i < triggers.length; i++) {
@@ -564,6 +630,22 @@ function otomatikCuma2100TetikleyiciKur() {
   }
   ScriptApp.newTrigger("sendWeeklyFriday2100Report").timeBased().onWeekDay(ScriptApp.WeekDay.FRIDAY).atHour(21).create();
   Logger.log("Cuma Saat 21:00 Haftalık Rapor tetikleyicisi kuruldu!");
+}
+
+function tumOtomatikTetikleyicileriKur() {
+  otomatik1500OdevHatirlaticiKur();
+  otomatik1600TetikleyiciKur();
+  otomatikCuma2100TetikleyiciKur();
+  Logger.log("Tüm tetikleyiciler (15:00 Ödev Uyarısı, 16:00 WhatsApp, Cuma 21:00 Rapor) başarıyla kuruldu!");
+}
+
+function sendDaily1500MissingHomeworkCheck() {
+  UrlFetchApp.fetch("https://mete-ege-matematik.onrender.com/api/email/check-missing-assignments", {
+    method: "post",
+    contentType: "application/json",
+    payload: JSON.stringify({ source: "google_apps_script_cron" }),
+    muteHttpExceptions: true
+  });
 }
 
 function sendWeeklyFriday2100Report() {
@@ -2642,7 +2724,7 @@ function sendWeeklyFriday2100Report() {
             </div>
 
             {/* Notification Checkboxes / Toggles */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
               {/* Option 1: Daily Instant Email */}
               <label className="bg-slate-950/70 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 flex items-start gap-3 cursor-pointer transition">
                 <input
@@ -2653,10 +2735,10 @@ function sendWeeklyFriday2100Report() {
                 />
                 <div className="space-y-1">
                   <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                    <span>⚡ Günlük Test Anlık Bildirimi</span>
+                    <span>⚡ Günlük Test Bildirimi</span>
                   </span>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Mete testi kaydettiğinde Mete'nin velilerine + Öğretmene gider. Ege kaydettiğinde Ege'nin annesine + Öğretmene gider. Doğru/Yanlış ve soru fotoğrafları postalanır.
+                    Öğrenci testi kaydettiğinde velisine + Öğretmene gider. Doğru/Yanlış ve soru fotoğrafları postalanır.
                   </p>
                 </div>
               </label>
@@ -2671,15 +2753,33 @@ function sendWeeklyFriday2100Report() {
                 />
                 <div className="space-y-1">
                   <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                    <span>🏆 Genel Deneme Sınavı Bildirimi</span>
+                    <span>🏆 Genel Deneme Bildirimi</span>
                   </span>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Mete veya Ege yeni bir Genel Deneme Sınavı kaydettiğinde; toplam net, ders bazlı net tablosu (Türkçe, Mat, Fen vb.) öğrencinin velisine ve öğretmene anında iletilir.
+                    Yeni bir Deneme Sınavı kaydettiğinde; genel net ve ders dağılımı (Türkçe, Mat, Fen vb.) veliye ve öğretmene iletilir.
                   </p>
                 </div>
               </label>
 
-              {/* Option 3: Friday 21:00 Weekly Report */}
+              {/* Option 3: Missing Homework 15:00 Alert */}
+              <label className="bg-slate-950/70 border border-amber-500/30 hover:border-amber-500/60 rounded-2xl p-4 flex items-start gap-3 cursor-pointer transition">
+                <input
+                  type="checkbox"
+                  checked={emailMissingAssignmentEnabled}
+                  onChange={(e) => setEmailMissingAssignmentEnabled(e.target.checked)}
+                  className="mt-1 w-4 h-4 rounded text-amber-500 focus:ring-amber-400 bg-slate-900 border-slate-700 cursor-pointer"
+                />
+                <div className="space-y-1">
+                  <span className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                    <span>⚠️ Ödev Girişi Uyarısı (15:00)</span>
+                  </span>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                    Dünkü ödevin veri girişi ertesi gün saat 15:00'a kadar yapılmazsa, veliye ve öğretmene otomatik hatırlatma gider.
+                  </p>
+                </div>
+              </label>
+
+              {/* Option 4: Friday 21:00 Weekly Report */}
               <label className="bg-slate-950/70 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 flex items-start gap-3 cursor-pointer transition">
                 <input
                   type="checkbox"
@@ -2692,7 +2792,7 @@ function sendWeeklyFriday2100Report() {
                     <span>📊 Cuma 21:00 Haftalık Karne</span>
                   </span>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Her Cuma 21:00'da otomatik olarak; Müfit Hoca'ya genel karne, Mete'nin ailesine Mete'nin haftalık karnesi, Ege'nin annesine Ege'nin karnesi postalanır.
+                    Her Cuma 21:00'da; Müfit Hoca'ya genel karne, Mete'nin ailesine Mete'nin, Ege'nin ailesine Ege'nin karnesi postalanır.
                   </p>
                 </div>
               </label>
@@ -2728,6 +2828,17 @@ function sendWeeklyFriday2100Report() {
               </div>
             )}
 
+            {missingHomeworkCheckResult && (
+              <div className={`p-3 rounded-xl border text-xs flex items-center gap-2 ${
+                missingHomeworkCheckResult.success
+                  ? 'bg-amber-950/50 border-amber-500/40 text-amber-300'
+                  : 'bg-rose-950/50 border-rose-500/40 text-rose-300'
+              }`}>
+                {missingHomeworkCheckResult.success ? <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" /> : <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />}
+                <span>{missingHomeworkCheckResult.message}</span>
+              </div>
+            )}
+
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-slate-800">
               <button
@@ -2753,6 +2864,17 @@ function sendWeeklyFriday2100Report() {
 
               <button
                 type="button"
+                onClick={handleTriggerMissingHomeworkCheck}
+                disabled={isCheckingMissingHomework}
+                className="py-2.5 px-4 bg-amber-700 hover:bg-amber-600 text-white rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow-lg shadow-amber-700/20 disabled:opacity-50"
+                title="Dünkü ödev durumunu kontrol edip veri girişi yapmayan varsa anında uyarı maili postalar"
+              >
+                {isCheckingMissingHomework ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <AlertTriangle className="w-3.5 h-3.5" />}
+                <span>{isCheckingMissingHomework ? 'Kontrol Ediliyor...' : 'Saat 15:00 Ödev Kontrolünü Şimdi Çalıştır'}</span>
+              </button>
+
+              <button
+                type="button"
                 onClick={handleSendWeeklyReportEmail}
                 disabled={isSendingWeeklyEmail}
                 className="py-2.5 px-4 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow-lg shadow-emerald-700/20 disabled:opacity-50"
@@ -2768,7 +2890,7 @@ function sendWeeklyFriday2100Report() {
                 className="py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-indigo-500/30 rounded-xl text-xs font-bold transition flex items-center space-x-2 ml-auto"
               >
                 <Eye className="w-3.5 h-3.5 text-indigo-400" />
-                <span>Haftalık Karne Şablonlarını Önizle</span>
+                <span>📧 E-posta Şablonlarını Önizle</span>
               </button>
             </div>
           </div>
@@ -2939,6 +3061,28 @@ function sendWeeklyFriday2100Report() {
                 }`}
               >
                 <span>🎯 Ege Deneme Sınavı Maili</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleOpenWeeklyPreview('missing_mete')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 border ${
+                  weeklyPreviewType === 'missing_mete'
+                    ? 'bg-amber-600 border-amber-400 text-white shadow'
+                    : 'bg-slate-900 border-slate-700 text-amber-300 hover:border-amber-500'
+                }`}
+              >
+                <span>⚠️ Mete Ödev Uyarısı</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleOpenWeeklyPreview('missing_ege')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 border ${
+                  weeklyPreviewType === 'missing_ege'
+                    ? 'bg-orange-600 border-orange-400 text-white shadow'
+                    : 'bg-slate-900 border-slate-700 text-orange-300 hover:border-orange-500'
+                }`}
+              >
+                <span>⚠️ Ege Ödev Uyarısı</span>
               </button>
             </div>
 

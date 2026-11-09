@@ -723,6 +723,230 @@ async function dispatchMockExamEmail(exam, student, settings) {
   })
 }
 
+/**
+ * Calculates yesterday's date in Europe/Istanbul (GMT+3) timezone as 'YYYY-MM-DD'
+ */
+function getYesterdayDateStr(referenceDate = new Date()) {
+  const formatter = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Istanbul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  })
+  const todayStr = formatter.format(referenceDate)
+  const [year, month, day] = todayStr.split('-').map(Number)
+  const d = new Date(year, month - 1, day)
+  d.setDate(d.getDate() - 1)
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const dt = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${dt}`
+}
+
+/**
+ * Builds responsive HTML for missing homework alert email
+ */
+function buildMissingAssignmentEmailHtml(student, targetDateStr, pendingAsgns, allDayAsgns, settings) {
+  const studentName = student?.name || (student?.id === 'mete' ? 'Mete' : 'Ege')
+  const dateFormatted = formatTrDate(targetDateStr) || targetDateStr
+  const totalCount = allDayAsgns?.length || 1
+  const missingCount = pendingAsgns?.length || 1
+
+  // Format list of missing tests
+  const testsListHtml = (pendingAsgns || []).map((a, idx) => `
+    <div style="background-color: #ffffff; border: 1.5px solid #fde68a; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+        <span style="font-size: 11px; font-weight: 800; color: #d97706; text-transform: uppercase; letter-spacing: 0.5px;">
+          📝 ${totalCount > 1 ? `${idx + 1}. Test: ` : ''}${a.testNum || 'Günün Testi'}
+        </span>
+        <span style="font-size: 11px; font-weight: 700; color: #dc2626; background-color: #fef2f2; border: 1px solid #fecaca; padding: 2px 8px; border-radius: 12px;">
+          ⏳ Veri Girişi Bekleniyor
+        </span>
+      </div>
+      <div style="font-size: 15px; font-weight: 800; color: #0f172a; margin-top: 2px;">
+        ${a.testTitle || 'Matematik Testi'}
+      </div>
+      <div style="font-size: 12px; color: #475569; margin-top: 6px; line-height: 1.6;">
+        📚 <strong>Kitap:</strong> ${a.bookTitle}<br>
+        📂 <strong>Konu:</strong> ${a.topicName || a.themeName}<br>
+        📄 <strong>Sayfa:</strong> ${a.pages || '-'} &nbsp;•&nbsp; ❓ <strong>Soru Sayısı:</strong> ${a.qCount || 12} Soru
+      </div>
+    </div>
+  `).join('')
+
+  return `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ödev Veri Girişi Bildirimi - ${studentName}</title>
+</head>
+<body style="margin: 0; padding: 20px; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 620px; margin: 0 auto; background-color: #ffffff; border-radius: 18px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.07);">
+    <!-- Warning Header -->
+    <tr>
+      <td style="background: linear-gradient(135deg, #b45309 0%, #ea580c 50%, #dc2626 100%); padding: 28px 24px; text-align: center; color: #ffffff;">
+        <div style="display: inline-block; background: rgba(255,255,255,0.22); padding: 5px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.35);">
+          ⚠️ ÖDEV VERİ GİRİŞİ BİLGİLENDİRMESİ
+        </div>
+        <h1 style="margin: 0; font-size: 22px; font-weight: 900; color: #ffffff; letter-spacing: -0.3px;">
+          ${studentName} Dünkü Matematik Ödevini Henüz Kaydetmedi
+        </h1>
+        <p style="margin: 8px 0 0 0; font-size: 13px; color: #ffedd5;">
+          Öğretmen: Müfit Hoca • Kontrol Saati: 15:00
+        </p>
+      </td>
+    </tr>
+
+    <!-- Body Content -->
+    <tr>
+      <td style="padding: 24px;">
+        <!-- Notification Message Box -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 10px 10px 0; margin-bottom: 22px; padding: 14px 16px;">
+          <tr>
+            <td>
+              <div style="font-size: 13px; color: #78350f; line-height: 1.6;">
+                <strong>Değerli Velimiz ve Sevgili ${studentName},</strong><br>
+                Sistemimizin günlük ödev takip kontrollerinde, <strong>${dateFormatted}</strong> tarihi için planlanan matematik ödevinin saat 15:00 itibarıyla programa veri girişinin henüz yapılmadığı tespit edilmiştir.
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Missing Assignments Section -->
+        <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
+          📋 Veri Girişi Beklenen Test${missingCount > 1 ? 'ler' : ''} (${missingCount} Adet):
+        </div>
+        ${testsListHtml}
+
+        <!-- Next Steps / Guidance -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-top: 16px; margin-bottom: 22px; font-size: 12px; color: #334155; line-height: 1.6;">
+          <tr>
+            <td>
+              <div style="font-weight: 800; font-size: 13px; color: #0f172a; margin-bottom: 6px;">
+                📌 Ne Yapılması Gerekiyor?
+              </div>
+              <div style="margin-bottom: 6px;">
+                • <strong>Test Çözüldüyse:</strong> Lütfen sisteme girerek Doğru, Yanlış ve Boş sayılarınızı kaydediniz. Takıldığınız veya yapamadığınız soruların fotoğrafını eklemeyi unutmayınız (sorular derste incelenmek üzere otomatik soru havuzuna ve Google Drive'a aktarılır).
+              </div>
+              <div>
+                • <strong>Test Henüz Çözülmediyse:</strong> Lütfen gününüzü planlayarak dünden eksik kalan ödevinizi tamamlayınız ve ardından sisteme girişini yapınız.
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- CTA Button -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="text-align: center; margin: 20px 0 10px 0;">
+          <tr>
+            <td align="center">
+              <a href="https://mete-ege-matematik.onrender.com" target="_blank" style="display: inline-block; background-color: #ea580c; color: #ffffff !important; text-decoration: none; padding: 14px 34px; border-radius: 12px; font-weight: 800; font-size: 13px; box-shadow: 0 4px 12px rgba(234, 88, 12, 0.35);">
+                👉 Ödev Girişini Yapmak İçin Sisteme Git
+              </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td style="padding: 20px 24px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; background-color: #f8fafc; line-height: 1.6;">
+        <strong>Mete & Ege 9. Sınıf Matematik Takip Sistemi</strong> • Öğretmen: Müfit Hoca<br>
+        Bu hatırlatma e-postası, öğrencilerimizin düzenli çalışma disiplinini desteklemek amacıyla ertesi gün saat 15:00'da sistem tarafından otomatik olarak iletilmiştir.
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`
+}
+
+/**
+ * Checks if students missed yesterday's homework submission,
+ * and if so, dispatches email alert at 15:00 to relevant parents and teacher.
+ */
+async function checkAndDispatchMissingAssignmentAlerts(targetDateStr = null, force = false) {
+  const db = readDB()
+  const settings = getSettings()
+
+  if (!force && settings.emailMissingAssignmentEnabled === false) {
+    return { success: false, reason: 'Ödev giriş hatırlatıcı e-postaları ayarlardan devre dışı bırakılmış.' }
+  }
+
+  // If no target date provided, use yesterday's date in Europe/Istanbul
+  const checkDate = targetDateStr || getYesterdayDateStr()
+
+  // Guard: Check curriculum range (2026-10-05 to 2027-05-29)
+  if (checkDate < '2026-10-05' || checkDate > '2027-05-29') {
+    return { success: false, reason: `Tarih (${checkDate}) program süresinin (2026-10-05 - 2027-05-29) dışında.` }
+  }
+
+  const results = []
+  const students = (db.students || []).filter(s => s.id === 'mete' || s.id === 'ege')
+
+  for (const student of students) {
+    const studentAsgns = (db.assignments || []).filter(a => a.studentId === student.id && a.date === checkDate)
+    if (studentAsgns.length === 0) {
+      continue // No homework scheduled for this student on this date
+    }
+
+    // Double check completion status with both assignment status and submissions array
+    const isCompleted = (a) => {
+      if (a.status === 'completed' && a.submissionId) return true
+      const sub = (db.submissions || []).find(s =>
+        s.studentId === student.id &&
+        ((a.submissionId && s.id === a.submissionId) || (s.assignmentId === a.id) || (s.testId === a.testId && s.date === a.date))
+      )
+      return Boolean(sub)
+    }
+
+    const pendingAsgns = studentAsgns.filter(a => !isCompleted(a))
+
+    if (pendingAsgns.length > 0) {
+      const recipients = getDailyRecipients(student.id, settings)
+      if (!recipients) {
+        results.push({ studentId: student.id, studentName: student.name, success: false, error: 'Alıcı e-posta bulunamadı' })
+        continue
+      }
+
+      const subject = `⚠️ [Ödev Hatırlatması] ${student.name} Dünkü Matematik Ödevinin Veri Girişini Henüz Yapmadı (${formatTrDate(checkDate)})`
+      const htmlBody = buildMissingAssignmentEmailHtml(student, checkDate, pendingAsgns, studentAsgns, settings)
+      const textBody = `Değerli Velimiz,\n${student.name} ${formatTrDate(checkDate)} tarihli matematik ödevinin veri girişini saat 15:00 itibarıyla henüz programa kaydetmemiştir.\nEksik Test: ${pendingAsgns.map(p => p.testTitle).join(', ')}\nLütfen sisteme girerek sonuçları kaydediniz: https://mete-ege-matematik.onrender.com`
+
+      const res = await sendEmailViaAppsScript({
+        to: recipients,
+        subject,
+        htmlBody,
+        textBody
+      })
+
+      results.push({
+        studentId: student.id,
+        studentName: student.name,
+        targetDate: checkDate,
+        missingCount: pendingAsgns.length,
+        pendingTests: pendingAsgns.map(p => p.testTitle),
+        recipients,
+        success: res?.status === 'success' || res?.success || false
+      })
+    } else {
+      results.push({
+        studentId: student.id,
+        studentName: student.name,
+        targetDate: checkDate,
+        missingCount: 0,
+        status: 'completed'
+      })
+    }
+  }
+
+  return {
+    success: true,
+    targetDate: checkDate,
+    results
+  }
+}
+
 function renderTestsTableHtml(subs) {
   if (!subs || subs.length === 0) {
     return `<div style="padding: 14px; text-align: center; color: #94a3b8; font-size: 12px; background: #f8fafc; border-radius: 8px;">Bu hafta henüz tamamlanan test kaydı bulunmuyor.</div>`
@@ -1796,6 +2020,8 @@ app.put('/api/settings', (req, res) => {
     egeEmails,
     emailDailyEnabled,
     emailMockExamEnabled,
+    emailMissingAssignmentEnabled,
+    emailMissingAssignmentTime,
     emailWeeklyFridayEnabled,
     emailWeeklyFridayTime
   } = req.body
@@ -1811,6 +2037,8 @@ app.put('/api/settings', (req, res) => {
   if (egeEmails !== undefined) updates.egeEmails = String(egeEmails).trim()
   if (emailDailyEnabled !== undefined) updates.emailDailyEnabled = Boolean(emailDailyEnabled)
   if (emailMockExamEnabled !== undefined) updates.emailMockExamEnabled = Boolean(emailMockExamEnabled)
+  if (emailMissingAssignmentEnabled !== undefined) updates.emailMissingAssignmentEnabled = Boolean(emailMissingAssignmentEnabled)
+  if (emailMissingAssignmentTime !== undefined) updates.emailMissingAssignmentTime = String(emailMissingAssignmentTime).trim()
   if (emailWeeklyFridayEnabled !== undefined) updates.emailWeeklyFridayEnabled = Boolean(emailWeeklyFridayEnabled)
   if (emailWeeklyFridayTime !== undefined) updates.emailWeeklyFridayTime = String(emailWeeklyFridayTime).trim()
 
@@ -2042,6 +2270,55 @@ app.get('/api/email/preview-mock-exam', (req, res) => {
   }
 })
 
+// Check missing homework submissions and send 15:00 alerts
+app.post('/api/email/check-missing-assignments', async (req, res) => {
+  try {
+    const { targetDate, force } = req.body || {}
+    const result = await checkAndDispatchMissingAssignmentAlerts(targetDate, Boolean(force))
+    res.json(result)
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message })
+  }
+})
+
+// Preview missing homework alert email HTML (supports ?studentId=mete|ege&date=YYYY-MM-DD)
+app.get('/api/email/preview-missing-assignment', (req, res) => {
+  try {
+    const { studentId, date } = req.query
+    const db = readDB()
+    const targetStudentId = studentId || 'mete'
+    const student = (db.students || []).find(s => s.id === targetStudentId) || { id: targetStudentId, name: targetStudentId === 'mete' ? 'Mete' : 'Ege' }
+    const targetDate = date || getYesterdayDateStr()
+
+    // Find actual assignments or build sample
+    let dayAsgns = (db.assignments || []).filter(a => a.studentId === targetStudentId && a.date === targetDate)
+    if (dayAsgns.length === 0) {
+      dayAsgns = [
+        {
+          id: `sample_asgn_1`,
+          studentId: targetStudentId,
+          bookTitle: 'ÇAP Plus 9. Sınıf Matematik Soru Bankası',
+          themeName: '1. Tema: Sayılar',
+          topicName: '1.2 Bölünebilme Kuralları',
+          testTitle: 'Bölünebilme Kuralları - 1',
+          testNum: 'Öğreniyorum 4',
+          pages: '23-24',
+          qCount: 12,
+          status: 'pending'
+        }
+      ]
+    }
+
+    const pendingAsgns = dayAsgns.filter(a => a.status !== 'completed' && !a.submissionId)
+    const effectivePending = pendingAsgns.length > 0 ? pendingAsgns : dayAsgns
+    const settings = getSettings()
+    const html = buildMissingAssignmentEmailHtml(student, targetDate, effectivePending, dayAsgns, settings)
+    res.json({ success: true, html, studentId: targetStudentId, targetDate, missingCount: effectivePending.length })
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message })
+  }
+})
+
 // Serve frontend in production
 const frontendDist = path.join(__dirname, '..', 'frontend', 'dist')
 app.use(express.static(frontendDist))
@@ -2064,6 +2341,7 @@ app.listen(PORT, async () => {
 
 // Friday 21:00 Automated Weekly Report Local Cron Trigger (when server is running)
 let lastFridayReportDate = null
+let lastMissingAlertDate = null
 setInterval(() => {
   try {
     const now = new Date()
@@ -2079,7 +2357,19 @@ setInterval(() => {
     const trHours = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Istanbul' })).getHours()
     const trMinutes = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Istanbul' })).getMinutes()
 
-    // If Friday (day 5) and time is 21:00 (between 21:00 and 21:04) and not already sent today
+    // 1. Daily 15:00 Missing Homework Alert (checks yesterday's submissions)
+    if (trHours === 15 && trMinutes < 5 && lastMissingAlertDate !== trDateParts) {
+      const settings = getSettings()
+      if (settings.emailMissingAssignmentEnabled !== false && settings.notificationEmails && settings.googleAppsScriptUrl) {
+        console.log(`[Cron] Saat 15:00 Ödev Girişi Kontrolü tetikleniyor... (${trDateParts})`)
+        lastMissingAlertDate = trDateParts
+        checkAndDispatchMissingAssignmentAlerts().catch(err => {
+          console.error('[Cron Missing Assignment Email Error]:', err.message)
+        })
+      }
+    }
+
+    // 2. If Friday (day 5) and time is 21:00 (between 21:00 and 21:04) and not already sent today
     if (trDayOfWeek === 5 && trHours === 21 && trMinutes < 5 && lastFridayReportDate !== trDateParts) {
       const settings = getSettings()
       if (settings.emailWeeklyFridayEnabled && settings.notificationEmails && settings.googleAppsScriptUrl) {

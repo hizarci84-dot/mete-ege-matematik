@@ -245,3 +245,19 @@ export async function fetchMockExamEmailPreview(studentId = 'mete', examId = '')
   return res.json()
 }
 
+export async function checkMissingAssignments(targetDate = '', force = false) {
+  const res = await fetch(`${API_BASE}/email/check-missing-assignments`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ targetDate, force })
+  })
+  return res.json()
+}
+
+export async function fetchMissingAssignmentEmailPreview(studentId = 'mete', date = '') {
+  let url = `${API_BASE}/email/preview-missing-assignment?studentId=${studentId}`
+  if (date) url += `&date=${date}`
+  const res = await fetch(url)
+  return res.json()
+}
+

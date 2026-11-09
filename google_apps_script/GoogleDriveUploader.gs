@@ -63,6 +63,41 @@ function otomatikCuma2100TetikleyiciKur() {
 }
 
 /**
+ * ⏰ BU FONKSİYONU 1 KERE ÇALIŞTIRIN:
+ * Her gün saat 15:00'da Google Bulutunda dünkü ödevlerin veri girişini denetleyen tetikleyiciyi kurar.
+ * Öğrenciler dünkü ödevlerini saat 15:00'a kadar girmemişlerse ilgili velilere ve öğretmene uyarı e-postası gönderilir.
+ */
+function otomatik1500OdevHatirlaticiKur() {
+  var triggers = ScriptApp.getProjectTriggers();
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === "sendDaily1500MissingHomeworkCheck") {
+      ScriptApp.deleteTrigger(triggers[i]);
+    }
+  }
+
+  ScriptApp.newTrigger("sendDaily1500MissingHomeworkCheck")
+    .timeBased()
+    .everyDays(1)
+    .atHour(15)
+    .create();
+
+  Logger.log("🎉 TEBRİKLER HOCAM! Her Gün Saat 15:00 Ödev Kontrolü ve Hatırlatıcı Tetikleyicisi Kuruldu.");
+}
+
+/**
+ * 🚀 TÜM OTOMATİK ZAMANLAYICILARI TEK TIKLA KURAR:
+ * 1. Saat 15:00: Ödev Veri Girişi Kontrolü & Hatırlatma E-postası
+ * 2. Saat 16:00: Günlük WhatsApp Görev Duyurusu
+ * 3. Cuma Saat 21:00: Haftalık Karne Dağıtımı E-postası
+ */
+function tumOtomatikTetikleyicileriKur() {
+  otomatik1500OdevHatirlaticiKur();
+  otomatik1600TetikleyiciKur();
+  otomatikCuma2100TetikleyiciKur();
+  Logger.log("🌟 TÜM SİSTEM ZAMANLAYICILARI BAŞARIYLA AKTİF EDİLDİ!");
+}
+
+/**
  * 🔓 TÜM SORU FOTOĞRAFLARINI HERKESE AÇIK (LİNKİ OLAN GÖRÜR) YAPAR:
  * Google Drive'daki 'mete-ege yapılamayan sorular' klasörünü ve içindeki
  * tüm soru fotoğraflarını 'Bağlantıya sahip olan herkes görüntüleyebilir' yapar.
@@ -129,6 +164,37 @@ function sendWeeklyFriday2100Report() {
 function testCumaRaporuGonder() {
   var res = sendWeeklyFriday2100Report();
   Logger.log("Test Sonucu: " + JSON.stringify(res));
+}
+
+/**
+ * Saat 15:00 Tetikleyicisi tarafından çağrılır:
+ * Canlı sunucuya (Render) istek atarak dünkü ödev veri girişlerini denetler ve eksik varsa e-posta postalar.
+ */
+function sendDaily1500MissingHomeworkCheck() {
+  try {
+    Logger.log("⏰ Saat 15:00 Ödev Kontrolü Tetiklendi...");
+    var fetchUrl = APP_SERVER_URL + "/api/email/check-missing-assignments";
+    var resp = UrlFetchApp.fetch(fetchUrl, {
+      method: "post",
+      contentType: "application/json",
+      payload: JSON.stringify({ source: "google_apps_script_cron" }),
+      muteHttpExceptions: true
+    });
+    Logger.log("Ödev Kontrol Yanıtı: " + resp.getContentText());
+    return JSON.parse(resp.getContentText());
+  } catch (err) {
+    Logger.log("❌ Ödev Kontrol Hatası: " + err.toString());
+    return { status: "error", error: err.toString() };
+  }
+}
+
+/**
+ * 🧪 Saat 15:00 Ödev Kontrolünü Şimdi Test Et:
+ * Saat 15:00'ı beklemeden dünkü ödevlerin durumunu kontrol edip eksik ödev varsa anında uyarı maili postalar.
+ */
+function testOdevKontroluGonder() {
+  var res = sendDaily1500MissingHomeworkCheck();
+  Logger.log("Ödev Kontrol Test Sonucu: " + JSON.stringify(res));
 }
 
 /**

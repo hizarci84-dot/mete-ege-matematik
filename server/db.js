@@ -344,6 +344,8 @@ export function getInitialData() {
       egeEmails: '',
       emailDailyEnabled: true,
       emailMockExamEnabled: true,
+      emailMissingAssignmentEnabled: true,
+      emailMissingAssignmentTime: '15:00',
       emailWeeklyFridayEnabled: true,
       emailWeeklyFridayTime: '21:00'
     }
@@ -408,6 +410,12 @@ export function readDB() {
     }
     if (parsed.settings.emailMockExamEnabled === undefined) {
       parsed.settings.emailMockExamEnabled = true
+    }
+    if (parsed.settings.emailMissingAssignmentEnabled === undefined) {
+      parsed.settings.emailMissingAssignmentEnabled = true
+    }
+    if (parsed.settings.emailMissingAssignmentTime === undefined) {
+      parsed.settings.emailMissingAssignmentTime = '15:00'
     }
     if (parsed.settings.emailWeeklyFridayEnabled === undefined) {
       parsed.settings.emailWeeklyFridayEnabled = true
