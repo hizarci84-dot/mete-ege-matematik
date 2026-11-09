@@ -2388,9 +2388,97 @@
       "questionPhotos": [],
       "net": 6,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1794251829402",
+      "submittedAt": "2026-11-09T19:17:09.402Z",
+      "studentId": "mete",
+      "assignmentId": "asgn_mete_44",
+      "testId": "orig-t1-test-26",
+      "bookId": "orijinal-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+      "testTitle": "Mutlak Değerli Aralıklar Test 2",
+      "testNum": "Test 26",
+      "pages": "41-42",
+      "date": "2026-11-08",
+      "qCount": 12,
+      "correct": 12,
+      "wrong": 0,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 12,
+      "scorePercent": 100
     }
   ],
   "mockExams": [
+    {
+      "id": "mock_1794144519176_74l59r",
+      "createdAt": "2026-11-08T13:28:39.177Z",
+      "examType": "general",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "examTitle": "Ege",
+      "publisher": "Bilgi Sarmal",
+      "date": "2026-10-23",
+      "subjects": [
+        {
+          "key": "turkce",
+          "name": "Türk Dili ve Edebiyatı",
+          "qCount": 30,
+          "correct": 23,
+          "wrong": 4,
+          "empty": 3,
+          "net": 22,
+          "scorePercent": 73
+        },
+        {
+          "key": "matematik",
+          "name": "Matematik",
+          "qCount": 30,
+          "correct": 18,
+          "wrong": 7,
+          "empty": 5,
+          "net": 16.25,
+          "scorePercent": 54
+        },
+        {
+          "key": "fen",
+          "name": "Fen Bilimleri (Fizik-Kimya-Biyo)",
+          "qCount": 30,
+          "correct": 25,
+          "wrong": 3,
+          "empty": 2,
+          "net": 24.25,
+          "scorePercent": 81
+        },
+        {
+          "key": "sosyal",
+          "name": "Sosyal Bilimler (Tar-Coğ-Din-Fel)",
+          "qCount": 30,
+          "correct": 26,
+          "wrong": 1,
+          "empty": 3,
+          "net": 25.75,
+          "scorePercent": 86
+        }
+      ],
+      "qCount": 120,
+      "correct": 92,
+      "wrong": 15,
+      "empty": 13,
+      "durationMinutes": 135,
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 88.25,
+      "scorePercent": 74,
+      "mathNet": 16.25,
+      "mathQCount": 30
+    },
     {
       "id": "mock_1793714566876_15afqf",
       "createdAt": "2026-11-03T14:02:46.878Z",
@@ -2511,72 +2599,34 @@
       "mathNet": 18.5,
       "mathQCount": 30,
       "updatedAt": "2026-11-03T14:04:08.087Z"
-    },
-    {
-      "id": "mock_1794144519176_74l59r",
-      "createdAt": "2026-11-08T13:28:39.177Z",
-      "examType": "general",
-      "studentId": "ege",
-      "studentName": "Ege",
-      "examTitle": "Ege",
-      "publisher": "Bilgi Sarmal",
-      "date": "2026-10-23",
-      "subjects": [
-        {
-          "key": "turkce",
-          "name": "Türk Dili ve Edebiyatı",
-          "qCount": 30,
-          "correct": 23,
-          "wrong": 4,
-          "empty": 3,
-          "net": 22,
-          "scorePercent": 73
-        },
-        {
-          "key": "matematik",
-          "name": "Matematik",
-          "qCount": 30,
-          "correct": 18,
-          "wrong": 7,
-          "empty": 5,
-          "net": 16.25,
-          "scorePercent": 54
-        },
-        {
-          "key": "fen",
-          "name": "Fen Bilimleri (Fizik-Kimya-Biyo)",
-          "qCount": 30,
-          "correct": 25,
-          "wrong": 3,
-          "empty": 2,
-          "net": 24.25,
-          "scorePercent": 81
-        },
-        {
-          "key": "sosyal",
-          "name": "Sosyal Bilimler (Tar-Coğ-Din-Fel)",
-          "qCount": 30,
-          "correct": 26,
-          "wrong": 1,
-          "empty": 3,
-          "net": 25.75,
-          "scorePercent": 86
-        }
-      ],
-      "qCount": 120,
-      "correct": 92,
-      "wrong": 15,
-      "empty": 13,
-      "durationMinutes": 135,
-      "studentNote": "",
-      "questionPhotos": [],
-      "net": 88.25,
-      "scorePercent": 74,
-      "mathNet": 16.25,
-      "mathQCount": 30
     }
   ],
   "unsolvedQuestions": [
+    {
+      "id": "qimg_1794046803072_0",
+      "submissionId": "sub_1794046805445",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "testId": "cap-t1-ogr-14",
+      "assignmentId": "asgn_ege_45",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+      "testTitle": "Sayılarda Sıralama Özellikleri - 1",
+      "testNum": "Öğreniyorum 14",
+      "pages": "43-44",
+      "questionNo": "Soru 1",
+      "note": "",
+      "imageUrl": "/uploads/question_1794046802755_rhz06n.jpg",
+      "createdAt": "2026-11-07T10:20:05.445Z",
+      "status": "pending",
+      "teacherReply": "",
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1BO1r9cx_bHJk76RVr5PQ7ntA8lSH5pYw/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1BO1r9cx_bHJk76RVr5PQ7ntA8lSH5pYw&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-11-07",
+      "driveSyncedAt": "2026-11-07T10:20:11.131Z",
+      "updatedAt": "2026-11-07T10:20:11.131Z"
+    },
     {
       "id": "q_1793714568084_6jy2r6",
       "createdAt": "2026-11-03T14:02:48.084Z",
@@ -4452,31 +4502,6 @@
       "driveFolder": "mete-ege yapılamayan sorular/2026-10-11",
       "driveSyncedAt": "2026-10-11T08:58:38.201Z",
       "updatedAt": "2026-10-11T18:37:51.680Z"
-    },
-    {
-      "id": "qimg_1794046803072_0",
-      "submissionId": "sub_1794046805445",
-      "studentId": "ege",
-      "studentName": "Ege",
-      "testId": "cap-t1-ogr-14",
-      "assignmentId": "asgn_ege_45",
-      "themeName": "1. Tema: Sayılar",
-      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
-      "testTitle": "Sayılarda Sıralama Özellikleri - 1",
-      "testNum": "Öğreniyorum 14",
-      "pages": "43-44",
-      "questionNo": "Soru 1",
-      "note": "",
-      "imageUrl": "/uploads/question_1794046802755_rhz06n.jpg",
-      "createdAt": "2026-11-07T10:20:05.445Z",
-      "status": "pending",
-      "teacherReply": "",
-      "teacherReplyAt": null,
-      "driveFileUrl": "https://drive.google.com/file/d/1BO1r9cx_bHJk76RVr5PQ7ntA8lSH5pYw/view?usp=drivesdk",
-      "driveDownloadUrl": "https://drive.google.com/uc?id=1BO1r9cx_bHJk76RVr5PQ7ntA8lSH5pYw&export=download",
-      "driveFolder": "mete-ege yapılamayan sorular/2026-11-07",
-      "driveSyncedAt": "2026-11-07T10:20:11.131Z",
-      "updatedAt": "2026-11-07T10:20:11.131Z"
     }
   ],
   "teacherNotes": [
@@ -4520,5 +4545,5 @@
     "emailWeeklyFridayEnabled": true,
     "emailWeeklyFridayTime": "21:00"
   },
-  "updated_at": "2026-11-09T13:38:23.219Z"
+  "updated_at": "2026-11-09T19:17:10.665Z"
 }
