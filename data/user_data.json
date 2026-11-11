@@ -2702,7 +2702,12 @@
       "createdAt": "2026-11-11T17:29:15.244Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1rxuMSLKEU_GtcFQrqNVm2M458eTn6B33/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1rxuMSLKEU_GtcFQrqNVm2M458eTn6B33&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-11-11",
+      "driveSyncedAt": "2026-11-11T17:29:21.668Z",
+      "updatedAt": "2026-11-11T17:29:21.668Z"
     },
     {
       "id": "q_1793714568084_6jy2r6",
@@ -4649,5 +4654,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-11T17:29:16.457Z"
+  "updated_at": "2026-11-11T17:29:22.912Z"
 }
