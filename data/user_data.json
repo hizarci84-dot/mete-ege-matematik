@@ -2545,6 +2545,44 @@
       "questionPhotos": [],
       "net": 10,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1794501659917",
+      "submittedAt": "2026-11-12T16:40:59.917Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_49",
+      "testId": "cap-t1-ogr-16",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+      "testTitle": "Sayılarda Sıralama Özellikleri - 3",
+      "testNum": "Öğreniyorum 16",
+      "pages": "47-48",
+      "date": "2026-11-12",
+      "qCount": 13,
+      "correct": 10,
+      "wrong": 0,
+      "empty": 3,
+      "durationMinutes": 9,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [
+        {
+          "id": "qimg_1794501434154_0",
+          "url": "/uploads/question_1794501433957_6ndw2r.jpg",
+          "questionNo": "Soru 1",
+          "note": ""
+        },
+        {
+          "id": "qimg_1794501602186_0",
+          "url": "/uploads/question_1794501601995_a2o2yd.jpg",
+          "questionNo": "Soru 2",
+          "note": ""
+        }
+      ],
+      "net": 10,
+      "scorePercent": 77
     }
   ],
   "mockExams": [
@@ -2735,29 +2773,44 @@
   ],
   "unsolvedQuestions": [
     {
-      "id": "qimg_1794418154930_0",
-      "submissionId": "sub_1794418155244",
+      "id": "qimg_1794501602186_0",
+      "submissionId": "sub_1794501659917",
       "studentId": "ege",
       "studentName": "Ege",
-      "testId": "cap-t1-ogr-15",
-      "assignmentId": "asgn_ege_47",
+      "testId": "cap-t1-ogr-16",
+      "assignmentId": "asgn_ege_49",
       "themeName": "1. Tema: Sayılar",
       "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
-      "testTitle": "Sayılarda Sıralama Özellikleri - 2",
-      "testNum": "Öğreniyorum 15",
-      "pages": "45-46",
-      "questionNo": "Soru 1",
+      "testTitle": "Sayılarda Sıralama Özellikleri - 3",
+      "testNum": "Öğreniyorum 16",
+      "pages": "47-48",
+      "questionNo": "Soru 2",
       "note": "",
-      "imageUrl": "/uploads/question_1794418154749_cv7pi0.jpg",
-      "createdAt": "2026-11-11T17:29:15.244Z",
+      "imageUrl": "/uploads/question_1794501601995_a2o2yd.jpg",
+      "createdAt": "2026-11-12T16:40:59.918Z",
       "status": "pending",
       "teacherReply": "",
-      "teacherReplyAt": null,
-      "driveFileUrl": "https://drive.google.com/file/d/1rxuMSLKEU_GtcFQrqNVm2M458eTn6B33/view?usp=drivesdk",
-      "driveDownloadUrl": "https://drive.google.com/uc?id=1rxuMSLKEU_GtcFQrqNVm2M458eTn6B33&export=download",
-      "driveFolder": "mete-ege yapılamayan sorular/2026-11-11",
-      "driveSyncedAt": "2026-11-11T17:29:21.668Z",
-      "updatedAt": "2026-11-11T17:29:21.668Z"
+      "teacherReplyAt": null
+    },
+    {
+      "id": "qimg_1794501434154_0",
+      "submissionId": "sub_1794501659917",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "testId": "cap-t1-ogr-16",
+      "assignmentId": "asgn_ege_49",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+      "testTitle": "Sayılarda Sıralama Özellikleri - 3",
+      "testNum": "Öğreniyorum 16",
+      "pages": "47-48",
+      "questionNo": "Soru 1",
+      "note": "",
+      "imageUrl": "/uploads/question_1794501433957_6ndw2r.jpg",
+      "createdAt": "2026-11-12T16:40:59.918Z",
+      "status": "pending",
+      "teacherReply": "",
+      "teacherReplyAt": null
     },
     {
       "id": "q_1793714568084_6jy2r6",
@@ -4636,6 +4689,31 @@
       "updatedAt": "2026-10-11T18:37:51.680Z"
     },
     {
+      "id": "qimg_1794418154930_0",
+      "submissionId": "sub_1794418155244",
+      "studentId": "ege",
+      "studentName": "Ege",
+      "testId": "cap-t1-ogr-15",
+      "assignmentId": "asgn_ege_47",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+      "testTitle": "Sayılarda Sıralama Özellikleri - 2",
+      "testNum": "Öğreniyorum 15",
+      "pages": "45-46",
+      "questionNo": "Soru 1",
+      "note": "",
+      "imageUrl": "/uploads/question_1794418154749_cv7pi0.jpg",
+      "createdAt": "2026-11-11T17:29:15.244Z",
+      "status": "pending",
+      "teacherReply": "",
+      "teacherReplyAt": null,
+      "driveFileUrl": "https://drive.google.com/file/d/1rxuMSLKEU_GtcFQrqNVm2M458eTn6B33/view?usp=drivesdk",
+      "driveDownloadUrl": "https://drive.google.com/uc?id=1rxuMSLKEU_GtcFQrqNVm2M458eTn6B33&export=download",
+      "driveFolder": "mete-ege yapılamayan sorular/2026-11-11",
+      "driveSyncedAt": "2026-11-11T17:29:21.668Z",
+      "updatedAt": "2026-11-11T17:29:21.668Z"
+    },
+    {
       "id": "qimg_1794046803072_0",
       "submissionId": "sub_1794046805445",
       "studentId": "ege",
@@ -4704,5 +4782,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-11T17:34:12.691Z"
+  "updated_at": "2026-11-12T16:41:01.186Z"
 }
