@@ -2608,6 +2608,31 @@
       "questionPhotos": [],
       "net": 4,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1794599532570",
+      "submittedAt": "2026-11-13T19:52:12.570Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_50",
+      "testId": "orig-t1-test-29",
+      "bookId": "orijinal-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+      "testTitle": "Mutlak Değerli Aralıklar Test 5",
+      "testNum": "Test 29",
+      "pages": "44-45",
+      "date": "2026-11-13",
+      "qCount": 8,
+      "correct": 8,
+      "wrong": 0,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 8,
+      "scorePercent": 100
     }
   ],
   "mockExams": [
@@ -4817,5 +4842,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-13T18:18:23.378Z"
+  "updated_at": "2026-11-13T19:52:13.783Z"
 }
