@@ -2633,6 +2633,31 @@
       "questionPhotos": [],
       "net": 8,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1794767368103",
+      "submittedAt": "2026-11-15T18:29:28.103Z",
+      "studentId": "mete",
+      "assignmentId": "asgn_mete_53",
+      "testId": "cap-t1-pek-6",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+      "testTitle": "Sayılarda Sıralama - Test 2",
+      "testNum": "Pekiştiriyorum 6",
+      "pages": "51-52",
+      "date": "2026-11-15",
+      "qCount": 12,
+      "correct": 11,
+      "wrong": 1,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "Dikkat hatası ,anladım",
+      "questionPhotos": [],
+      "net": 10.75,
+      "scorePercent": 92
     }
   ],
   "mockExams": [
@@ -4842,5 +4867,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-13T19:52:13.783Z"
+  "updated_at": "2026-11-15T18:29:29.317Z"
 }
