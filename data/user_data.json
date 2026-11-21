@@ -3083,6 +3083,31 @@
       "questionPhotos": [],
       "net": 9,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1795296771172",
+      "submittedAt": "2026-11-21T21:32:51.172Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_57",
+      "testId": "cap-t1-ogr-17",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.5 Önerme, İşlem Özellikleri ve Özdeşlikler",
+      "testTitle": "Önerme Kavramı",
+      "testNum": "Öğreniyorum 17",
+      "pages": "54-55",
+      "date": "2026-11-18",
+      "qCount": 8,
+      "correct": 8,
+      "wrong": 0,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 8,
+      "scorePercent": 100
     }
   ],
   "mockExams": [
@@ -5292,5 +5317,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-21T21:32:32.612Z"
+  "updated_at": "2026-11-21T21:32:52.385Z"
 }
