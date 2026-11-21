@@ -3183,6 +3183,31 @@
       "questionPhotos": [],
       "net": 8,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1795296850259",
+      "submittedAt": "2026-11-21T21:34:10.259Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_61",
+      "testId": "cap-t1-ogr-19",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.5 Önerme, İşlem Özellikleri ve Özdeşlikler",
+      "testTitle": "Sayı Kümelerinin İşlem Özellikleri",
+      "testNum": "Öğreniyorum 19",
+      "pages": "58-59",
+      "date": "2026-11-21",
+      "qCount": 2,
+      "correct": 2,
+      "wrong": 0,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 2,
+      "scorePercent": 100
     }
   ],
   "mockExams": [
@@ -5392,5 +5417,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-21T21:33:42.705Z"
+  "updated_at": "2026-11-21T21:34:11.472Z"
 }
