@@ -3108,6 +3108,31 @@
       "questionPhotos": [],
       "net": 8,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1795296787320",
+      "submittedAt": "2026-11-21T21:33:07.320Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_58",
+      "testId": "orig-t1-test-34",
+      "bookId": "orijinal-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.5 Önerme, İşlem Özellikleri ve Özdeşlikler",
+      "testTitle": "Önerme (Mantık) Test 1",
+      "testNum": "Test 34",
+      "pages": "54-55",
+      "date": "2026-11-19",
+      "qCount": 6,
+      "correct": 5,
+      "wrong": 0,
+      "empty": 1,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 5,
+      "scorePercent": 83
     }
   ],
   "mockExams": [
@@ -5317,5 +5342,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-21T21:32:52.385Z"
+  "updated_at": "2026-11-21T21:33:08.611Z"
 }
