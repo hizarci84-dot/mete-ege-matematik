@@ -3008,6 +3008,31 @@
       "questionPhotos": [],
       "net": 12,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1795296709453",
+      "submittedAt": "2026-11-21T21:31:49.453Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_54",
+      "testId": "orig-t1-test-31",
+      "bookId": "orijinal-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.4 Sayı Kümelerinde Sıralama ve Özellikler",
+      "testTitle": "Sayı Kümelerinde Sıralama Test 2",
+      "testNum": "Test 31",
+      "pages": "49-50",
+      "date": "2026-11-15",
+      "qCount": 12,
+      "correct": 10,
+      "wrong": 0,
+      "empty": 2,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 10,
+      "scorePercent": 83
     }
   ],
   "mockExams": [
@@ -5217,5 +5242,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-21T21:31:36.020Z"
+  "updated_at": "2026-11-21T21:31:50.667Z"
 }
