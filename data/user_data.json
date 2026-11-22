@@ -3283,6 +3283,31 @@
       "questionPhotos": [],
       "net": 9,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1795350929626",
+      "submittedAt": "2026-11-22T12:35:29.626Z",
+      "studentId": "mete",
+      "assignmentId": "asgn_mete_63",
+      "testId": "cap-t1-ogr-20",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.5 Önerme, İşlem Özellikleri ve Özdeşlikler",
+      "testTitle": "Tam Kare Özdeşlikleri - 1",
+      "testNum": "Öğreniyorum 20",
+      "pages": "60-61",
+      "date": "2026-11-22",
+      "qCount": 13,
+      "correct": 12,
+      "wrong": 1,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 11.75,
+      "scorePercent": 92
     }
   ],
   "mockExams": [
@@ -5492,5 +5517,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-22T12:34:51.888Z"
+  "updated_at": "2026-11-22T12:35:30.898Z"
 }
