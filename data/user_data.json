@@ -3403,6 +3403,31 @@
       "questionPhotos": [],
       "net": 8,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1795629418882",
+      "submittedAt": "2026-11-25T17:56:58.882Z",
+      "studentId": "ege",
+      "assignmentId": "asgn_ege_66",
+      "testId": "orig-t1-test-38",
+      "bookId": "orijinal-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.5 Önerme, İşlem Özellikleri ve Özdeşlikler",
+      "testTitle": "Özdeşlikler Test 1",
+      "testNum": "Test 38",
+      "pages": "58-59",
+      "date": "2026-11-25",
+      "qCount": 12,
+      "correct": 12,
+      "wrong": 0,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 12,
+      "scorePercent": 100
     }
   ],
   "mockExams": [
@@ -5687,5 +5712,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-25T14:14:53.436Z"
+  "updated_at": "2026-11-25T17:57:00.175Z"
 }
