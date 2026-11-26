@@ -3453,6 +3453,31 @@
       "questionPhotos": [],
       "net": 13,
       "scorePercent": 100
+    },
+    {
+      "id": "sub_1795713498431",
+      "submittedAt": "2026-11-26T17:18:18.431Z",
+      "studentId": "mete",
+      "assignmentId": "asgn_mete_67",
+      "testId": "cap-t1-ogr-22",
+      "bookId": "cap-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.5 Önerme, İşlem Özellikleri ve Özdeşlikler",
+      "testTitle": "İki Kare Farkı Özdeşliği",
+      "testNum": "Öğreniyorum 22",
+      "pages": "64-65",
+      "date": "2026-11-26",
+      "qCount": 12,
+      "correct": 11,
+      "wrong": 1,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 10.75,
+      "scorePercent": 92
     }
   ],
   "mockExams": [
@@ -5737,5 +5762,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-26T13:01:04.041Z"
+  "updated_at": "2026-11-26T17:18:19.696Z"
 }
