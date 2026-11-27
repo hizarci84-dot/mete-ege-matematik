@@ -3478,6 +3478,31 @@
       "questionPhotos": [],
       "net": 10.75,
       "scorePercent": 92
+    },
+    {
+      "id": "sub_1795789060904",
+      "submittedAt": "2026-11-27T14:17:40.904Z",
+      "studentId": "mete",
+      "assignmentId": "asgn_mete_68",
+      "testId": "orig-t1-test-39",
+      "bookId": "orijinal-9",
+      "themeName": "1. Tema: Sayılar",
+      "topicName": "1.5 Önerme, İşlem Özellikleri ve Özdeşlikler",
+      "testTitle": "Özdeşlikler Test 2",
+      "testNum": "Test 39",
+      "pages": "59-60",
+      "date": "2026-11-27",
+      "qCount": 7,
+      "correct": 7,
+      "wrong": 0,
+      "empty": 0,
+      "durationMinutes": 15,
+      "mode": "quick",
+      "answers": [],
+      "studentNote": "",
+      "questionPhotos": [],
+      "net": 7,
+      "scorePercent": 100
     }
   ],
   "mockExams": [
@@ -5762,5 +5787,5 @@
     "emailMissingAssignmentEnabled": true,
     "emailMissingAssignmentTime": "15:00"
   },
-  "updated_at": "2026-11-26T17:18:19.696Z"
+  "updated_at": "2026-11-27T14:17:42.176Z"
 }
